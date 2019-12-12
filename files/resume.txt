@@ -1,0 +1,50 @@
+Oren Kravetz
+Experience Design Lead
+
+17-11 Ellis Ave
+Fair Lawn, NJ 07410
+917-515-6129
+resume@orenkravetz.com
+orenkravetz.com
+
+Professional Experience:
+    Isobar
+        Experience Design Lead, Jul 2016 – Present
+        - Lead team of junior designers through the design process from user research and product definition through launch
+        - Facilitate increased collaboration between design team, developers, and business analysts
+        - Develop design systems and pattern libraries
+        - Gather and scope business requirements
+        - Present workshops that showcase previous work or teach about latest technologies to company-wide design team
+        Senior Experience Designer, Jan 2013 – Jun 2016
+        - Design conceptual wireframes, detail wireframes, and interactive prototypes for web apps, iOS apps, Android apps, watchOS apps, and Java apps
+        - Develop responsive solution for multiple breakpoints
+        - Manage project threads independently
+        - Perform user research and usability testing
+        - Develop journey maps based on user research
+        - Write and scope user stories with business analysts
+        User Experience Designer, Oct 2010 – Dec 2012
+        - Design conceptual and detail wireframes for web apps
+        - Perform Quality Assurance for website in development
+        - Develop information flow between Isobar and the client
+        - Collaborate with developers, visual designers, and business analysts to ensure proper execution of designs
+        
+        Clients/projects include: Bloomberg Law, Sotheby’s, HBO, LPL Finance, MSCI, Umpqua Bank, D.E. Shaw, The Wall Street Journal, NBCUniversal, Google, IntegraMed, the U.S. Air Force, General Motors, Altar'd State, Flexport, Baker Hughes, and Cisco.
+        As of February 2012, Roundarch combined with Isobar to form Roundarch Isobar.
+        As of December 2013, the company is known as Isobar.
+
+Volunteer Experience:
+    Congregation Darchei Noam of Fair Lawn
+        Board of Trustees, Events Committee Chair, Communications Committee Chair, Feb 2017 – Present
+        - Manage event planners and help them successfully plan & execute events
+        - Design marketing materials for synagogue and social events
+        - Write marketing copy for synagogue and social events
+        - Publish marketing materials to membership & drive engagement at events
+        - Manage synagogue website & social media accounts
+
+Technical Skills: 
+    Languages: Fluent in English, Spanish, and Hebrew
+    Design: Sketch - InVision - Axure - XD - InDesign - Photoshop - Illustrator - JavaScript - CSS
+
+Education:
+    Master of Human-Computer Interaction, Carnegie Mellon University August 2010
+    Bachelor of Applied Sciences: Computer Science, Washington University in St. Louis December 2008

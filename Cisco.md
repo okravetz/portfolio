@@ -5,8 +5,6 @@ title: Cisco
 
 ---
 
-# Cisco
-
 ## Responsive redesign of Cisco Small Business (2019)
 
 ### Case Study

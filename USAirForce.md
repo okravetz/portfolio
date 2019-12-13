@@ -5,8 +5,6 @@ title: U.S. Air Force
 
 ---
 
-# U.S. Air Force
-
 ## Analysis of legacy applications and recommendation including design system (2018)
 
 ### Case Study

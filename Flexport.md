@@ -5,8 +5,6 @@ title: Flexport
 
 ---
 
-# Flexport
-
 ## Responsive redesign of flexport.com (2018–2019)
 
 ### Case Study

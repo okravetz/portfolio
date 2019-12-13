@@ -5,8 +5,6 @@ title: Baker Hughes
 
 ---
 
-# Baker Hughes
-
 ## Responsive redesign of bakerhughes.com (2019)
 
 ### Case Study

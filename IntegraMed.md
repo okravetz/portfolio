@@ -5,8 +5,6 @@ title: IntegraMed
 
 ---
 
-# IntegraMed
-
 ## Responsive design of web-based clinic portal and patient portal (2016–2018)
 
 ### Case Study

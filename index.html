@@ -46,22 +46,9 @@ title: Oren Kravetz's Portfolio
   <article>
     <h2 id="work">Work</h2>
     <dl>
-      <dt><a href="Cisco.html">Cisco</a></dt>
-      <dd>Responsive redesign of Cisco Small Business (2019)</dd>
-      <dt><a href="BakerHughes.html">Baker Hughes</a></dt>
-      <dd>Responsive redesign of bakerhughes.com (2019)</dd>
-      <dt><a href="Flexport.html">Flexport</a></dt>
-      <dd>Responsive redesign of flexport.com (2019–2019)</dd>
-      <dt><a href="USAirForce.html">United States Air Force</a></dt>
-      <dd>
-        Analysis of legacy applications and recommendation including design
-        system (2018)
-      </dd>
-      <dt><a href="IntegraMed.html">IntegraMed</a></dt>
-      <dd>
-        Responsive design of web-based clinic portal and patient portal
-        (2016–2018)
-      </dd>
+      {%- for item in site.data.casestudies -%}
+      <dt><a href="{{ item.link }}">{{ item.name }}</a></dt>
+      <dd>{{ item.description }}</dd>
     </dl>
   </article>
   <article>
@@ -75,22 +62,9 @@ title: Oren Kravetz's Portfolio
     <h2 id="contact">Contact</h2>
     <ul>
       <li><a href="mailto:contact@orenkravetz.com">Email</a></li>
+      {%- for item in site.data.contact -%}
       <li>
-        <a href="https://www.facebook.com/okravetz" target="_blank">Facebook</a>
-      </li>
-      <li>
-        <a href="https://www.linkedin.com/okravetz" target="_blank">LinkedIn</a>
-      </li>
-      <li>
-        <a href="https://www.twitter.com/okravetz" target="_blank">Twitter</a>
-      </li>
-      <li>
-        <a href="https://www.tumblr.com/okravetz" target="_blank">Tumblr</a>
-      </li>
-      <li>
-        <a href="https://www.instagram.com/okravetz" target="_blank"
-          >Instagram</a
-        >
+        <a href="https://www.{{ item.name | downcase }}.com/okravetz" target="_blank">{{ item.name }}</a>
       </li>
     </ul>
   </article>

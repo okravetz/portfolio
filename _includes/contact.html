@@ -1,7 +1,8 @@
 <ul>
     <li><a href="mailto:contact@orenkravetz.com">Email</a></li>
-    {% for item in site.data.contact %}
+    {%- for item in site.data.contact -%}
     <li>
       <a href="https://www.{{ item.name | downcase }}.com/okravetz" target="_blank">{{ item.name }}</a>
     </li>
+    {%- endfor -%}
 </ul>

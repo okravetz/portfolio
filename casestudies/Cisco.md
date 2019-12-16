@@ -9,7 +9,7 @@ title: Cisco
 ### Case Study
 
 - Cisco is a networking hardware manufacturer, connecting businesses of all sizes to the internet. Among other projects, Isobar was asked to redesign the product and content pages targeted at Small Businesses.
-{%- assign this_casestudy = site.data.casestudies | where: "name", "page.title" -%}
+{%- assign this_casestudy = site.data.casestudies | where: "name", page.title -%}
 {{ this_casestudy }}
 ![{{ this_casestudy.images[0].title }}]({{ page.cs_img_path }}{{ this_casestudy.images[0].link }} "{{ this_casestudy.images[0].title }}")
 - Cisco’s extensive analytics showed that a large portion of users enter the website via search engines. And some of those users would start their journey on an educational article. Therefore, the site needed to be able to funnel the potential customer to the relevant list of Small Business products and services and help them make a purchase decision.

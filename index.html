@@ -60,12 +60,6 @@ title: Oren Kravetz's Portfolio
   </article>
   <article>
     <h2 id="contact">Contact</h2>
-    <ul>
-      <li><a href="mailto:contact@orenkravetz.com">Email</a></li>
-      {%- for item in site.data.contact -%}
-      <li>
-        <a href="https://www.{{ item.name | downcase }}.com/okravetz" target="_blank">{{ item.name }}</a>
-      </li>
-    </ul>
+    {%- include contact.html -%}
   </article>
 </main>

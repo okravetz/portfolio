@@ -1,6 +1,5 @@
 ---
 
-layout: default
 title: U.S. Air Force
 
 ---

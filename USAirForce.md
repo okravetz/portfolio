@@ -1,6 +1,6 @@
 ---
 
-layout: casestudy
+layout: default
 title: U.S. Air Force
 
 ---

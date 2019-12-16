@@ -6,20 +6,20 @@
     <meta name="author" content="Oren Kravetz" />
     <meta
       name="description"
-      content="Oren Kravetz's bio, résumé, portfolio, and contact information.{% if page.url == "/" %} Case study for {{ page.title }} project.{% endif %}"
+      content="Oren Kravetz's bio, résumé, portfolio, and contact information.{%- unless page.url == "/" -%} Case study for {{ page.title }} project.{%- endunless -%}"
     />
     <!-- <meta name="og:image" content =""> -->
     <meta
       name="og:description"
-      content="Oren Kravetz's bio, résumé, portfolio, and contact information.{% if page.url == "/" %} Case study for {{ page.title }} project.{% endif %}"
+      content="Oren Kravetz's bio, résumé, portfolio, and contact information.{%- unless page.url == "/" -%} Case study for {{ page.title }} project.{%- endunless -%}"
     />
     <meta
       name="og:title"
-      content="Oren Kravetz's Portfolio"
+      content="Oren Kravetz's Portfolio{%- unless page.url == "/" -%} - {{ page.title }} Case Study{%- endunless -%}"
     />
     <meta
       name="twitter:title"
-      content="Oren Kravetz's Portfolio"
+      content="Oren Kravetz's Portfolio{%- unless page.url == "/" -%} - {{ page.title }} Case Study{%- endunless -%}"
     />
     <link rel="shortcut icon" href="img/favicon.ico" type="image/x-icon" />
     <!-- <link rel="stylesheet" href="style.css"> -->
@@ -30,8 +30,8 @@
     <![endif]-->
   </head>
   <body>
-    {% include navigation.html %}
-    {{ content }}
-    {% include footer.html %}
+    {%- include navigation.html -%}
+    {%- unless page.url == "/" -%}<main><article>{%- endunless -%}{{ content }}{%- unless page.url == "/" -%}</article></main>{%- endunless -%}
+    {%- include footer.html -%}
   </body>
 </html>

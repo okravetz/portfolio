@@ -1,6 +1,6 @@
 ---
 
-layout: casestudy
+layout: default
 title: Baker Hughes
 
 ---

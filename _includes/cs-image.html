@@ -22,10 +22,11 @@
     - imgtitle: {% if imgtitle %}{{ imgtitle }}{% else %}null{% endif %}
     - imglink: {% if imglink %}{{ imglink }}{% else %}null{% endif %}
     - image: ![{{ imgtitle }}]({{ path }}{{ imglink }} "{{ imgtitle }}")
+{%- for project in site.data.casestudies  -%}
+{%- endfor -%}
 {%- endcomment -%}
 
-{%- for project in site.data.casestudies  -%}
-    {%- for img in project.images  -%}
-        {{ img.title }}
-    {%- endfor -%}
+{%- assign cs = site.data.casestudies | where: "name", include.title -%}
+{%- for img in cs.images  -%}
+    {{ img.title }}
 {%- endfor -%}

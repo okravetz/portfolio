@@ -11,7 +11,7 @@
 {%- capture imgtitle -%}
     {%- if cs.images[0] -%}
         {%- for img in cs.images  -%}
-            {%- if forloop.index0 = i -%}
+            {%- if forloop.index0 == i -%}
                 {{ img.title }}
                 {%- break -%}
             {%- endif -%}

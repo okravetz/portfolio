@@ -37,11 +37,15 @@
 
 {%- assign path = page.cs_img_path -%}
 {%- for project in site.data.casestudies -%}
-    {%- unless project.name == include.title -%}
+    {%- if project.name == include.title -%}
         {%- for img in project.images -%}
-            {%- unless forloop.index0 == include.num -%}
+            {%- if forloop.index0 == include.num -%}
 ![{{ img.title }}]({{ path }}{{ img.link }} "{{ img.title }}")
-            {%- endunless -%}
+            {%- else -%}
+                {%- break -%}
+            {%- endif -%}
         {%- endfor -%}
-    {%- endunless -%}
+    {%- else -%}
+        {%- break -%}
+    {%- endif -%}
 {%- endfor -%}

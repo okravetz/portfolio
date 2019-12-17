@@ -4,11 +4,7 @@
         {%- for img in project.images -%}
             {%- if forloop.index0 == include.num -%}
 ![{{ img.title }}]({{ path }}{{ img.link }} "{{ img.title }}")
-            {%- else -%}
-                {%- break -%}
             {%- endif -%}
         {%- endfor -%}
-    {%- else -%}
-        {%- break -%}
     {%- endif -%}
 {%- endfor -%}

@@ -1,11 +1,12 @@
 {%- assign cs = site.data.casestudies | where: "name", include.page_title -%}
 {%- assign num = include.num -%}
 {%- assign path = site.cs_img_path -%}
+{%- assign images = cs[num] -%}
 {% comment %}
-{%- assign images = site.cs_img_path[num] -%}
 {%- assign imgtitle = images.title -%}
 {%- assign imglink = images.link -%}
 {% endcomment %}
+    - cs: {%- if cs -%}{{ cs }}{%- else -%}null{%- endif -%}
     - num: {%- if num -%}{{ num }}{%- else -%}null{%- endif -%}
     - path: {%- if path -%}{{ path }}{%- else -%}null{%- endif -%}
     - images: {%- if images -%}{{ images }}{%- else -%}null{%- endif -%}

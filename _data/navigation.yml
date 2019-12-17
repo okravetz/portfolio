@@ -1,10 +1,10 @@
 - name: Home
-  link: /index.html
+  link: index.html
 - name: Bio
-  link: /index.html#bio
+  link: index.html#bio
 - name: Work
-  link: /index.html#work
+  link: index.html#work
 - name: Résumé
-  link: /index.html#resume
+  link: index.html#resume
 - name: Contact
-  link: /index.html#contact
+  link: index.html#contact

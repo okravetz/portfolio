@@ -4,6 +4,8 @@
   images:
     - title: Cisco Small Business Landing Page
       link: cisco-smb-landing.png
+    - title: Cisco Small Business Wireless Access Points
+      link: cisco-smb-wap.png
 - name: Baker Hughes
   link: BakerHughes.html
   description: Responsive redesign of bakerhughes.com (2019)

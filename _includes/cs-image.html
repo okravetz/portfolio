@@ -2,7 +2,6 @@
 {%- assign pagetitle = include.title -%}
 {%- assign cs = site.data.casestudies | where: "name", include.title -%}
 {%- assign i = include.num -%}
-{%- assign path = page.cs_img_path -%}
 {%- assign images = cs.images[0] -%}
 {%- assign img = images[i] -%}
 {%- assign imgtitle = images.title -%}
@@ -27,6 +26,10 @@
 {%- endcomment -%}
 
 {%- assign cs = site.data.casestudies | where: "name", include.title -%}
-{%- for img in cs.images  -%}
-    {{ img.title }}
-{%- endfor -%}
+{%- assign path = page.cs_img_path -%}
+{%- capture imgtitle -%}
+    {%- for img in cs.images  -%}
+        {{ img.title }}
+    {%- endfor -%}
+{%- endcapture -%}
+- image: ![{{ imgtitle }}]({{ path }}{{ imglink }} "{{ imgtitle }}")

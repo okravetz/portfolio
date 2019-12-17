@@ -23,6 +23,7 @@
 - name: Flexport
   link: Flexport.html
   description: Responsive redesign of flexport.com (2019–2019)
+  images:
     - title: Flexport Experience Principles
       link: flexport-experience-principles.png
     - title: Flexport Our Vision Page (Page Architecture)
@@ -32,6 +33,7 @@
 - name: U.S. Airforce
   link: USAirForce.html
   description: Analysis of legacy applications and recommendation including design system (2018)
+  images:
     - title: U.S. Air Force (Before State)
       link: usaf-before.png
     - title: U.S. Air Force Design System
@@ -43,6 +45,7 @@
 - name: IntegraMed
   link: IntegraMed.html
   description: Responsive design of web-based clinic portal and patient portal (2016–2018)
+  images:
     - title: IntegraMed Patient Portal Schedule (v1)
       link: integramed-patient-portal-v1.png
     - title: IntegraMed Patient Portal Schedule (v2)

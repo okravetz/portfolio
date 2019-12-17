@@ -27,8 +27,8 @@
 {%- endcapture -%}
 {%- endcomment -%}
 
-{%- assign cs = site.data.casestudies | where: "name", include.title -%}
 {%- assign path = page.cs_img_path -%}
+{%- assign cs = site.data.casestudies | where: "name", include.title -%}
 {%- for img in cs.images  -%}
-- image: ![{{ img.title }}]({{ path }}{{ img.link }} "{{ img.title }}")
+![{{ img.title }}]({{ path }}{{ img.link }} "{{ img.title }}")
 {%- endfor -%}

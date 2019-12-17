@@ -9,6 +9,9 @@
 - name: Baker Hughes
   link: BakerHughes.html
   description: Responsive redesign of bakerhughes.com (2019)
+  images:
+    - title: Baker Hughes Product Page v1
+      link: bh-product-v1.png
 - name: Flexport
   link: Flexport.html
   description: Responsive redesign of flexport.com (2019–2019)

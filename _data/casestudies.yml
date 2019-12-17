@@ -4,20 +4,46 @@
   images:
     - title: Cisco Small Business Landing Page
       link: cisco-smb-landing.png
-    - title: Cisco Small Business Wireless Access Points
+    - title: Cisco Small Business Wireless Access Points Page
       link: cisco-smb-wap.png
+    - title: Cisco Small Business Wireless Access Points Page (Content Overlay)
+      link: cisco-smb-content.png
+    - title: Cisco Small Business Wireless Access Points Page (Mobile)
+      link: cisco-smb-mobile.png
 - name: Baker Hughes
   link: BakerHughes.html
   description: Responsive redesign of bakerhughes.com (2019)
   images:
-    - title: Baker Hughes Product Page v1
+    - title: Baker Hughes Product Page (v1)
       link: bh-product-v1.png
+    - title: Baker Hughes Product Page (v2)
+      link: bh-product-v2.png
+    - title: Baker Hughes Featured Product Page
+      link: bh-product-featured.png
 - name: Flexport
   link: Flexport.html
   description: Responsive redesign of flexport.com (2019–2019)
+    - title: Flexport Experience Principles
+      link: flexport-experience-principles.png
+    - title: Flexport Our Vision Page (Page Architecture)
+      link: flexport-our-vision-architecture.png
+    - title: Flexport Our Vision Page (Wireframe)
+      link: flexport-our-vision-wireframe.png
 - name: U.S. Airforce
   link: USAirForce.html
   description: Analysis of legacy applications and recommendation including design system (2018)
+    - title: U.S. Air Force (Before State)
+      link: usaf-before.png
+    - title: U.S. Air Force Design System
+      link: usaf-design-system.png
+    - title: U.S. Air Force Wireframe 1
+      link: usaf-wireframe-1.png
+    - title: U.S. Air Force Wireframe 2
+      link: usaf-wireframe-2.png
 - name: IntegraMed
   link: IntegraMed.html
   description: Responsive design of web-based clinic portal and patient portal (2016–2018)
+    - title: IntegraMed Patient Portal Schedule (v1)
+      link: integramed-patient-portal-v1.png
+    - title: IntegraMed Patient Portal Schedule (v2)
+      link: integramed-patient-portal-v2.png

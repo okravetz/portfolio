@@ -1,6 +1,6 @@
 {%- assign cs = site.data.casestudies | where: "name", include.page_title -%}
 {%- assign num = include.num -%}
-{%- assign path = page.cs_img_path -%}
+{%- assign path = site.cs_img_path -%}
 {% comment %}
 {%- assign images = site.cs_img_path[num] -%}
 {%- assign imgtitle = images.title -%}

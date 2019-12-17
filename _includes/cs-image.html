@@ -2,14 +2,14 @@
 {%- assign num = include.num -%}
 {%- assign path = site.cs_img_path -%}
 {%- assign images = cs[num] -%}
-{% comment %}
 {%- assign imgtitle = images.title -%}
+{% comment %}
 {%- assign imglink = images.link -%}
 {% endcomment %}
-    - cs: {%- if cs -%}{{ cs }}{%- else -%}null{%- endif -%}
-    - num: {%- if num -%}{{ num }}{%- else -%}null{%- endif -%}
-    - path: {%- if path -%}{{ path }}{%- else -%}null{%- endif -%}
-    - images: {%- if images -%}{{ images }}{%- else -%}null{%- endif -%}
-    - imgtitle: {%- if imgtitle -%}{{ imgtitle }}{%- else -%}null{%- endif -%}
-    - imglink: {%- if imglink -%}{{ imglink }}{%- else -%}null{%- endif -%}
+    - cs: {% if cs %}{{ cs }}{% else %}null{% endif %}
+    - num: {% if num %}{{ num }}{% else %}null{% endif %}
+    - path: {% if path %}{{ path }}{% else %}null{% endif %}
+    - images: {% if images %}{{ images }}{% else %}null{% endif %}
+    - imgtitle: {% if imgtitle %}{{ imgtitle }}{% else %}null{% endif %}
+    - imglink: {% if imglink %}{{ imglink }}{% else %}null{% endif %}
     - image: ![{{ imgtitle }}]({{ path }}{{ imglink }} "{{ imgtitle }}")

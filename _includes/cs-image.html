@@ -8,18 +8,18 @@
 {%- assign imgtitle = img.title -%}
 {%- assign imglink = img.link -%}
 {% endcomment %}
-{%- capture imgtitle -%}
-    {%- if cs.images[0] -%}
-        {%- for img in cs.images  -%}
-            {%- if forloop.index0 == i -%}
+{%- if cs.images[0] -%}
+    {%- for img in cs.images  -%}
+        {%- if forloop.index0 == i -%}
+            {%- capture imgtitle -%}
                 {{ img.title }}
-                {%- break -%}
-            {%- endif -%}
-        {%- endfor -%}
-    {%- endif -%}
-{%- endcapture -%}
-    - images: {% if images %}{{ images }}{% else %}null{% endif %}
+            {%- endcapture -%}
+            {%- break -%}
+        {%- endif -%}
+    {%- endfor -%}
+{%- endif -%}
     - img: {% if img %}{{ img }}{% else %}null{% endif %}
+    - images: {% if images %}{{ images }}{% else %}null{% endif %}
     - imgtitle: {% if imgtitle %}{{ imgtitle }}{% else %}null{% endif %}
     - imglink: {% if imglink %}{{ imglink }}{% else %}null{% endif %}
     - image: ![{{ imgtitle }}]({{ path }}{{ imglink }} "{{ imgtitle }}")

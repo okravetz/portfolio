@@ -24,5 +24,8 @@
     - image: ![{{ imgtitle }}]({{ path }}{{ imglink }} "{{ imgtitle }}")
 {%- endcomment -%}
 
-{%- assign cs = site.data.casestudies | where: "name", include.title -%}
-{{ cs.images }}
+{%- for project in site.data.casestudies  -%}
+    {%- for img in project.images  -%}
+        {{ img.title }}
+    {%- endfor -%}
+{%- endfor -%}

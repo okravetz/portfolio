@@ -1,4 +1,4 @@
-{%- assign pagetitle = include.page_title -%}
+{%- assign pagetitle = include.title -%}
 {%- assign cs = site.data.casestudies | where: "name", pagetitle -%}
 {%- assign num = include.num -%}
 {%- assign path = site.cs_img_path -%}

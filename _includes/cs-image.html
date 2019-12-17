@@ -1,7 +1,14 @@
 {%- assign cs = site.data.casestudies | where: "name", include.page_title -%}
+{% comment %}
 {%- assign num = include.num -%}
 {%- assign path = site.cs_img_path -%}
 {%- assign images = site.cs_img_path[num] -%}
 {%- assign imgtitle = images.title -%}
 {%- assign imglink = images.link -%}
+{% endcomment %}
+    - num: {{ num }}
+    - path: {{ path }}
+    - images: {{ images }}
+    - imgtitle: {{ imgtitle }}
+    - imglink: {{ imglink }}
 ![{{ imgtitle }}]({{ path }}{{ imglink }} "{{ imgtitle }}")

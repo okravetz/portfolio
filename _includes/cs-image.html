@@ -30,5 +30,9 @@
 {%- assign path = page.cs_img_path -%}
 {%- assign cs = site.data.casestudies | where: "name", include.title -%}
 {%- for img in cs.images  -%}
+    {{ img.title }}
+    {{ img.link }}
+{% comment %}
 ![{{ img.title }}]({{ path }}{{ img.link }} "{{ img.title }}")
+{%- endcomment -%}
 {%- endfor -%}

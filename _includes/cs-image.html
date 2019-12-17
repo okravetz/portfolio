@@ -33,12 +33,11 @@
 {%- for img in cs.images -%}
     {{ img.title }}
     {{ img.link }}
-![{{ img.title }}]({{ path }}{{ img.link }} "{{ img.title }}")
 {%- endfor -%}
 {%- endcomment -%}
 
 {%- for project in site.data.casestudies  -%}
     {%- for img in project.images  -%}
-        {{ img.title }}
+![{{ img.title }}]({{ path }}{{ img.link }} "{{ img.title }}")
     {%- endfor -%}
 {%- endfor -%}

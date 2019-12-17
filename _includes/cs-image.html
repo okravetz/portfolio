@@ -10,6 +10,7 @@
 {% endcomment %}
 {%- if cs.images[0] -%}
     {%- for img in cs.images  -%}
+    - img: {% if img %}{{ img }}{% else %}null{% endif %}
         {%- if forloop.index0 == i -%}
             {%- capture imgtitle -%}
                 {{ img.title }}
@@ -18,7 +19,6 @@
         {%- endif -%}
     {%- endfor -%}
 {%- endif -%}
-    - img: {% if img %}{{ img }}{% else %}null{% endif %}
     - images: {% if images %}{{ images }}{% else %}null{% endif %}
     - imgtitle: {% if imgtitle %}{{ imgtitle }}{% else %}null{% endif %}
     - imglink: {% if imglink %}{{ imglink }}{% else %}null{% endif %}

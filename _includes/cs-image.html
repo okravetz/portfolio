@@ -1,16 +1,16 @@
 {%- assign pagetitle = include.title -%}
-{%- assign cs = site.data.casestudies | where: "name", pagetitle -%}
-{%- assign num = include.num -%}
+{%- assign cs = site.data.casestudies | where: "name", include.title -%}
+{%- assign i = include.num -%}
 {%- assign path = page.cs_img_path -%}
-{%- assign images = cs.images -%}
-{%- assign img = images[num] -%}
+{%- assign images = cs.images[0] -%}
+{%- assign img = images[i] -%}
 {%- assign imgtitle = images.title -%}
 {%- assign imglink = images.link -%}
 {% comment %}
 {% endcomment %}
     - pagetitle:  {% if pagetitle %}{{ pagetitle }}{% else %}null{% endif %}
     - cs:  {% if cs %}{{ cs }}{% else %}null{% endif %}
-    - num: {% if num %}{{ num }}{% else %}null{% endif %}
+    - i: {% if i %}{{ i }}{% else %}null{% endif %}
     - path: {% if path %}{{ path }}{% else %}null{% endif %}
     - images: {% if images %}{{ images }}{% else %}null{% endif %}
     - img: {% if img %}{{ img }}{% else %}null{% endif %}

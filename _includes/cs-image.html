@@ -23,13 +23,12 @@
     - image: ![{{ imgtitle }}]({{ path }}{{ imglink }} "{{ imgtitle }}")
 {%- for project in site.data.casestudies  -%}
 {%- endfor -%}
+{%- capture imgtitle -%}
+{%- endcapture -%}
 {%- endcomment -%}
 
 {%- assign cs = site.data.casestudies | where: "name", include.title -%}
 {%- assign path = page.cs_img_path -%}
-{%- capture imgtitle -%}
-    {%- for img in cs.images  -%}
-        {{ img.title }}
-    {%- endfor -%}
-{%- endcapture -%}
-- image: ![{{ imgtitle }}]({{ path }}{{ imglink }} "{{ imgtitle }}")
+{%- for img in cs.images  -%}
+- image: ![{{ img.title }}]({{ path }}{{ img.link }} "{{ img.title }}")
+{%- endfor -%}

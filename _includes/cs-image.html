@@ -6,9 +6,9 @@
 {%- assign imgtitle = images.title -%}
 {%- assign imglink = images.link -%}
 {% endcomment %}
-    - num: {{ num }}
-    - path: {{ path }}
-    - images: {{ images }}
-    - imgtitle: {{ imgtitle }}
-    - imglink: {{ imglink }}
+    - num: {%- if num -%}{{ num }}{%- else -%}null
+    - path: {%- if path -%}{{ path }}{%- else -%}null
+    - images: {%- if images -%}{{ images }}{%- else -%}null
+    - imgtitle: {%- if imgtitle -%}{{ imgtitle }}{%- else -%}null
+    - imglink: {%- if imglink -%}{{ imglink }}{%- else -%}null
     - image: ![{{ imgtitle }}]({{ path }}{{ imglink }} "{{ imgtitle }}")

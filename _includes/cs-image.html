@@ -2,10 +2,10 @@
 {%- assign cs = site.data.casestudies | where: "name", pagetitle -%}
 {%- assign num = include.num -%}
 {%- assign path = site.cs_img_path -%}
-{%- assign images = cs[num].images -%}
-{%- assign imgtitle = images.title -%}
+{%- assign images = cs.images -%}
+{%- assign imgtitle = images[num].title -%}
+{%- assign imglink = images[num].link -%}
 {% comment %}
-{%- assign imglink = images.link -%}
 {% endcomment %}
     - pagetitle:  {% if pagetitle %}{{ pagetitle }}{% else %}null{% endif %}
     - cs:  {% if cs %}{{ cs }}{% else %}null{% endif %}

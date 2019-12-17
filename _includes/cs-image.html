@@ -2,16 +2,22 @@
 {%- assign cs = site.data.casestudies | where: "name", include.title -%}
 {%- assign i = include.num -%}
 {%- assign path = page.cs_img_path -%}
+{% comment %}
 {%- assign images = cs.images -%}
 {%- assign img = images[i] -%}
 {%- assign imgtitle = img.title -%}
 {%- assign imglink = img.link -%}
-{% comment %}
 {% endcomment %}
-    - pagetitle:  {% if pagetitle %}{{ pagetitle }}{% else %}null{% endif %}
-    - cs:  {% if cs %}{{ cs }}{% else %}null{% endif %}
-    - i: {% if i %}{{ i }}{% else %}null{% endif %}
-    - path: {% if path %}{{ path }}{% else %}null{% endif %}
+{%- capture imgtitle -%}
+    {%- if cs.images[0] -%}
+        {%- for img in cs.images  -%}
+            {%- if forloop.index0 = i -%}
+                {{ img.title }}
+                {%- break -%}
+            {%- endif -%}
+        {%- endfor -%}
+    {%- endif -%}
+{%- endcapture -%}
     - images: {% if images %}{{ images }}{% else %}null{% endif %}
     - img: {% if img %}{{ img }}{% else %}null{% endif %}
     - imgtitle: {% if imgtitle %}{{ imgtitle }}{% else %}null{% endif %}

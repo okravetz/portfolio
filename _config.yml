@@ -10,3 +10,4 @@ defaults:
 
 sass:
   style: compressed
+  sass_dir: _sass

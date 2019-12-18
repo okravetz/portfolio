@@ -4,7 +4,8 @@ $display: "Yeseva One", Georgia, serif;
 $body: "Fira Sans", Verdana, sans-serif;
 $regular: 400;
 $light: 300;
-$color: #333;
+$default-color: #333;
+$link-color: #6636CE;
 $base-size: 16px;
 $display-line-height: 1.45;
 $body-line-height: 1.15;
@@ -19,7 +20,7 @@ body {
   font-family: $body;
   font-weight: $regular;
   line-height: $line-height;
-  color: $color;
+  color: $default-color;
 }
 
 p {
@@ -61,4 +62,14 @@ h5 {
 small,
 .text_small {
   font-size: 0.8em;
+}
+
+a:link,  a:visited {
+    color: $default-color;
+    text-decoration: none;
+}
+
+a:hover, a:active {
+    color: $link-color;
+    text-decoration: solid;
 }

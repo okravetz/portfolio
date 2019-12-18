@@ -1,3 +1,5 @@
+baseurl: /portfolio
+
 defaults:
   -
     scope:

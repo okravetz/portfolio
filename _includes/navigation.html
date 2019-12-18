@@ -1,8 +1,8 @@
 <nav>
-  <h1>{{ page.title }}</h1>
+  <a href="{%- link index.html -%}"><h1>Oren Kravetz</h1></a>
   <ul>
     {%- for item in site.data.navigation -%}
-    <li><a href="{%- unless page.url == "/" or page.url == "/index.html" -%}../{%- endunless -%}{{ item.link }}">{{ item.name }}</a></li>
+    <li><a href="{%- link index.html -%}#{{ item.name | downcase | slugify }}">{{ item.name }}</a></li>
     {%- endfor -%}
   </ul>
 </nav>

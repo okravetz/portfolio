@@ -7,3 +7,6 @@ defaults:
       layout: "default"
       cs_path: "./casestudies/"
       cs_img_path: "../assets/images/wf/"
+
+sass:
+  style: compressed

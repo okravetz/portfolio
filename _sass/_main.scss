@@ -7,8 +7,8 @@ $light: 300;
 $default-color: #333;
 $link-color: #6636CE;
 $base-size: 16px;
-$display-line-height: 1.45;
-$body-line-height: 1.15;
+$display-line-height: 1.15;
+$body-line-height: 1.45;
 $background-color: white;
 
 html {
@@ -19,7 +19,7 @@ body {
   background-color: $background-color;
   font-family: $body;
   font-weight: $regular;
-  line-height: $line-height;
+  line-height: $body-line-height;
   color: $default-color;
 }
 
@@ -35,7 +35,7 @@ h5 {
   margin: 2.75rem 0 1rem;
   font-family: $display;
   font-weight: $regular;
-  line-height: $body-line-height;
+  line-height: $display-line-height;
 }
 
 h1 {

@@ -1,12 +1,64 @@
-@import url('https://fonts.googleapis.com/css?family=Fira+Sans:300,400|Yeseva+One&display=swap');
+@import url("https://fonts.googleapis.com/css?family=Fira+Sans:300,400|Yeseva+One&display=swap");
 
-$display-font: 'Yeseva One', cursive;
-$body-font: 'Fira Sans', sans-serif;
+$display: "Yeseva One", Georgia, serif;
+$body: "Fira Sans", Verdana, sans-serif;
+$regular: 400;
+$light: 300;
+$color: #333;
+$base-size: 16px;
+$display-line-height: 1.45;
+$body-line-height: 1.15;
+$background-color: white;
 
-body {
-    font-family: $body-font;
+html {
+  font-size: $base-size;
 }
 
-h1, h2, h3, h4, h5, h6 {
-    font-family: $display-font;
+body {
+  background-color: $background-color;
+  font-family: $body;
+  font-weight: $regular;
+  line-height: $line-height;
+  color: $color;
+}
+
+p {
+  margin-bottom: 1.25em;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5 {
+  margin: 2.75rem 0 1rem;
+  font-family: $display;
+  font-weight: $regular;
+  line-height: $body-line-height;
+}
+
+h1 {
+  margin-top: 0;
+  font-size: 3.052em;
+}
+
+h2 {
+  font-size: 2.441em;
+}
+
+h3 {
+  font-size: 1.953em;
+}
+
+h4 {
+  font-size: 1.563em;
+}
+
+h5 {
+  font-size: 1.25em;
+}
+
+small,
+.text_small {
+  font-size: 0.8em;
 }

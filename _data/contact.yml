@@ -1,4 +1,6 @@
-- name: Facebook
 - name: LinkedIn
+- name: Instagram
+- name: Facebook
+- name: GitHub
 - name: Twitter
 - name: Tumblr

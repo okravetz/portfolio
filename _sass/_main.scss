@@ -73,3 +73,12 @@ a:hover, a:active {
     color: $link-color;
     text-decoration: solid;
 }
+
+nav ul {
+    list-style: none;
+
+    li {
+        float: left;
+        padding: 1.5 rem;
+    }
+}

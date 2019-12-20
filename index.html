@@ -4,7 +4,7 @@ title: Oren Kravetz's Portfolio
 
 ---
 
-<section>
+<section aria-label="bio">
   <h2 id="bio">Bio</h2>
   <img src="assets/images/headshot.jpg" alt="Headshot of Oren Kravetz" />
   <p>
@@ -41,7 +41,7 @@ title: Oren Kravetz's Portfolio
     Interaction from Carnegie Mellon University.
   </p>
 </section>
-<section>
+<section aria-labelledby="work">
   <h2 id="work">Work</h2>
   <dl>
     {%- for item in site.data.casestudies -%}
@@ -50,14 +50,14 @@ title: Oren Kravetz's Portfolio
     {%- endfor -%}
   </dl>
 </section>
-<section>
+<section aria-labelledby="resume">
   <h2 id="resume">Résumé</h2>
   <a href="assets/files/Résumé.pdf" download="Oren Kravetz Resume.pdf">
     <img src="assets/images/Résumé.png" alt="Oren Kravetz's résumé" />
     <p>Download Oren Kravetz's Résumé (PDF, 48 KB)</p>
   </a>
 </section>
-<section>
+<section aria-labelledby="contact">
   <h2 id="contact">Contact</h2>
   {%- include contact.html -%}
 </section>

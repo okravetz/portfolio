@@ -21,6 +21,9 @@ body {
   font-weight: $regular;
   line-height: $body-line-height;
   color: $default-color;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 p {

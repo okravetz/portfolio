@@ -5,8 +5,10 @@
         {%- for img in project.images -%}
             {%- assign j = forloop.index -%}
 <figure role="group" aria-labelledby="fig-{{ i }}-{{ j }}-capt">
-    ![{{ img.title }}]({{ path }}{{ img.link }} "{{ img.title }}")
-    <figcaption id="fig-{{ i }}-{{ j }}-capt">Fig {{ i }}.{{ j }} {{ img.title }}</figcaption>
+    <img src="{{ path }}{{ img.link }}"
+         alt="{{ img.title }}"
+         title="{{ img.title }}">
+    <figcaption id="fig-{{ i }}-{{ j }}-capt">Fig 0{{ i }}.0{{ j }} {{ img.title }}</figcaption>
 </figure>
         {%- endfor -%}
     {%- endif -%}

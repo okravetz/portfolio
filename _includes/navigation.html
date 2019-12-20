@@ -1,8 +1,8 @@
 <nav>
-  <a href="{%- link index.html | prepend:site.baseurl -%}"><h1>Oren Kravetz</h1></a>
+  <a href="{%- /index.html | prepend:site.baseurl -%}"><h1>Oren Kravetz</h1></a>
   <ul>
     {%- for item in site.data.navigation -%}
-    <li><a href="{%- link index.html | prepend:site.baseurl -%}#{{ item.name | downcase | slugify }}">{{ item.name }}</a></li>
+    <li><a href="{%- /index.html | prepend:site.baseurl -%}#{{ item.name | downcase | slugify }}">{{ item.name }}</a></li>
     {%- endfor -%}
   </ul>
 </nav>

@@ -2,9 +2,7 @@
 {%- for project in site.data.casestudies -%}
     {%- if project.name == include.title -%}
         {%- for img in project.images -%}
-            {%- if forloop.index0 == include.num -%}
 ![{{ img.title }}]({{ path }}{{ img.link }} "{{ img.title }}")
-            {%- endif -%}
         {%- endfor -%}
     {%- endif -%}
 {%- endfor -%}

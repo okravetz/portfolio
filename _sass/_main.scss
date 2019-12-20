@@ -79,6 +79,7 @@ a:hover, a:active {
 
 nav ul {
     list-style: none;
+    padding-left: 0px;
 
     li {
         float: left;
@@ -87,4 +88,8 @@ nav ul {
             padding: 1.5rem;
         }
     }
+}
+
+main {
+    width: 100%;
 }

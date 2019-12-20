@@ -118,3 +118,9 @@ main {
 #bio {
   display: none;
 }
+
+.2col {
+  columns: 2;
+  column-width: 600px;
+  column-gap: 32px;
+}

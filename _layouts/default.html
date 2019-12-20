@@ -30,8 +30,21 @@
     <![endif]-->
   </head>
   <body>
-    {%- include navigation.html -%}
-    {%- unless page.url == "/" -%}<main><article>{%- endunless -%}{{ content }}{%- unless page.url == "/" -%}</article></main>{%- endunless -%}
-    {%- include footer.html -%}
+    <header role="banner">
+      <a href="{{ site.baseurl }}{%- link index.html -%}">
+        <h1>Oren Kravetz</h1>
+      </a>
+      {%- include navigation.html -%}
+    </header>
+    <main role="main">
+      {%- unless page.url == "/" -%}
+      <article>
+      {%- endunless -%}
+        {{ content }}
+      {%- unless page.url == "/" -%}
+      </article>
+      {%- endunless -%}
+    </main >
+    <footer role="contentinfo">{%- include footer.html -%}</footer>
   </body>
 </html>

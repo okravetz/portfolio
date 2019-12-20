@@ -1,5 +1,4 @@
-<nav>
-  <a href="{{ site.baseurl }}{%- link index.html -%}"><h1>Oren Kravetz</h1></a>
+<nav role="navigation">
   <ul>
     {%- for item in site.data.navigation -%}
     <li><a href="{{ site.baseurl }}{%- link index.html -%}#{{ item.name | downcase | slugify }}">{{ item.name }}</a></li>

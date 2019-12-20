@@ -84,19 +84,22 @@ a:active {
   text-decoration: solid;
 }
 
-nav {
-  @include center-align;
+header {
   margin: 2.5rem 0;
+  
+  nav {
+    @include center-align;
 
-  ul {
-    list-style: none;
-    padding-left: 0px;
+    ul {
+      list-style: none;
+      padding-left: 0px;
 
-    li {
-      float: left;
+      li {
+        float: left;
 
-      a {
-        padding: 1.5rem;
+        a {
+          padding: 1.5rem;
+        }
       }
     }
   }

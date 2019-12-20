@@ -1,8 +1,13 @@
 {%- assign path = page.cs_img_path -%}
 {%- for project in site.data.casestudies -%}
+    {%- assign i = forloop.index -%}
     {%- if project.name == include.title -%}
         {%- for img in project.images -%}
-![{{ img.title }}]({{ path }}{{ img.link }} "{{ img.title }}")
+            {%- assign j = forloop.index -%}
+<figure role="group" aria-labelledby="fig-{{ i }}-{{ j }}-capt">
+    ![{{ img.title }}]({{ path }}{{ img.link }} "{{ img.title }}")
+    <figcaption id="fig-{{ i }}-{{ j }}-capt">Fig {{ i }}.{{ j }} {{ img.title }}</figcaption>
+</figure>
         {%- endfor -%}
     {%- endif -%}
 {%- endfor -%}

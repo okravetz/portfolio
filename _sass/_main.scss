@@ -5,11 +5,17 @@ $body: "Fira Sans", Verdana, sans-serif;
 $regular: 400;
 $light: 300;
 $default-color: #333;
-$link-color: #6636CE;
+$link-color: #6636ce;
 $base-size: 16px;
 $display-line-height: 1.15;
 $body-line-height: 1.45;
 $background-color: white;
+
+@mixin center-align {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
 
 html {
   font-size: $base-size;
@@ -21,9 +27,7 @@ body {
   font-weight: $regular;
   line-height: $body-line-height;
   color: $default-color;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+  @include center-align;
   margin: 0 6.5rem;
 }
 
@@ -68,29 +72,35 @@ small,
   font-size: 0.8em;
 }
 
-a:link,  a:visited {
-    color: $default-color;
-    text-decoration: none;
+a:link,
+a:visited {
+  color: $default-color;
+  text-decoration: none;
 }
 
-a:hover, a:active {
-    color: $link-color;
-    text-decoration: solid;
+a:hover,
+a:active {
+  color: $link-color;
+  text-decoration: solid;
 }
 
-nav ul {
+nav {
+  @include center-align;
+
+  ul {
     list-style: none;
     padding-left: 0px;
 
     li {
-        float: left;
+      float: left;
 
-        a {            
-            padding: 1.5rem;
-        }
+      a {
+        padding: 1.5rem;
+      }
     }
+  }
 }
 
 main {
-    width: 100%;
+  width: 100%;
 }

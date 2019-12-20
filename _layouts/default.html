@@ -31,7 +31,7 @@
   </head>
   <body>
     <header role="banner">
-      <a href="{{ site.baseurl }}{%- link index.html -%}">
+      <a href="{{ site.baseurl }}{%- link index.html -%}" {%- if page.url == "/" -%}aria-current="page"{%- endif -%}>
         <h1>Oren Kravetz</h1>
       </a>
       {%- include navigation.html -%}

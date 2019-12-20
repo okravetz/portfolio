@@ -45,7 +45,7 @@ title: Oren Kravetz's Portfolio
   <h2 id="work">Work</h2>
   <dl>
     {%- for item in site.data.casestudies -%}
-    <dt><a href="{{ page.cs_path }}{{ item.link }}">{{ item.name }}</a>/dt>
+    <dt><a href="{{ page.cs_path }}{{ item.link }}">{{ item.name }}</a></dt>
     <dd>{{ item.description }}</dd>
     {%- endfor -%}
   </dl>

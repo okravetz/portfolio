@@ -4,7 +4,7 @@ title: Oren Kravetz's Portfolio
 
 ---
 
-<article>
+<section>
   <h2 id="bio">Bio</h2>
   <img src="assets/images/headshot.jpg" alt="Headshot of Oren Kravetz" />
   <p>
@@ -40,8 +40,8 @@ title: Oren Kravetz's Portfolio
     University in St. Louis and in 2010, his Masters in Human-Computer
     Interaction from Carnegie Mellon University.
   </p>
-</article>
-<article>
+</section>
+<section>
   <h2 id="work">Work</h2>
   <dl>
     {%- for item in site.data.casestudies -%}
@@ -49,15 +49,15 @@ title: Oren Kravetz's Portfolio
     <dd>{{ item.description }}</dd>
     {%- endfor -%}
   </dl>
-</article>
-<article>
+</section>
+<section>
   <h2 id="resume">Résumé</h2>
   <a href="assets/files/Résumé.pdf" download="Oren Kravetz Resume.pdf">
     <img src="assets/images/Résumé.png" alt="Oren Kravetz's résumé" />
     <p>Download Oren Kravetz's Résumé (PDF, 48 KB)</p>
   </a>
-</article>
-<article>
+</section>
+<section>
   <h2 id="contact">Contact</h2>
   {%- include contact.html -%}
-</article>
+</section>

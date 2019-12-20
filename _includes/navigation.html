@@ -1,7 +1,7 @@
-<nav role="navigation" aria-label="Main Navigation">
+<nav aria-label="Main Navigation">
   <ul>
     {%- for item in site.data.navigation -%}
-    <li><a href="{{ site.baseurl }}{%- link index.html -%}#{{ item.name | downcase | slugify: "latin" }}" {%- if page.url == "/" -%}aria-current="page"{%- endif -%}>{{ item.name }}</a></li>
+    <li><a href="{{ site.baseurl }}{%- link index.html -%}#{{ item.name | downcase | slugify: "latin" }}" {%- if page.url == "/" -%} aria-current="page"{%- endif -%}>{{ item.name }}</a></li>
     {%- endfor -%}
   </ul>
 </nav>

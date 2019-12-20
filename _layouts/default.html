@@ -30,17 +30,17 @@
     <![endif]-->
   </head>
   <body>
-    <header role="banner">
-      <a href="{{ site.baseurl }}{%- link index.html -%}" {%- if page.url == "/" -%}aria-current="page"{%- endif -%}>
+    <header>
+      <a href="{{ site.baseurl }}{%- link index.html -%}" {%- if page.url == "/" -%} aria-current="page"{%- endif -%}>
         <h1>Oren Kravetz</h1>
       </a>
       {%- include navigation.html -%}
     </header>
-    <main role="main">
+    <main>
       {%- unless page.url == "/" -%}<article>{%- endunless -%}
         {{ content }}
       {%- unless page.url == "/" -%}</article>{%- endunless -%}
     </main >
-    <footer role="contentinfo">{%- include footer.html -%}</footer>
+    <footer>{%- include footer.html -%}</footer>
   </body>
 </html>

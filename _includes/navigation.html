@@ -2,7 +2,7 @@
   <a href="{%- link index.html -%}"><h1>Oren Kravetz</h1></a>
   <ul>
     {%- for item in site.data.navigation -%}
-    <li><a href="{%- link /index.html -%}#{{ item.name | downcase | slugify }}">{{ item.name }}</a></li>
+    <li><a href="{%- link index.html -%}#{{ item.name | downcase | slugify }}">{{ item.name }}</a></li>
     {%- endfor -%}
   </ul>
 </nav>

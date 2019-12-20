@@ -6,6 +6,7 @@ $regular: 400;
 $light: 300;
 $default-color: #333;
 $link-color: #6636ce;
+$link-color-active: #3D1F7F;
 $base-size: 16px;
 $display-line-height: 1.15;
 $body-line-height: 1.45;
@@ -79,9 +80,14 @@ a:visited {
 }
 
 a:hover,
-a:active {
+a:focus {
   color: $link-color;
-  text-decoration: solid;
+  text-decoration: underline;
+}
+
+a:active {
+  color: $link-color-active;
+  text-decoration: underline;
 }
 
 header {

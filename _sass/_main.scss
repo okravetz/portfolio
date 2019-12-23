@@ -161,3 +161,18 @@ main {
   transform: translate(-50%, -50%);
   -ms-transform: translate(-50%, -50%);
 }
+
+ul.contact {
+  list-style: none;
+  padding-left: 0px;
+  margin: 2.5rem 0;
+
+  li {
+    float: left;
+
+    a {
+      padding: 1.5rem;
+    }
+  }
+}
+}

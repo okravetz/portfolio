@@ -172,7 +172,11 @@ ul.contact {
 
     a {
       padding: 1.5rem;
+
+      img:hover {
+        transition: 0.5s ease;
+        background-color: $link-color;
+      }
     }
   }
-}
 }

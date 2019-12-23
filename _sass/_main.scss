@@ -92,10 +92,9 @@ a:active {
 
 header {
   margin: 2.5rem 0;
+  @include center-align;
   
   nav {
-    @include center-align;
-
     ul {
       list-style: none;
       padding-left: 0px;

@@ -1,6 +1,7 @@
 ---
 
 title: Oren Kravetz's Portfolio
+download-text: Download Oren Kravetz's Résumé [PDF]
 
 ---
 
@@ -55,7 +56,10 @@ title: Oren Kravetz's Portfolio
   <h2 id="resume">Résumé</h2>
   <a href="assets/files/Résumé.pdf" download="Oren Kravetz Resume.pdf">
     <img src="assets/images/Résumé.png" alt="Oren Kravetz's résumé" class="resume" />
-    <p>Download Oren Kravetz's Résumé (PDF, 48 KB)</p>
+    <div class="resume-overlay">
+      <div class="resume-overlay-text">{{ page.download-text }}</div>
+    </div>
+    <p>{{ page.download-text }}</p>
   </a>
 </section>
 <section aria-labelledby="contact">

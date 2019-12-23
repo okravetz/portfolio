@@ -6,7 +6,7 @@ $regular: 400;
 $light: 300;
 $default-color: #333;
 $link-color: #6636ce;
-$link-color-active: #3D1F7F;
+$link-color-active: #3d1f7f;
 $base-size: 16px;
 $display-line-height: 1.15;
 $body-line-height: 1.45;
@@ -93,7 +93,7 @@ a:active {
 header {
   margin: 2.5rem 0;
   @include center-align;
-  
+
   nav {
     ul {
       list-style: none;
@@ -127,4 +127,31 @@ main {
 .resume {
   width: 100%;
   max-width: 77rem;
+}
+
+.resume-overlay {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 100%;
+  width: 100%;
+  opacity: 0;
+  transition: 0.5s ease;
+  background-color: $link-color;
+}
+
+.resume-overlay .overlay {
+  opacity: .8;
+}
+
+.resume-overlay-text {
+  color: $background-color;
+  font-size: 2em;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
 }

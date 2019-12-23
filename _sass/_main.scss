@@ -142,7 +142,7 @@ main {
   background-color: $link-color;
 }
 
-.resume-overlay .overlay {
+.resume-overlay:hover {
   opacity: .8;
 }
 

@@ -125,8 +125,14 @@ main {
 }
 
 .resume {
+  display: block;
   width: 100%;
   max-width: 77rem;
+}
+
+.resume-container {
+  position: relative;
+  width: 100%;
 }
 
 .resume-overlay {

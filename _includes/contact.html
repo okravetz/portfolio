@@ -2,7 +2,9 @@
     <li><a href="mailto:contact@orenkravetz.com">Email</a></li>
     {%- for item in site.data.contact -%}
     <li>
-      <a href="https://www.{{ item.name | downcase }}.com/{%- if item.name == "LinkedIn" -%}in/{%- endif -%}okravetz" target="_blank">{{ item.name }}</a>
+      <a href="https://www.{{ item.name | downcase }}.com/{%- if item.name == "LinkedIn" -%}in/{%- endif -%}okravetz" target="_blank">
+        <img height="32" width="32" src="https://cdn.jsdelivr.net/npm/simple-icons@latest/icons/{{ item.name | downcase }}.svg" alt="{{ item.name }}" title="{{ item.name }}" />
+      </a>
     </li>
     {%- endfor -%}
 </ul>

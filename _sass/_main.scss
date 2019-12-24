@@ -19,7 +19,7 @@ $filter-base: invert(20%) sepia(0%) saturate(1482%) hue-rotate(160deg)
   brightness(91%) contrast(95%);
 $breakpoint-large: 1440px;
 $breakpoint-medium: 768px;
-$breakpoint-small: 100px;
+$breakpoint-small: 320px;
 
 @mixin center-align {
   display: flex;
@@ -153,7 +153,8 @@ main {
   text-align: center;
 }
 
-@media (min-width: $breakpoint-medium) {
+@media screen
+  and (min-width: $breakpoint-small) {
   .col2 {
     columns: 2;
     column: {
@@ -163,7 +164,9 @@ main {
   }
 }
 
-@media (min-width: $breakpoint-small) {
+@media screen
+  and (min-width: 0px)
+  and (max-width: $breakpoint-small) {
   .col2 {
     columns: 1;
   }

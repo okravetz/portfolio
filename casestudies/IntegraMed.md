@@ -1,10 +1,9 @@
 ---
 
+layout: casestudy
 title: IntegraMed
 
 ---
-
-## Responsive design of web-based clinic portal and patient portal (2016–2018)
 
 ### Case Study
 
@@ -15,10 +14,6 @@ After the team performed weeks of contextual user research and developed a conce
 One of the most challenging parts of the interface was the treatment schedule that would live on the homepage. It had to help the patient keep track of a complicated protocol of medications, remind them of upcoming appointments, and highlight any notes from the medical practitioners.
 
 In our first pass, I separated the medications into those that needed to taken in the morning and those for the evening. However, after speaking to some of the nurses, doctors, and patients, we realized that was insufficient. Medications could be prescribed for up to four times a day—morning, afternoon, evening, and before bed. Additionally, patients tended to remember which medication they needed to take by the timeslot and day to which it was assigned. As a result, in a later iteration, we increased the visual prominence of the treatment time over that of the medication name.
-
-### Images
-
-{% include cs-image.html title=page.title %}
 
 ### Learnings
 

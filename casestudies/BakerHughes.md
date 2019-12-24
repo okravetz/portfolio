@@ -1,10 +1,9 @@
 ---
 
+layout: casestudy
 title: Baker Hughes
 
 ---
-
-## Responsive redesign of bakerhughes.com (2019)
 
 ### Case Study
 
@@ -19,10 +18,6 @@ After the client reacted positively to the navigation in the first option and th
 So in our next iteration, we made the decision that for MVP, the site would only feature their two most important product solutions. These would each get detailed pages of their own, and keep the navigation simple for the initial launch.
 
 When we then turned to designing the product pages for the full site transformation, we were able to develop a richer navigation system both in the navigation bar and on the page.
-
-### Images
-
-{% include cs-image.html title=page.title %}
 
 ### Learnings
 

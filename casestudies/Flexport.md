@@ -1,10 +1,9 @@
 ---
 
+layout: casestudy
 title: Flexport
 
 ---
-
-## Responsive redesign of flexport.com (2018–2019)
 
 ### Case Study
 
@@ -15,10 +14,6 @@ Based on initial discovery and research, I first developed some guiding design p
 With this new identity and website, Flexport wanted to make sure that it was effective in attracting not only potential customers, but also investors and employees. I helped them accomplish this by first, establishing in our page frameworks that key benefits would be backed up by contextually relevant case studies, expert staff profiles, and/or articles that exhibited thought leadership.
 
 I then implemented this into the design by enhancing the commonplace text & image layout with a callout that could contain one of these contextually relevant content pieces. This allows each marketing statement to be backed up with proof of Flexport’s experience and expertise.
-
-### Images
-
-{% include cs-image.html title=page.title %}
 
 ### Learnings
 

@@ -1,14 +1,11 @@
 ---
 
+layout: casestudy
 title: Cisco
 
 ---
-{% include cs-div.html section="start" %}
-## {{ page.title }}
 
-### Responsive redesign of Cisco Small Business (2019)
-
-#### Case Study
+### Case Study
 
 Cisco is a networking hardware manufacturer, connecting businesses of all sizes to the internet. Among other projects, Isobar was asked to redesign the product and content pages targeted at Small Businesses.
 
@@ -18,12 +15,6 @@ However, we were constrained to only designing pages under the Small Business pr
 
 To accomplish this, we worked with the content team to make sure the information on the page all had a distinct purpose and place in the hierarchy to drive the user to their decision point. We then made sure the customer could get to and from the Small Business product pages with ease. I also introduced elements such as a high-level comparison table and an updated navigation bar that mapped to the business’s journey of connecting it’s employees to the internet.
 
-#### Learnings
+### Learnings
 
 The client had too restrictive of a design system and over-optimized for mobile to the point that the desktop site lacked a sense of visual hierarchy. The client initially enforced those boundaries, but once we showed them how it would limit our design solutions, they loosened the slack on the reins. Once we were allowed to explore more creative options, the client became enthusiastic about the future of the design and became our partner in pushing it through the organization. 
-
-{% include cs-div.html section="middle" %}
-#### Images
-
-{% include cs-image.html title=page.title %}
-{% include cs-div.html section="end" %}

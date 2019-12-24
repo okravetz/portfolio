@@ -6,20 +6,20 @@
     <meta name="author" content="Oren Kravetz" />
     <meta
       name="description"
-      content="Oren Kravetz's bio, résumé, portfolio, and contact information."
+      content="Oren Kravetz's bio, résumé, portfolio, and contact information. Case study for {{ page.title }} project."
     />
     <meta name="og:image" content ="{{ site.baseurl }}{%- link assets/images/headshot.jpg -%}">
     <meta
       name="og:description"
-      content="Oren Kravetz's bio, résumé, portfolio, and contact information."
+      content="Oren Kravetz's bio, résumé, portfolio, and contact information. Case study for {{ page.title }} project."
     />
     <meta
       name="og:title"
-      content="Oren Kravetz's Portfolio"
+      content="Oren Kravetz's Portfolio - {{ page.title }} Case Study"
     />
     <meta
       name="twitter:title"
-      content="Oren Kravetz's Portfolio"
+      content="Oren Kravetz's Portfolio - {{ page.title }} Case Study"
     />
     <link rel="shortcut icon" href="{{ "/assets/images/favicon.ico" | relative_url }}" type="image/x-icon" />
     <link rel="stylesheet" href="{{ "/assets/css/styles.css" | relative_url }}">
@@ -31,7 +31,24 @@
   </head>
   <body>
     <header>{%- include navigation.html -%}</header>
-    <main>{{ content }}</main >
+    <main>
+      <article id="cont">
+        <div class="cs-title">
+          <h2>{{ page.title }}</h2>
+          {%- for project in site.data.casestudies -%}
+          {%- if project.name == page.title -%}
+          <p class="cs-description">{{ project.description }}</p>
+          <p class="cs-details">
+            <span class="cs-year">{{ project.year }}</span>
+            <span class="cs-role">{{ project.role }}</span>
+          </p>
+          {%- endif -%}
+          {%- endfor -%}
+        </div>
+        {{ content }
+        {% include cs-image.html title=page.title %}}
+      </article>
+    </main >
     <footer>{%- include footer.html -%}</footer>
   </body>
 </html>

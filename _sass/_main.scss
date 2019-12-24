@@ -212,6 +212,10 @@ footer {
   align-items: flex-start;  
   
   .cs-card {
-    flex: 1 600px;  
+    flex: 1 37.5em;  
+
+    .cs-logo {
+      width: 37.5em;
+    }
   }
 }

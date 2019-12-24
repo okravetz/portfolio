@@ -54,9 +54,9 @@ download-text: Download Oren Kravetz's Résumé [PDF]
 </section>
 <section aria-labelledby="resume">
   <h2 id="resume">Résumé</h2>
-  <a href="{{ site.baseurl }}{{ link assets/files/Résumé.pdf }}" download="Oren Kravetz Resume.pdf">
+  <a href="{{ site.baseurl }}{%- link assets/files/Résumé.pdf -%}" download="Oren Kravetz Resume.pdf">
     <div class="resume-container">
-      <img src="{{ site.baseurl }}{{ link assets/images/Résumé.png }}" alt="Oren Kravetz's résumé" class="resume-image" />
+      <img src="{{ site.baseurl }}{%- link assets/images/Résumé.png -%}" alt="Oren Kravetz's résumé" class="resume-image" />
       <div class="resume-overlay">
         <div class="resume-overlay-text">{{ page.download-text }}</div>
       </div>

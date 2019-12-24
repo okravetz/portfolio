@@ -38,10 +38,11 @@ body {
   color: $default-color;
   @include center-align;
   margin: 0 auto;
-  width: 77em;
+  width: 85.5555556%;
 }
 
 p {
+  font-size: 1em;
   margin-bottom: 1.25em;
   margin-top: 0;
 }

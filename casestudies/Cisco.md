@@ -3,7 +3,9 @@
 title: Cisco
 
 ---
+{%- raw -%}
 <div class="cs-text">
+{%- endraw -%}
 # {{ page.title }}
 
 ## Responsive redesign of Cisco Small Business (2019)
@@ -22,9 +24,13 @@ To accomplish this, we worked with the content team to make sure the information
 
 The client had too restrictive of a design system and over-optimized for mobile to the point that the desktop site lacked a sense of visual hierarchy. The client initially enforced those boundaries, but once we showed them how it would limit our design solutions, they loosened the slack on the reins. Once we were allowed to explore more creative options, the client became enthusiastic about the future of the design and became our partner in pushing it through the organization. 
 
+{%- raw -%}
 </div>
 <div class="cs-figures">
+{%- endraw -%}
 ### Images
 
 {% include cs-image.html title=page.title %}
+{%- raw -%}
 </div>
+{%- endraw -%}

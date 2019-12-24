@@ -30,8 +30,10 @@ html {
 
 body {
   background-color: $background-color;
-  font-family: $body;
-  font-weight: $regular;
+  font: {
+    family: $body;
+    weight: $regular;
+  }
   line-height: $body-line-height;
   color: $default-color;
   @include center-align;
@@ -81,16 +83,18 @@ small,
   font-size: 0.8em;
 }
 
-a:link,
-a:visited {
-  color: $default-color;
-  text-decoration: none;
-}
+a {
+  &:link,
+  &:visited {
+    color: $default-color;
+    text-decoration: none;
+  }
 
-a:hover,
-a:focus {
-  color: $link-color;
-  text-decoration: underline;
+  &:hover,
+  &:focus {
+    color: $link-color;
+    text-decoration: underline;
+  }
 }
 
 a:active {
@@ -122,6 +126,15 @@ main {
   width: 100%;
 }
 
+.skip {
+  position: absolute;
+  left: -200px;
+
+  &:focus {
+    left: .5em;
+  }
+}
+
 #bio,
 #work {
   visibility: hidden;
@@ -137,8 +150,10 @@ main {
 
 .col2 {
   columns: 2;
-  column-width: 24rem;
-  column-gap: 2rem;
+  column: {
+    width: 24rem;
+    gap: 2rem;
+  }
 }
 
 #resume-link {
@@ -155,24 +170,25 @@ main {
 .resume-container {
   position: relative;
   width: 100%;
+
+  .resume-overlay {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 100%;
+    width: 100%;
+    opacity: 0;
+    transition: $transition-time ease;
+    background-color: $link-color;
+  }
+
+  &:hover .resume-overlay {
+    opacity: 0.8;
+  }  
 }
 
-.resume-overlay {
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  height: 100%;
-  width: 100%;
-  opacity: 0;
-  transition: $transition-time ease;
-  background-color: $link-color;
-}
-
-.resume-container:hover .resume-overlay {
-  opacity: 0.8;
-}
 
 .resume-overlay-text {
   color: $background-color;
@@ -220,8 +236,10 @@ footer {
 
 .cs-container {
   display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
+  flex: {
+    direction: row;
+    wrap: wrap;
+  }
   justify-content: space-between;
   align-items: flex-start;
   margin: 2.5rem 0;
@@ -235,16 +253,16 @@ footer {
     }
 
     p {
-      margin-bottom: .25em;
+      margin-bottom: 0.25em;
     }
 
     .cs-description {
       font-size: 1.25em;
     }
-    
+
     .cs-details {
       font-weight: $light;
-      
+
       .cs-role {
         padding-left: 3rem;
       }

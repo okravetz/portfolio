@@ -31,6 +31,7 @@
   </head>
   <body>
     <header>
+      <a href="#cont" class="skip">Skip to Main Content.</a>
       {%- if page.url == "/" -%}
       <img src="{{ site.baseurl }}{%- link assets/images/headshot.jpg -%}" alt="Headshot of Oren Kravetz" />
       {%- endif -%}
@@ -40,7 +41,7 @@
       {%- include navigation.html -%}
     </header>
     <main>
-      {%- unless page.url == "/" -%}<article>{%- endunless -%}
+      {%- unless page.url == "/" -%}<article id="cont">{%- endunless -%}
         {{ content }}
       {%- unless page.url == "/" -%}</article>{%- endunless -%}
     </main >

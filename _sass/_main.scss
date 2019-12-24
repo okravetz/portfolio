@@ -168,6 +168,7 @@ main {
 }
 
 ul.contact {
+  @include center-align;
   list-style: none;
   padding-left: 0px;
   margin: 2.5rem auto;

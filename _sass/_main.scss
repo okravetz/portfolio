@@ -206,7 +206,10 @@ ul.contact {
   padding-left: 0px;
   margin: 2.5rem auto;
   display: flex;
-  flex-direction: row;
+  flex: {
+    direction: row;
+    wrap: wrap;
+  }
   justify-content: space-between;
   width: 37.5em;
 
@@ -218,8 +221,8 @@ ul.contact {
 
       img {
         filter: $filter-base;
-        height: 2em;
-        width: 2em;
+        height: 2rem;
+        width: 2rem;
       }
 
       img:hover {
@@ -232,6 +235,10 @@ ul.contact {
 
 footer {
   @include center-align;
+
+  .copyright {
+    margin: 4rem 0;
+  }
 }
 
 .cs-container {
@@ -318,8 +325,4 @@ footer {
       }
     }
   }
-}
-
-.copyright {
-  margin: 4rem 0;
 }

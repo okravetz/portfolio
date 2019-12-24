@@ -45,12 +45,23 @@ download-text: Download Oren Kravetz's Résumé [PDF]
 </article>
 <section aria-labelledby="work">
   <h2 id="work">Work</h2>
-  <dl>
+  <ul>
     {%- for item in site.data.casestudies -%}
-    <dt><a href="{{ page.cs_path }}{{ item.link }}">{{ item.name }}</a></dt>
-    <dd>{{ item.description }}</dd>
+    <li>
+      <a href="{{ page.cs_path }}{{ item.link }}">
+        <div class="cs-card">
+          <h3>{{ item.name }}</h3>
+          <img src="{{ site.baseurl }}assets/images/logo/{{ item.name | downcase }}-logo.png" alt="{{ item.name }}" class="cs-logo"/>
+          <p class="cs-description">{{ item.description }}</p>
+          <p class="cs-details">
+            <span class="cs-year">{{ item.year }}</span>
+            <span class="cs-role">{{ item.role }}</span>
+          </p>
+        </div>
+      </a>
+    </li>
     {%- endfor -%}
-  </dl>
+  </ul>
 </section>
 <section aria-labelledby="resume">
   <h2 id="resume">Résumé</h2>

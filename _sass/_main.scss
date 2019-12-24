@@ -33,7 +33,8 @@ body {
   line-height: $body-line-height;
   color: $default-color;
   @include center-align;
-  margin: 0 6.5rem;
+  margin: 0 auto;
+  width: 77em;
 }
 
 p {

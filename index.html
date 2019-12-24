@@ -49,8 +49,8 @@ download-text: Download Oren Kravetz's Résumé [PDF]
     {%- for item in site.data.casestudies -%}
       <a href="{{ page.cs_path }}{{ item.link }}">
         <div class="cs-card">
-          <h3>{{ item.name }}</h3>
           <img src="{{ site.baseurl }}/assets/images/logo/{{ item.name | downcase | slugify: "latin" }}-logo.png" alt="{{ item.name }}" class="cs-logo"/>
+          <h3>{{ item.name }}</h3>
           <p class="cs-description">{{ item.description }}</p>
           <p class="cs-details">
             <span class="cs-year">{{ item.year }}</span>

@@ -47,17 +47,17 @@ download-text: Download Oren Kravetz's Résumé [PDF]
   <h2 id="work">Work</h2>
   <div class="cs-container">
     {%- for item in site.data.casestudies -%}
-      <a href="{{ page.cs_path }}{{ item.link }}">
-        <div class="cs-card">
+    <div class="cs-card">
+        <a href="{{ page.cs_path }}{{ item.link }}">
           <img src="{{ site.baseurl }}/assets/images/logo/{{ item.name | downcase | slugify: "latin" }}-logo.png" alt="{{ item.name }}" class="cs-logo"/>
           <h3>{{ item.name }}</h3>
-          <p class="cs-description">{{ item.description }}</p>
-          <p class="cs-details">
-            <span class="cs-year">{{ item.year }}</span>
-            <span class="cs-role">{{ item.role }}</span>
-          </p>
-        </div>
-      </a>
+        </a>
+        <p class="cs-description">{{ item.description }}</p>
+        <p class="cs-details">
+          <span class="cs-year">{{ item.year }}</span>
+          <span class="cs-role">{{ item.role }}</span>
+        </p>
+      </div>
     {%- endfor -%}
   </div>
 </section>

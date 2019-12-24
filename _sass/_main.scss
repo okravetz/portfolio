@@ -212,10 +212,6 @@ footer {
   align-items: flex-start;  
   
   .cs-card {
-    flex: 1 600px;
-
-    .cs-description:hover, .cs-details:hover {
-      text-decoration: none;
-    }    
+    flex: 1 600px;  
   }
 }

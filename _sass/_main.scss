@@ -118,8 +118,12 @@ main {
   width: 100%;
 }
 
-#bio {
+#bio, #work {
   display: none;
+}
+
+#resume, #contact {
+  margin: 2.5rem auto 1rem auto;
 }
 
 .col2 {

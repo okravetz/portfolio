@@ -279,7 +279,7 @@ footer {
   div {
     flex: 0 1 calc(50% - 1em);
   }
-  
+
   .cs-title {
     p {
       margin-bottom: 0.25em;
@@ -296,5 +296,9 @@ footer {
         padding-left: 3rem;
       }
     }
+  }
+
+  .cs-figures img {
+    width: 100%;
   }
 }

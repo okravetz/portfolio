@@ -17,6 +17,9 @@ $filter-hover: invert(21%) sepia(77%) saturate(3368%) hue-rotate(253deg)
   brightness(84%) contrast(91%);
 $filter-base: invert(20%) sepia(0%) saturate(1482%) hue-rotate(160deg)
   brightness(91%) contrast(95%);
+$breakpoint-large: 1440px;
+$breakpoint-medium: 768px;
+$breakpoint-small: 100px;
 
 @mixin center-align {
   display: flex;
@@ -150,11 +153,19 @@ main {
   text-align: center;
 }
 
-.col2 {
-  columns: 2;
-  column: {
-    width: 24rem;
-    gap: 2rem;
+@media (min-width: $breakpoint-medium) {
+  .col2 {
+    columns: 2;
+    column: {
+      width: 24rem;
+      gap: 2rem;
+    }
+  }
+}
+
+@media (min-width: $breakpoint-small) {
+  .col2 {
+    columns: 1;
   }
 }
 

@@ -232,18 +232,8 @@ footer {
       width: 100%;
     }
 
-    .cs-details {
-      display: flex;
-      flex-direction: row;
-      justify-content: space-between;
-
-      .cs-year {
-        text-align: left;
-      }
-  
-      .cs-role {
-        text-align: right;
-      }
+    .cs-role {
+      padding-left: 3rem;
     }
   }
 }

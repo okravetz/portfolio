@@ -1,6 +1,7 @@
 - name: Cisco
   link: Cisco.html
-  description: Responsive redesign of Cisco Small Business (2019)
+  description: Responsive redesign of Cisco Small Business
+  year: 2019
   role: Team Lead
   images:
     - title: Cisco Small Business Landing Page
@@ -13,7 +14,8 @@
       link: cisco-smb-mobile.png
 - name: Baker Hughes
   link: BakerHughes.html
-  description: Responsive redesign of bakerhughes.com (2019)
+  description: Responsive redesign of bakerhughes.com
+  year: 2019
   role: Team Lead
   images:
     - title: Baker Hughes Product Page (v1)
@@ -24,7 +26,8 @@
       link: bh-product-featured.png
 - name: Flexport
   link: Flexport.html
-  description: Responsive redesign of flexport.com (2019–2019)
+  description: Responsive redesign of flexport.com
+  year: 2019–2019
   role: Team Lead
   images:
     - title: Flexport Experience Principles
@@ -35,7 +38,8 @@
       link: flexport-our-vision-wireframe.png
 - name: U.S. Air Force
   link: USAirForce.html
-  description: Analysis of legacy applications and recommendation including design system (2018)
+  description: Analysis of legacy applications and recommendation including design system
+  year: 2018
   role: Senior Designer
   images:
     - title: U.S. Air Force (Before State)
@@ -48,7 +52,8 @@
       link: usaf-wireframe-2.png
 - name: IntegraMed
   link: IntegraMed.html
-  description: Responsive design of web-based clinic portal and patient portal (2016–2018)
+  description: Responsive design of web-based clinic portal and patient portal
+  year: 2016–2018
   role: Senior Designer
   images:
     - title: IntegraMed Patient Portal Schedule (v1)

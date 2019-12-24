@@ -224,10 +224,10 @@ footer {
   margin: 2.5rem 0;
 
   .cs-card {
-    flex: 1 37.5em;
+    flex: 0 1 calc(25% - 2em);
 
     .cs-logo {
-      width: 37.5em;
+      width: 100%;
     }
   }
 }

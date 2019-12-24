@@ -303,10 +303,14 @@ footer {
   .cs-figures {
     figure {
       margin: 0 0 2rem 0;
-    }
+      
+      img {
+        width: 100%;
+      }
 
-    img {
-      width: 100%;
+      figcaption {
+        font-weight: $light;
+      }
     }
   }
 }

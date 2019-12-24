@@ -232,8 +232,16 @@ footer {
       width: 100%;
     }
 
-    .cs-role {
-      padding-left: 3rem;
+    .cs-description {
+      font-size: 1.25em;
+    }
+    
+    .cs-details {
+      font-weight: $light;
+      
+      .cs-role {
+        padding-left: 3rem;
+      }
     }
   }
 }

@@ -275,6 +275,8 @@ footer {
     direction: row;
     wrap: wrap;
   }
+  justify-content: space-between;
+  align-items: flex-start;
 
   div {
     flex: 0 1 calc(50% - 1em);
@@ -298,7 +300,13 @@ footer {
     }
   }
 
-  .cs-figures img {
-    width: 100%;
+  .cs-figures {
+    figure {
+      margin: 1rem 0;
+    }
+
+    img {
+      width: 100%;
+    }
   }
 }

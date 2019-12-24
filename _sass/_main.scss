@@ -209,4 +209,8 @@ footer {
   flex-wrap: wrap;
   justify-content: space-between;
   align-items: flex-start;  
+  
+  .cs-card {
+    flex: 1 600px;
+  }
 }

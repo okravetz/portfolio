@@ -131,7 +131,7 @@ main {
   left: -200px;
 
   &:focus {
-    left: .5em;
+    left: 0.5em;
   }
 }
 
@@ -186,9 +186,8 @@ main {
 
   &:hover .resume-overlay {
     opacity: 0.8;
-  }  
+  }
 }
-
 
 .resume-overlay-text {
   color: $background-color;
@@ -270,7 +269,7 @@ footer {
   }
 }
 
-/* #cont {
+.casestudy-container {
   display: flex;
   flex: {
     direction: row;
@@ -280,5 +279,22 @@ footer {
   div {
     flex: 0 1 calc(50% - 1em);
   }
+  
+  .cs-title {
+    p {
+      margin-bottom: 0.25em;
+    }
+
+    .cs-description {
+      font-size: 1.25em;
+    }
+
+    .cs-details {
+      font-weight: $light;
+
+      .cs-role {
+        padding-left: 3rem;
+      }
+    }
+  }
 }
- */

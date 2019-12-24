@@ -33,20 +33,24 @@
     <header>{%- include navigation.html -%}</header>
     <main>
       <article id="cont">
-        <div class="cs-title">
-          <h2>{{ page.title }}</h2>
-          {%- for project in site.data.casestudies -%}
-          {%- if project.name == page.title -%}
-          <p class="cs-description">{{ project.description }}</p>
-          <p class="cs-details">
-            <span class="cs-year">{{ project.year }}</span>
-            <span class="cs-role">{{ project.role }}</span>
-          </p>
-          {%- endif -%}
-          {%- endfor -%}
+        <div class="casestudy-container">
+          <div class="cs-text">
+            <div class="cs-title">
+              <h2>{{ page.title }}</h2>
+              {%- for project in site.data.casestudies -%}
+              {%- if project.name == page.title -%}
+              <p class="cs-description">{{ project.description }}</p>
+              <p class="cs-details">
+                <span class="cs-year">{{ project.year }}</span>
+                <span class="cs-role">{{ project.role }}</span>
+              </p>
+              {%- endif -%}
+              {%- endfor -%}
+            </div>
+            {{ content }}
+          </div>
+          <div class="cs-figures">{% include cs-image.html title=page.title %}</div>
         </div>
-        {{ content }}
-        {% include cs-image.html title=page.title %}
       </article>
     </main >
     <footer>{%- include footer.html -%}</footer>

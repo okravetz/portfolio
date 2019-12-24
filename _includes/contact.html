@@ -1,12 +1,13 @@
-<ul class="contact"
+<ul class="contact">
     <li><a href="mailto:contact@orenkravetz.com">
       <img src="https://cdn.jsdelivr.net/npm/simple-icons@latest/icons/microsoftoutlook.svg" alt="Email" />
-    </a></li>
-    {%- for item in site.data.contact -%}
-    <li>
-      <a href="https://www.{{ item.name | downcase }}.com/{%- if item.name == "LinkedIn" -%}in/{%- endif -%}okravetz" target="_blank">
-        <img src="https://cdn.jsdelivr.net/npm/simple-icons@latest/icons/{{ item.name | downcase }}.svg" alt="{{ item.name }}" />
-      </a>
-    </li>
-    {%- endfor -%}
+    </a>
+  </li>
+  {%- for item in site.data.contact -%}
+  <li>
+    <a href="https://www.{{ item.name | downcase }}.com/{%- if item.name == "LinkedIn" -%}in/{%- endif -%}okravetz" target="_blank">
+      <img src="https://cdn.jsdelivr.net/npm/simple-icons@latest/icons/{{ item.name | downcase }}.svg" alt="{{ item.name }}" />
+    </a>
+  </li>
+  {%- endfor -%}
 </ul>

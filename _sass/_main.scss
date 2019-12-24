@@ -194,3 +194,7 @@ ul.contact {
     }
   }
 }
+
+footer {  
+  @include center-align;
+}

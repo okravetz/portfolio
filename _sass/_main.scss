@@ -11,7 +11,10 @@ $base-size: 16px;
 $display-line-height: 1.15;
 $body-line-height: 1.45;
 $background-color: white;
-$filter: invert(21%) sepia(77%) saturate(3368%) hue-rotate(253deg) brightness(84%) contrast(91%); // https://codepen.io/sosuke/pen/Pjoqqp
+$transition-time: 0.2s;
+// https://codepen.io/sosuke/pen/Pjoqqp
+$filter-base: invert(21%) sepia(77%) saturate(3368%) hue-rotate(253deg) brightness(84%) contrast(91%); 
+$filter-hover: invert(20%) sepia(0%) saturate(1482%) hue-rotate(160deg) brightness(91%) contrast(95%);
 
 @mixin center-align {
   display: flex;
@@ -145,7 +148,7 @@ main {
   height: 100%;
   width: 100%;
   opacity: 0;
-  transition: 0.5s ease;
+  transition: $transition-time ease;
   background-color: $link-color;
 }
 
@@ -166,7 +169,7 @@ main {
 ul.contact {
   list-style: none;
   padding-left: 0px;
-  margin: 2.5rem 0;
+  margin: 2.5rem auto;
 
   li {
     float: left;
@@ -174,9 +177,13 @@ ul.contact {
     a {
       padding: 1.5rem;
 
+      img {        
+        filter: $filter-base;
+      }
+
       img:hover {
-        transition: 0.5s ease;
-        filter: $link-color;
+        transition: $transition-time ease;
+        filter: $filter-hover;
       }
     }
   }

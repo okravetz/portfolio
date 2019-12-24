@@ -11,6 +11,7 @@ $base-size: 16px;
 $display-line-height: 1.15;
 $body-line-height: 1.45;
 $background-color: white;
+$filter: invert(21%) sepia(77%) saturate(3368%) hue-rotate(253deg) brightness(84%) contrast(91%); // https://codepen.io/sosuke/pen/Pjoqqp
 
 @mixin center-align {
   display: flex;
@@ -175,7 +176,7 @@ ul.contact {
 
       img:hover {
         transition: 0.5s ease;
-        background-color: $link-color;
+        filter: $link-color;
       }
     }
   }

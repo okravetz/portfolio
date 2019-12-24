@@ -269,3 +269,15 @@ footer {
     }
   }
 }
+
+#cont {
+  display: flex;
+  flex: {
+    direction: row;
+    wrap: row;
+  }
+
+  div {
+    flex: 0 1 calc(50% - 1em);
+  }
+}

@@ -270,14 +270,15 @@ footer {
   }
 }
 
-#cont {
+/* #cont {
   display: flex;
   flex: {
     direction: row;
-    wrap: row;
+    wrap: wrap;
   }
 
   div {
     flex: 0 1 calc(50% - 1em);
   }
 }
+ */

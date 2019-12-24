@@ -13,8 +13,10 @@ $body-line-height: 1.45;
 $background-color: white;
 $transition-time: 0.3s;
 // https://codepen.io/sosuke/pen/Pjoqqp
-$filter-hover: invert(21%) sepia(77%) saturate(3368%) hue-rotate(253deg) brightness(84%) contrast(91%); 
-$filter-base: invert(20%) sepia(0%) saturate(1482%) hue-rotate(160deg) brightness(91%) contrast(95%);
+$filter-hover: invert(21%) sepia(77%) saturate(3368%) hue-rotate(253deg)
+  brightness(84%) contrast(91%);
+$filter-base: invert(20%) sepia(0%) saturate(1482%) hue-rotate(160deg)
+  brightness(91%) contrast(95%);
 
 @mixin center-align {
   display: flex;
@@ -119,11 +121,13 @@ main {
   width: 100%;
 }
 
-#bio, #work {
+#bio,
+#work {
   display: none;
 }
 
-#resume, #contact {
+#resume,
+#contact {
   margin: 2.5rem auto 1rem auto;
   text-align: center;
 }
@@ -163,8 +167,8 @@ main {
   background-color: $link-color;
 }
 
-.resume-container:hover .resume-overlay{
-  opacity: .8;
+.resume-container:hover .resume-overlay {
+  opacity: 0.8;
 }
 
 .resume-overlay-text {
@@ -193,7 +197,7 @@ ul.contact {
     a {
       padding: 1.5rem;
 
-      img {        
+      img {
         filter: $filter-base;
         height: 2em;
         width: 2em;
@@ -207,7 +211,7 @@ ul.contact {
   }
 }
 
-footer {  
+footer {
   @include center-align;
 }
 
@@ -218,9 +222,9 @@ footer {
   justify-content: space-between;
   align-items: flex-start;
   margin: 2.5rem 0;
-  
+
   .cs-card {
-    flex: 1 37.5em;  
+    flex: 1 37.5em;
 
     .cs-logo {
       width: 37.5em;

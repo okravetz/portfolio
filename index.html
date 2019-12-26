@@ -39,7 +39,10 @@ download-text: Download Oren Kravetz's Résumé [PDF]
     {%- for item in site.data.casestudies -%}
     <div class="cs-card">
         <a href="{{ page.cs_path }}{{ item.link }}">
-          <img src="{{ site.baseurl }}/assets/images/logo/{{ item.name | downcase | slugify: "latin" }}-logo.png" alt="{{ item.name }}" class="cs-logo"/>
+          <div class="container">
+            <img src="{{ site.baseurl }}/assets/images/logo/{{ item.name | downcase | slugify: "latin" }}-logo.png" alt="{{ item.name }}" class="cs-logo"/>
+            <div class="overlay"></div>
+          </div>
           <h3>{{ item.name }}</h3>
         </a>
         <p class="cs-description">{{ item.description }}</p>
@@ -55,10 +58,10 @@ download-text: Download Oren Kravetz's Résumé [PDF]
   <h2 id="resume">Résumé</h2>
   <a href="{{ site.baseurl }}/assets/files/R%C3%A9sum%C3%A9.pdf" download="Oren Kravetz Resume.pdf">
     <p id="resume-link">{{ page.download-text }}</p>
-    <div class="resume-container">
+    <div class="container">
       <img src="{{ site.baseurl }}/assets/images/R%C3%A9sum%C3%A9.png" alt="Oren Kravetz's résumé" class="resume-image" />
-      <div class="resume-overlay">
-        <div class="resume-overlay-text">{{ page.download-text }}</div>
+      <div class="overlay">
+        <div class="overlay-text">{{ page.download-text }}</div>
       </div>
     </div>
   </a>

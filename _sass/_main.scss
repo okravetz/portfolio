@@ -172,11 +172,11 @@ main {
   max-width: 77rem;
 }
 
-.resume-container {
+.overlay-container {
   position: relative;
   width: 100%;
 
-  .resume-overlay {
+  .-overlay {
     position: absolute;
     top: 0;
     bottom: 0;
@@ -189,12 +189,12 @@ main {
     background-color: $link-color;
   }
 
-  &:hover .resume-overlay {
+  &:hover .overlay {
     opacity: 0.8;
   }
 }
 
-.resume-overlay-text {
+.overlay-text {
   color: $background-color;
   font-size: 2em;
   position: absolute;

@@ -1,0 +1,15 @@
+---
+
+title: Oren Kravetz's Portfolio - Sitemap
+
+---
+
+<article id="cont">
+  <h2 id="sitemap">Sitemap</h2>
+    <ul>
+        <li><a href="{{ site.baseurl }}/index.html">Home</a></li>
+        {%- for item in site.data.casestudies -%}
+        <ul><li><a href="{{ page.cs_path }}{{ item.link }}" alt="{{ item.name }} Case Study">{{ item.name }}</a></li></ul>
+        {%- endfor -%}
+    </ul>
+</article>

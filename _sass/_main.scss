@@ -216,13 +216,13 @@ ul.contact {
     wrap: wrap;
   }
   justify-content: space-between;
-  width: 37.5em;
+  width: 50%;
 
   li {
     float: left;
+    padding: 1.5rem;
 
     a {
-      padding: 1.5rem;
 
       img {
         filter: $filter-base;

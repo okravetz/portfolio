@@ -1,14 +1,14 @@
 <ul class="contact">
     <li><a href="mailto:contact@orenkravetz.com">
       <img src="https://cdn.jsdelivr.net/npm/simple-icons@latest/icons/microsoftoutlook.svg" alt="" />
-      Email
+      <p>Email</p>
     </a>
   </li>
   {%- for item in site.data.contact -%}
   <li>
     <a href="https://www.{{ item.name | downcase }}.com/{%- if item.name == "LinkedIn" -%}in/{%- endif -%}okravetz" title="opens in a new window" aria-label="Oren Kravetz's {{ item.name }} profile" target="_blank" rel="noopener">
       <img src="https://cdn.jsdelivr.net/npm/simple-icons@latest/icons/{{ item.name | downcase }}.svg" alt="" />
-      {{ item.name }}
+      <p>{{ item.name }}</p>
     </a>
   </li>
   {%- endfor -%}

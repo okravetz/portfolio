@@ -282,16 +282,6 @@ footer {
   }
 }
 
-@media screen and (max-width: $breakpoint-small) {
-  .cs-container {
-    flex-direction: column;
-
-    .cs-card {
-      flex: 0 1 100%;
-    }
-  }
-}
-
 .casestudy-container {
   display: flex;
   flex: {
@@ -338,6 +328,24 @@ footer {
       figcaption {
         font-weight: $light;
       }
+    }
+  }
+}
+
+@media screen and (max-width: $breakpoint-small) {
+  .cs-container {
+    flex-direction: column;
+
+    .cs-card {
+      flex: 0 1 100%;
+    }
+  }
+
+  .casestudy-container {
+    flex-direction: column;
+
+    div {
+      flex: 0 1 100%;
     }
   }
 }

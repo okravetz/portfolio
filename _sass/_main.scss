@@ -119,10 +119,7 @@ header {
 
       li {
         float: left;
-
-        a {
-          padding: 1.5rem;
-        }
+        padding: 1.5rem;
       }
     }
   }
@@ -334,6 +331,9 @@ footer {
 }
 
 @media screen and (max-width: $breakpoint-small) {
+  header li {
+    padding: 1rem;
+  }
   .cs-container {
     flex-direction: column;
 

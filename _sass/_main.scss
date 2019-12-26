@@ -139,7 +139,8 @@ main {
 }
 
 #bio,
-#work {
+#work,
+#figures {
   visibility: hidden;
   margin: 0;
   line-height: 0;
@@ -352,5 +353,11 @@ footer {
 
   ul.contact li {
     padding: 1rem;
+  }
+
+  #figures {
+    visibility: visible;
+    font-size: 1.953em;
+    margin: 1rem auto;
   }
 }

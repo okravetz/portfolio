@@ -332,10 +332,6 @@ footer {
   }
 }
 
-.blur {
-  filter: blur(1.5rem);
-}
-
 @media screen and (max-width: $breakpoint-small) {
   header nav ul li {
     padding: 1rem;

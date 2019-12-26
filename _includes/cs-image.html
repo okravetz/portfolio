@@ -7,7 +7,7 @@
 <figure role="group" aria-labelledby="fig-{{ i }}-{{ j }}-capt">
     <img src="{{ path }}{{ img.link }}"
          alt="{{ img.title }}"         
-         {%- if project.blur -%}
+         {%- if project.blur == 1 -%}
          class="blur"/>
          {%- endif -%} 
     <figcaption id="fig-{{ i }}-{{ j }}-capt">Fig 0{{ i }}.0{{ j }} {{ img.title }}</figcaption>

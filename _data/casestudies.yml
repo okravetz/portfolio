@@ -3,6 +3,7 @@
   description: Responsive redesign of Cisco Small Business
   year: 2019
   role: Team Lead
+  blur: 1
   images:
     - title: Cisco Small Business Landing Page
       link: cisco-smb-landing.png
@@ -17,6 +18,7 @@
   description: Responsive redesign of bakerhughes.com
   year: 2019
   role: Team Lead
+  blur: 1
   images:
     - title: Baker Hughes Product Page (v1)
       link: bh-product-v1.png
@@ -29,6 +31,7 @@
   description: Responsive redesign of flexport.com
   year: 2019–2019
   role: Team Lead
+  blur: 0
   images:
     - title: Flexport Experience Principles
       link: flexport-experience-principles.png
@@ -41,6 +44,7 @@
   description: Analysis of legacy applications and recommendation including design system
   year: 2018
   role: Senior Designer
+  blur: 1
   images:
     - title: U.S. Air Force (Before State)
       link: usaf-before.png
@@ -55,6 +59,7 @@
   description: Responsive design of web-based clinic portal and patient portal
   year: 2016–2018
   role: Senior Designer
+  blur: 0
   images:
     - title: IntegraMed Patient Portal Schedule (v1)
       link: integramed-patient-portal-v1.png

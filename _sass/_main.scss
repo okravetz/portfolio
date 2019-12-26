@@ -221,6 +221,7 @@ ul.contact {
     float: left;
     padding: 1rem;
     text-align: center;
+    flex: 0 1 calc(50% - 2rem)
 
     a {
 
@@ -240,10 +241,11 @@ ul.contact {
 
 footer {
   @include center-align;
+  width: 100%;
 
   .copyright {
     text-align: center;
-    margin: 4rem 0;
+    margin: 1rem 0;
   }
 }
 
@@ -334,6 +336,10 @@ footer {
   }
 }
 
+.sitemap {
+  padding-right: 3rem;
+}
+
 @media screen and (max-width: $breakpoint-small) {
   header nav ul li {
     padding: 1rem;
@@ -359,8 +365,4 @@ footer {
     margin: 1rem 0;
     line-height: 1.15;
   }
-}
-
-.sitemap {
-  padding-right: 3rem;
 }

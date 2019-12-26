@@ -331,7 +331,7 @@ footer {
 }
 
 @media screen and (max-width: $breakpoint-small) {
-  header li {
+  header nav ul li {
     padding: 1rem;
   }
   .cs-container {

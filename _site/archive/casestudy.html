@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8" />
+    <title>{{ page.title }}</title>
+    <meta name="author" content="Oren Kravetz" />
+    <meta
+      name="description"
+      content="Oren Kravetz's bio, résumé, portfolio, and contact information. Case study for {{ page.title }} project."
+    />
+    <!-- <meta name="og:image" content =""> -->
+    <meta
+      name="og:description"
+      content="Oren Kravetz's bio, résumé, portfolio, and contact information. Case study for {{ page.title }} project."
+    />
+    <meta
+      name="og:title"
+      content="Oren Kravetz's Portfolio - {{ page.title }} Case Study"
+    />
+    <meta
+      name="twitter:title"
+      content="Oren Kravetz's Portfolio - {{ page.title }} Case Study"
+    />
+    <link rel="shortcut icon" href="img/favicon.ico" type="image/x-icon" />
+    <!-- <link rel="stylesheet" href="style.css"> -->
+
+    <!-- the below three lines are a fix to get HTML5 semantic elements working in old versions of Internet Explorer-->
+    <!--[if lt IE 9]>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+    {%- include navigation.html -%}
+    <main><article>{{ content }}</article></main>
+    {%- include footer.html -%}
+  </body>
+</html>

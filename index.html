@@ -6,7 +6,7 @@ download-text: Download Oren Kravetz's Résumé [PDF]
 ---
 
 <article aria-label="bio" id="cont">
-  <h2 id="bio">Bio</h2>
+  <h2 id="bio" class="hidden">Bio</h2>
   <div class="col2">
     <p>Oren is a User Experience Designer with formal training and experience in
       user research, wireframing, interaction design, usability testing, and
@@ -34,7 +34,7 @@ download-text: Download Oren Kravetz's Résumé [PDF]
 </div>
 </article>
 <section aria-labelledby="work">
-  <h2 id="work">Work</h2>
+  <h2 id="work" class="hidden">Work</h2>
   <div class="cs-container">
     {%- for item in site.data.casestudies -%}
     <section aria-labelledby="{{ item.name | downcase | slugify: "latin" }}-cs-title" class="cs-card">

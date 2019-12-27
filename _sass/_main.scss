@@ -138,12 +138,13 @@ main {
   }
 }
 
-#bio,
-#work,
-#figures {
-  visibility: hidden;
-  margin: 0;
-  line-height: 0;
+.hidden {
+  position: absolute;
+  left: -10000px;
+  top: auto;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
 }
 
 #resume,
@@ -151,7 +152,6 @@ main {
   margin: 2.5rem auto 1rem auto;
   text-align: center;
 }
-
 
 .col2 {
   columns: 2;
@@ -223,7 +223,6 @@ ul.contact {
     text-align: center;
 
     a {
-
       img {
         filter: $filter-base;
         height: 2rem;
@@ -289,7 +288,7 @@ footer {
   h2 {
     margin-top: 0;
   }
-  
+
   p {
     margin-bottom: 0.25em;
   }
@@ -316,14 +315,15 @@ footer {
   justify-content: space-between;
   align-items: flex-start;
 
-  section, div {
+  section,
+  div {
     flex: 0 1 calc(50% - 1em);
   }
 
   .cs-figures {
     figure {
       margin: 0 0 2rem 0;
-      
+
       img {
         width: 100%;
       }
@@ -354,7 +354,8 @@ footer {
   .casestudy-container {
     flex-direction: column;
 
-    section, div {
+    section,
+    div {
       flex: 0 1 100%;
     }
   }
@@ -363,6 +364,10 @@ footer {
     visibility: visible;
     margin: 1rem 0;
     line-height: 1.15;
+    position: static;
+    width: auto;
+    height: auto;
+    overflow: visible;
   }
 
   ul.contact {

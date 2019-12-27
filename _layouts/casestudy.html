@@ -35,7 +35,7 @@
     <main>
       <article id="cont" aria-labelledby="case-studty-title">
         <div class="cs-title-container">
-          <h2 id="case-studty-title">{{ page.title }}</h2>
+          <h2 id="case-study-title">{{ page.title }}</h2>
           {%- for project in site.data.casestudies -%}
           {%- if project.name == page.title -%}
           <p class="cs-description">{{ project.description }}</p>

@@ -294,7 +294,7 @@ footer {
   justify-content: space-between;
   align-items: flex-start;
 
-  div {
+  section, div {
     flex: 0 1 calc(50% - 1em);
   }
 
@@ -354,7 +354,7 @@ footer {
   .casestudy-container {
     flex-direction: column;
 
-    div {
+    section, div {
       flex: 0 1 100%;
     }
   }

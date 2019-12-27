@@ -37,20 +37,20 @@ download-text: Download Oren Kravetz's Résumé [PDF]
   <h2 id="work">Work</h2>
   <div class="cs-container">
     {%- for item in site.data.casestudies -%}
-    <div class="cs-card">
+    <section aria-labelledby="{{ item.name | downcase | slugify: "latin" }}-cs-title" class="cs-card">
         <a href="{{ page.cs_path }}{{ item.link }}" aria-label="{{ item.name }} Case Study">
           <div class="overlay-container">
             <img src="{{ site.baseurl }}/assets/images/logo/{{ item.name | downcase | slugify: "latin" }}-logo.png" alt="" class="cs-logo"/>
             <div class="overlay"></div>
           </div>
-          <h3>{{ item.name }}</h3>
+          <h3 id="{{ item.name | downcase | slugify: "latin" }}-cs-title">{{ item.name }}</h3>
         </a>
         <p class="cs-description">{{ item.description }}</p>
         <p class="cs-details">
           <span class="cs-year">{{ item.year }}</span>
           <span class="cs-role">{{ item.role }}</span>
         </p>
-      </div>
+      </section>
     {%- endfor -%}
   </div>
 </section>

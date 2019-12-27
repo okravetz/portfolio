@@ -15,6 +15,6 @@ With this new identity and website, Flexport wanted to make sure that it was eff
 
 I then implemented this into the design by enhancing the commonplace text & image layout with a callout that could contain one of these contextually relevant content pieces. This allows each marketing statement to be backed up with proof of Flexport’s experience and expertise.
 
-### Learnings
+#### Learnings
 
 Doing the homework of establishing design principles, a page architecture, and page layouts based on research and requirements went a long way towards gaining the client’s trust. As a result, our wireframe and design review process went smoothly and required fewer iterations on feedback.

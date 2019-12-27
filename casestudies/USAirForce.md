@@ -15,6 +15,6 @@ We distilled the research into two overarching issues faced by the airmen. First
 
 The design system allows the user to switch between various tools, while maintaining a single location for incoming notifications and consistent design and interaction for interface controls. This way the airmen could get their work done quicker and more efficiently and training new airmen would be simpler, too.
 
-### Learnings
+#### Learnings
 
 There are few research tools as valuable as a contextual inquiry. Without them, on this project, we would have left with just evaluating the interface of each application and judging it on industry-standard heuristics. Instead, we were able to glean so many valuable insights about how the tools and people worked together and how the airmen developed strategies for coping with the deficiencies before them. And our final recommendations were more trustworthy and complete for having integrated that data.

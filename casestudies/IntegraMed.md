@@ -15,7 +15,7 @@ One of the most challenging parts of the interface was the treatment schedule th
 
 In our first pass, I separated the medications into those that needed to taken in the morning and those for the evening. However, after speaking to some of the nurses, doctors, and patients, we realized that was insufficient. Medications could be prescribed for up to four times a day—morning, afternoon, evening, and before bed. Additionally, patients tended to remember which medication they needed to take by the timeslot and day to which it was assigned. As a result, in a later iteration, we increased the visual prominence of the treatment time over that of the medication name.
 
-### Learnings
+#### Learnings
 
 While we greatly relied on insights from the initial discovery research for our designs, it was especially helpful to have access to users throughout the design process to be able to validate our ideas. It may have led to some more iterations and to disagreement between the users’ feedback and the product managers, but the application as a whole benefited from the feedback.
 

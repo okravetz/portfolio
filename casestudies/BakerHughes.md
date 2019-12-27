@@ -19,6 +19,6 @@ So in our next iteration, we made the decision that for MVP, the site would only
 
 When we then turned to designing the product pages for the full site transformation, we were able to develop a richer navigation system both in the navigation bar and on the page.
 
-### Learnings
+#### Learnings
 
 Despite the close collaboration between our team and the client’s team, there could have been more honest communication about our respective visions for the site early on when defining the MVP. Our ambitions designs didn’t align with how they were redefining themselves and led to an outsized amount of time being allocated to iterating on the navigation and product pages.

@@ -35,7 +35,7 @@
     <main>
       <article id="cont">
         <div class="casestudy-container">
-          <div class="cs-text">
+          <section aria-labelledby="case-study" class="cs-text">
             <div class="cs-title">
               <h2>{{ page.title }}</h2>
               {%- for project in site.data.casestudies -%}
@@ -49,11 +49,11 @@
               {%- endfor -%}
             </div>
             {{ content }}
-          </div>
-          <div class="cs-figures">
+          </section>
+          <section aria-labelledby="figures" class="cs-figures">
             <h3 id="figures">Figures</h3>
             {% include cs-image.html title=page.title %}
-          </div>
+          </section>
         </div>
       </article>
     </main >

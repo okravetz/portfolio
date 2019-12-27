@@ -34,20 +34,20 @@
     <header>{%- include navigation.html -%}</header>
     <main>
       <article id="cont" aria-labelledby="case-studty-title">
+        <div class="cs-title-container">
+          <h2 id="case-studty-title">{{ page.title }}</h2>
+          {%- for project in site.data.casestudies -%}
+          {%- if project.name == page.title -%}
+          <p class="cs-description">{{ project.description }}</p>
+          <p class="cs-details">
+            <span class="cs-year">{{ project.year }}</span>
+            <span class="cs-role">{{ project.role }}</span>
+          </p>
+          {%- endif -%}
+          {%- endfor -%}
+        </div>
         <div class="casestudy-container">
           <section aria-labelledby="case-study" class="cs-text">
-            <div class="cs-title">
-              <h2 id="case-studty-title">{{ page.title }}</h2>
-              {%- for project in site.data.casestudies -%}
-              {%- if project.name == page.title -%}
-              <p class="cs-description">{{ project.description }}</p>
-              <p class="cs-details">
-                <span class="cs-year">{{ project.year }}</span>
-                <span class="cs-role">{{ project.role }}</span>
-              </p>
-              {%- endif -%}
-              {%- endfor -%}
-            </div>
             {{ content }}
           </section>
           <section aria-labelledby="figures" class="cs-figures">

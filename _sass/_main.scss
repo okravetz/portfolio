@@ -285,6 +285,28 @@ footer {
   }
 }
 
+.cs-title-container {
+  h2 {
+    margin-top: 0;
+  }
+  
+  p {
+    margin-bottom: 0.25em;
+  }
+
+  .cs-description {
+    font-size: 1.25em;
+  }
+
+  .cs-details {
+    font-weight: $light;
+
+    .cs-role {
+      padding-left: 3rem;
+    }
+  }
+}
+
 .casestudy-container {
   display: flex;
   flex: {
@@ -297,28 +319,7 @@ footer {
   section, div {
     flex: 0 1 calc(50% - 1em);
   }
-
-  .cs-title {
-    h2 {
-      margin-top: 0;
-    }
-    
-    p {
-      margin-bottom: 0.25em;
-    }
-
-    .cs-description {
-      font-size: 1.25em;
-    }
-
-    .cs-details {
-      font-weight: $light;
-
-      .cs-role {
-        padding-left: 3rem;
-      }
-    }
-  }
+}
 
   .cs-figures {
     figure {

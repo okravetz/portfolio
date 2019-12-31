@@ -41,7 +41,7 @@ download-text: Download Oren Kravetz's Résumé [PDF]
         <a href="{{ page.cs_path }}{{ item.link }}" aria-label="Case Study {{ item.name }}">
           <div class="overlay-container">
             {%- for img in item.images limit:1-%}
-            <img src="{{ page.cs_img_path }}{{ img.link }}" alt="" class="cs-logo"/>
+            <img src="assets/images/wf/{{ img.link }}" alt="" class="cs-logo"/>
             {%- endfor -%}
             <div class="overlay"></div>
           </div>

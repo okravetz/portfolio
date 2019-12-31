@@ -30,12 +30,12 @@
   year: 2019–2019
   role: Team Lead
   images:
-      link: 03-02-our-vision-architecture.png
     - title: Our Vision Page (Wireframe)
+      link: 03-03-our-vision.png
     - title: Experience Principles
       link: 03-01-experience-principles.png
     - title: Our Vision Page (Page Architecture)
-      link: 03-03-our-vision.png
+      link: 03-02-our-vision-architecture.png
 - name: Design System & Legacy System Analysis
   link: 04.html
   description: Learning valuable insights from contextual inquiries
@@ -57,6 +57,6 @@
   role: Senior Designer
   images:
     - title: Patient Portal Schedule (v2)
-      link: 05-02patient-portal-v2.png
+      link: 05-02-patient-portal-v2.png
     - title: Patient Portal Schedule (v1)
       link: 05-01-patient-portal-v1.png

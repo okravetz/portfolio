@@ -1,67 +1,62 @@
-- name: Cisco
-  link: Cisco.html
-  description: Responsive redesign of Cisco Small Business
+- name: Responsive redesign of business unit
+  link: 01.html
+  description: Breaking free of an overly restrictive design system
   year: 2019
   role: Team Lead
-  blur: 1
   images:
-    - title: Cisco Small Business Landing Page
-      link: cisco-smb-landing.png
-    - title: Cisco Small Business Wireless Access Points Page
-      link: cisco-smb-wap.png
-    - title: Cisco Small Business Wireless Access Points Page (Content Overlay)
-      link: cisco-smb-content.png
-    - title: Cisco Small Business Wireless Access Points Page (Mobile)
-      link: cisco-smb-mobile.png
-- name: Baker Hughes
-  link: BakerHughes.html
-  description: Responsive redesign of bakerhughes.com
+    - title: Landing Page
+      link: 01-01-landing-page.png
+    - title: Category Page
+      link: 01-02-category-page.png
+    - title: Category Page (Content Overlay)
+      link: 01-03-category-page-architecture.png
+    - title: Category Page (Mobile)
+      link: 01-04-category-page-mobile.png
+- name: Responsive website resdesign
+  link: 02.html
+  description: Balancing MVP vs. Phase II releases
   year: 2019
   role: Team Lead
-  blur: 1
   images:
-    - title: Baker Hughes Product Page (v1)
-      link: bh-product-v1.png
-    - title: Baker Hughes Product Page (v2)
-      link: bh-product-v2.png
-    - title: Baker Hughes Featured Product Page
-      link: bh-product-featured.png
-- name: Flexport
-  link: Flexport.html
-  description: Responsive redesign of flexport.com
+    - title: Category Page (v1)
+      link: 02-01-category-page-1a.png
+    - title: Category Page (v2)
+      link: 02-02-category-page-1b.png
+    - title: Featured Category Page
+      link: 02-03-category-page-2.png
+- name: Responsive website redesign
+  link: 03.html
+  description: Establishing the client's trust
   year: 2019–2019
   role: Team Lead
-  blur: 0
   images:
-    - title: Flexport Experience Principles
-      link: flexport-experience-principles.png
-    - title: Flexport Our Vision Page (Page Architecture)
-      link: flexport-our-vision-architecture.png
-    - title: Flexport Our Vision Page (Wireframe)
-      link: flexport-our-vision-wireframe.png
-- name: U.S. Air Force
-  link: USAirForce.html
-  description: Analysis of legacy applications and recommendation including design system
+    - title: Experience Principles
+      link: 03-01-experience-principles.png
+    - title: Our Vision Page (Page Architecture)
+      link: 03-02-our-vision-architecture.png
+    - title: Our Vision Page (Wireframe)
+      link: 03-03-our-vision.png
+- name: Design System
+  link: 04.html
+  description: Learning valuable insights from contextual inquiries
   year: 2018
   role: Senior Designer
-  blur: 1
   images:
-    - title: U.S. Air Force (Before State)
-      link: usaf-before.png
-    - title: U.S. Air Force Design System
-      link: usaf-design-system.png
-    - title: U.S. Air Force Wireframe 1
-      link: usaf-wireframe-1.png
-    - title: U.S. Air Force Wireframe 2
-      link: usaf-wireframe-2.png
-- name: IntegraMed
-  link: IntegraMed.html
-  description: Responsive design of web-based clinic portal and patient portal
+    - title: Prior State Screenshots
+      link: 04-01-before-screenshots.png
+    - title: Design System
+      link: 04-02-design-system.png
+    - title: Filtered Table Example
+      link: 04-03-filtered-table.png
+    - title: Dashboard Example
+      link: 04-04-dashboard.png
+- name: Responsive web application design
+  link: 05.html
+  description: Leveraging testing to improve designs
   year: 2016–2018
   role: Senior Designer
-  blur: 0
   images:
-    - title: IntegraMed Patient Portal Schedule (v1)
-      link: integramed-patient-portal-v1.png
-    - title: IntegraMed Patient Portal Schedule (v2)
-      link: integramed-patient-portal-v2.png
+    - title: Patient Portal Schedule (v1)
+      link: 05-01-patient-portal-v1.png
+    - title: Patient Portal Schedule (v2)
+      link: 05-02patient-portal-v2.png

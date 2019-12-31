@@ -38,9 +38,9 @@ download-text: Download Oren Kravetz's Résumé [PDF]
   <div class="cs-container">
     {%- for item in site.data.casestudies -%}
     <section aria-labelledby="{{ item.name | downcase | slugify: "latin" }}-cs-title" class="cs-card">
-        <a href="{{ page.cs_path }}{{ item.link }}" aria-label="{{ item.name }} Case Study">
+        <a href="{{ page.cs_path }}{{ item.link }}" aria-label="Case Study {{ item.name }}">
           <div class="overlay-container">
-            <img src="{{ site.baseurl }}/assets/images/logo/{{ item.name | downcase | slugify: "latin" }}-logo.png" alt="" class="cs-logo"/>
+            <img src="{{ site.baseurl }}/assets/images/wf/{{ item.name | downcase | slugify: "latin" }}-logo.png" alt="" class="cs-logo"/>
             <div class="overlay"></div>
           </div>
           <h3 id="{{ item.name | downcase | slugify: "latin" }}-cs-title">{{ item.name }}</h3>

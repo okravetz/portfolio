@@ -40,7 +40,11 @@ download-text: Download Oren Kravetz's Résumé [PDF]
     <section aria-labelledby="{{ item.name | downcase | slugify: "latin" }}-cs-title" class="cs-card">
         <a href="{{ page.cs_path }}{{ item.link }}" aria-label="Case Study {{ item.name }}">
           <div class="overlay-container">
-            <img src="{{ site.baseurl }}/assets/images/wf/{{ item.name | downcase | slugify: "latin" }}-logo.png" alt="" class="cs-logo"/>
+            {%- if project.name == include.title -%}
+              {%- for img in project.images -%}
+            <img src="{{ page.cs_img_path }}{{ item.link }}" alt="" class="cs-logo"/>
+              {%- endfor -%}
+            {%- endif -%}
             <div class="overlay"></div>
           </div>
           <h3 id="{{ item.name | downcase | slugify: "latin" }}-cs-title">{{ item.name }}</h3>

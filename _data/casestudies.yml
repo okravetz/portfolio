@@ -18,23 +18,23 @@
   year: 2019
   role: Team Lead
   images:
+    - title: Featured Category Page
+      link: 02-03-category-page-2.png
     - title: Category Page (v1)
       link: 02-01-category-page-1a.png
     - title: Category Page (v2)
       link: 02-02-category-page-1b.png
-    - title: Featured Category Page
-      link: 02-03-category-page-2.png
 - name: Responsive website redesign & rebrand
   link: 03.html
   description: Establishing the client's trust
   year: 2019–2019
   role: Team Lead
   images:
+      link: 03-02-our-vision-architecture.png
+    - title: Our Vision Page (Wireframe)
     - title: Experience Principles
       link: 03-01-experience-principles.png
     - title: Our Vision Page (Page Architecture)
-      link: 03-02-our-vision-architecture.png
-    - title: Our Vision Page (Wireframe)
       link: 03-03-our-vision.png
 - name: Design System & Legacy System Analysis
   link: 04.html
@@ -42,10 +42,10 @@
   year: 2018
   role: Senior Designer
   images:
-    - title: Prior State Screenshots
-      link: 04-01-before-screenshots.png
     - title: Design System
       link: 04-02-design-system.png
+    - title: Prior State Screenshots
+      link: 04-01-before-screenshots.png
     - title: Filtered Table Example
       link: 04-03-filtered-table.png
     - title: Dashboard Example
@@ -56,7 +56,7 @@
   year: 2016–2018
   role: Senior Designer
   images:
-    - title: Patient Portal Schedule (v1)
-      link: 05-01-patient-portal-v1.png
     - title: Patient Portal Schedule (v2)
       link: 05-02patient-portal-v2.png
+    - title: Patient Portal Schedule (v1)
+      link: 05-01-patient-portal-v1.png

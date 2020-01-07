@@ -22,8 +22,8 @@
       content="Oren Kravetz's Portfolio - {{ page.title }} Case Study"
     />
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="shortcut icon" href="{% link assets/images/favicon.ico %}" type="image/x-icon" />
-    <link rel="stylesheet" href="{% link assets/css/styles.css %}">
+    <link rel="shortcut icon" href="{{ "/assets/images/favicon.ico" | relative_url }}" type="image/x-icon" />
+    <link rel="stylesheet" href="{{ "/assets/css/styles.css" | relative_url }}">
 
     <!-- the below three lines are a fix to get HTML5 semantic elements working in old versions of Internet Explorer-->
     <!--[if lt IE 9]>

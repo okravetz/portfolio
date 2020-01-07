@@ -4,8 +4,11 @@
     {%- if project.name == include.title -%}
         {%- for img in project.images -%}
             {%- assign j = forloop.index -%}
+            {%- capture fullpath -%}
+            {{ path }}{{ img.link }}
+            {%- endcapture -%}
 <figure role="group" aria-labelledby="fig-{{ i }}-{{ j }}-capt">
-    <img src="{% link {{ path }}{{ img.link }} %}"
+    <img src="{% link {{ fullpath }} %}"
          alt="{{ img.title }}" />
     <figcaption id="fig-{{ i }}-{{ j }}-capt">Fig 0{{ i }}.0{{ j }} {{ img.title }}</figcaption>
 </figure>

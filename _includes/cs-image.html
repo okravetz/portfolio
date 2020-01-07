@@ -5,7 +5,7 @@
         {%- for img in project.images -%}
             {%- assign j = forloop.index -%}
 <figure role="group" aria-labelledby="fig-{{ i }}-{{ j }}-capt">
-    <img src="{{ path }}{{ img.link }}"
+    <img src="{% link {{ path }}{{ img.link }} %}"
          alt="{{ img.title }}" />
     <figcaption id="fig-{{ i }}-{{ j }}-capt">Fig 0{{ i }}.0{{ j }} {{ img.title }}</figcaption>
 </figure>

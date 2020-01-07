@@ -14,4 +14,4 @@ sass:
   style: compressed
   sass_dir: _sass
 
-permalink: /:path/:title:output_ext
+permalink: /:path/:title

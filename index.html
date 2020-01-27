@@ -37,7 +37,7 @@ download-text: Download Oren Kravetz's Résumé [PDF]
 <section aria-labelledby="work">
   <h2 id="work" class="hidden">Work</h2>
   <div class="cs-container">
-    {%- for item in site.data.casestudies -%}
+    {%- for item in site.data.casestudies | where: "publish" -%}
     <section aria-labelledby="{{ item.name | downcase | slugify: "latin" }}-cs-title" class="cs-card">
         <a href="{{ page.cs_path }}{{ item.link }}" aria-label="Case Study {{ item.name }}">
           <div class="overlay-container">

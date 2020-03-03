@@ -3,7 +3,7 @@
   description: Breaking free of an overly restrictive design system
   year: 2019
   role: Team Lead
-  publish: false
+  publish: true
   images:
     - title: Landing Page
       link: 01-01-landing-page.png

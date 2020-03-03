@@ -38,22 +38,24 @@ download-text: Download Oren Kravetz's Résumé [PDF]
   <h2 id="work" class="hidden">Work</h2>
   <div class="cs-container">
     {%- for item in site.data.casestudies -%}
-    <section aria-labelledby="{{ item.name | downcase | slugify: "latin" }}-cs-title" class="cs-card">
-        <a href="{{ page.cs_path }}{{ item.link }}" aria-label="{{ item.name | downcase | slugify: "latin" }}-cs-title">
-          <div class="overlay-container">
-            {%- for img in item.images limit:1-%}
-            <img src="assets/images/wf/{{ img.link }}" alt="" class="cs-logo"/>
-            {%- endfor -%}
-            <div class="overlay"></div>
-          </div>
-          <h3 id="{{ item.name | downcase | slugify: "latin" }}-cs-title">{{ item.name }}</h3>
-        </a>
-        <p class="cs-description">{{ item.description }}</p>
-        <p class="cs-details">
-          <span class="cs-year">{{ item.year }}</span>
-          <span class="cs-role">{{ item.role }}</span>
-        </p>
-      </section>
+      {%- if item.publish -%}
+      <section aria-labelledby="{{ item.name | downcase | slugify: "latin" }}-cs-title" class="cs-card">
+          <a href="{{ page.cs_path }}{{ item.link }}" aria-label="Case Study {{ item.name }}">
+            <div class="overlay-container">
+              {%- for img in item.images limit:1-%}
+              <img src="assets/images/wf/{{ img.link }}" alt="" class="cs-logo"/>
+              {%- endfor -%}
+              <div class="overlay"></div>
+            </div>
+            <h3 id="{{ item.name | downcase | slugify: "latin" }}-cs-title">{{ item.name }}</h3>
+          </a>
+          <p class="cs-description">{{ item.description }}</p>
+          <p class="cs-details">
+            <span class="cs-year">{{ item.year }}</span>
+            <span class="cs-role">{{ item.role }}</span>
+          </p>
+        </section>
+      {%- endif -%}
     {%- endfor -%}
   </div>
 </section>

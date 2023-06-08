@@ -276,6 +276,9 @@ footer {
     .cs-logo {
       width: 100%;
       display: block;
+      border-radius: 1rem;
+      -webkit-box-shadow: 0 0 24px 4px rgba(0,0,0,.12);
+      box-shadow: 0 0 24px 4px rgba(0,0,0,.12);
     }
 
     p {
@@ -335,6 +338,8 @@ footer {
   .cs-figures {
     figure {
       margin: 0 0 2rem 0;
+      -webkit-box-shadow: 0 0 24px 4px rgba(0,0,0,.12);
+      box-shadow: 0 0 24px 4px rgba(0,0,0,.12);
 
       img {
         width: 100%;

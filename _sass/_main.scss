@@ -145,18 +145,20 @@ main {
 }
 
 .hidden {
-  position: absolute;
+  /*position: absolute;
   left: -10000px;
-  top: auto;
+  top: auto; */
   width: 1px;
   height: 1px;
   overflow: hidden;
 }
 
+#work,
+#about,
 #resume,
-#contact,
-#about {
-  margin: 2.5rem auto 1rem auto;
+#contact {
+  margin: 1rem auto 1rem auto;
+  padding-top: 1.5rem;
   text-align: center;
 }
 

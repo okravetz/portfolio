@@ -168,6 +168,10 @@ main {
     width: 26rem;
     gap: 2rem;
   }
+  p {
+    font-size: 1.5em;  
+    color:$link-color-active;
+  }
 }
 
 #resume-link {

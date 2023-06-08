@@ -51,12 +51,9 @@ p {
   font-size: 1em;
   margin-bottom: 1.25em;
   margin-top: 0;
+  
   strong {
     font-weight: $bold;
-  }
-  #email {
-    font-size: 1.75rem;
-    text-align: center;
   }
 }
 
@@ -245,6 +242,11 @@ ul.contact {
       }
     }
   }
+}
+
+#email {
+  font-size: 1.75rem;
+  text-align: center;
 }
 
 footer {

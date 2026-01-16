@@ -156,7 +156,8 @@ main {
 #work,
 #about,
 #resume,
-#contact {
+#contact,
+#logos {
   margin: 1rem auto 1rem auto;
   padding-top: 1.5rem;
   text-align: center;
@@ -401,8 +402,4 @@ footer {
       flex: 0 1 calc(50% - 2rem);
     }
   }
-}
-
-.evlhdI a {
-  visibility: hidden !important;
 }

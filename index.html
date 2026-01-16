@@ -5,31 +5,6 @@ download-text: Download Oren Kravetz's Résumé [PDF]
 
 ---
 
-<section aria-labelledby="work">
-  <h2 id="work" class="hidden">Work</h2>
-  <div class="cs-container">
-    {%- for item in site.data.casestudies -%}
-      {%- if item.publish -%}
-      <section aria-labelledby="{{ item.name | downcase | slugify: "latin" }}-cs-title" class="cs-card">
-          <a href="{{ page.cs_path }}{{ item.link }}" aria-label="{{ item.name | downcase | slugify: 'latin' }}-cs-title">
-            <div class="overlay-container">
-              {%- for img in item.images limit:1-%}
-              <img src="assets/images/wf/{{ img.link }}" alt="" class="cs-logo"/>
-              {%- endfor -%}
-              <div class="overlay"></div>
-            </div>
-            <h3 id="{{ item.name | downcase | slugify: "latin" }}-cs-title">{{ item.name }}</h3>
-          </a>
-          <p class="cs-description">{{ item.description }}</p>
-          <p class="cs-details">
-            <span class="cs-year">{{ item.year }}</span>
-            <span class="cs-role">{{ item.role }}</span>
-          </p>
-        </section>
-      {%- endif -%}
-    {%- endfor -%}
-  </div>
-</section>
 <article aria-label="about" id="cont">
   <h2 id="about">About</h2>
   <div class="col2">
@@ -59,6 +34,31 @@ download-text: Download Oren Kravetz's Résumé [PDF]
   <script src="https://elfsightcdn.com/platform.js" async></script>
   <div class="elfsight-app-0f5649e0-194a-4204-b2b8-48b9d195598b" data-elfsight-app-lazy></div>
   <script>new MutationObserver((m, o) => { const el = document.querySelector('.evlhdI a'); if (el) { el.remove(); o.disconnect(); } }).observe(document.body, { childList: true, subtree: true });</script>
+</section>
+<section aria-labelledby="work">
+  <h2 id="work">Work</h2>
+  <div class="cs-container">
+    {%- for item in site.data.casestudies -%}
+      {%- if item.publish -%}
+      <section aria-labelledby="{{ item.name | downcase | slugify: "latin" }}-cs-title" class="cs-card">
+          <a href="{{ page.cs_path }}{{ item.link }}" aria-label="{{ item.name | downcase | slugify: 'latin' }}-cs-title">
+            <div class="overlay-container">
+              {%- for img in item.images limit:1-%}
+              <img src="assets/images/wf/{{ img.link }}" alt="" class="cs-logo"/>
+              {%- endfor -%}
+              <div class="overlay"></div>
+            </div>
+            <h3 id="{{ item.name | downcase | slugify: "latin" }}-cs-title">{{ item.name }}</h3>
+          </a>
+          <p class="cs-description">{{ item.description }}</p>
+          <p class="cs-details">
+            <span class="cs-year">{{ item.year }}</span>
+            <span class="cs-role">{{ item.role }}</span>
+          </p>
+        </section>
+      {%- endif -%}
+    {%- endfor -%}
+  </div>
 </section>
 <section aria-labelledby="contact">
   <h2 id="contact">Contact</h2>

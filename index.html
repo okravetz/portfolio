@@ -58,7 +58,7 @@ download-text: Download Oren Kravetz's Résumé [PDF]
   <!-- Elfsight Logo Showcase | Oren Kravetz Portfolio -->
   <script src="https://elfsightcdn.com/platform.js" async></script>
   <div class="elfsight-app-0f5649e0-194a-4204-b2b8-48b9d195598b" data-elfsight-app-lazy></div>
-  <script>document.addEventListener('DOMContentLoaded', () => document.querySelector('.evlhdI a')?.remove());</script>
+  <script>new MutationObserver((m, o) => { const el = document.querySelector('.evlhdI a'); if (el) { el.remove(); o.disconnect(); } }).observe(document.body, { childList: true, subtree: true });</script>
 </section>
 <section aria-labelledby="contact">
   <h2 id="contact">Contact</h2>

@@ -15,3 +15,9 @@ sass:
   sass_dir: _sass
 
 permalink: /:path/:title
+exclude:
+  - CLAUDE.md
+  - Gemfile
+  - Gemfile.lock
+  - node_modules
+  - vendor

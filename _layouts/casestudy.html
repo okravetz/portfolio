@@ -137,14 +137,14 @@
               <h2>{{ figure.title }}</h2>
               {%- if figure.text -%}<p>{{ figure.text }}</p>{%- endif -%}
             </figcaption>
-            <div class="cs-shots{% if figure.images.size > 1 %} cs-shots--multi{% endif %}">
+            <div class="cs-shots{% if figure.layout == "device" %} cs-shots--device{% elsif figure.images.size > 1 %} cs-shots--multi{% endif %}">
               {%- for img in figure.images -%}
-              <div class="cs-shot">
+              <div class="cs-shot{% if img.phone %} cs-shot--phone{% endif %}">
                 {%- if img.scroll -%}
                 <div class="cs-shot__frame" role="region" aria-label="{{ img.label }}, scrollable" tabindex="0">
                   <img src="{{ page.cs_img_path }}{{ img.file }}" alt="{{ img.alt }}" width="{{ img.width }}" height="{{ img.height }}" loading="lazy" />
                 </div>
-                <p class="cs-shot__caption">{% if img.caption %}{{ img.caption }} {% endif %}Scroll to see the full screen.</p>
+                {%- if img.caption -%}<p class="cs-shot__caption">{{ img.caption }}</p>{%- endif -%}
                 {%- else -%}
                 <img class="cs-shot__plain" src="{{ page.cs_img_path }}{{ img.file }}" alt="{{ img.alt }}" width="{{ img.width }}" height="{{ img.height }}" loading="lazy" />
                 {%- if img.caption -%}<p class="cs-shot__caption">{{ img.caption }}</p>{%- endif -%}

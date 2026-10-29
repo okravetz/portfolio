@@ -8,19 +8,27 @@
       name="description"
       content="Oren Kravetz's bio, résumé, portfolio, and contact information."
     />
-    <meta name="og:image" content ="{{ site.baseurl }}{%- link assets/images/headshot.jpg -%}">
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="{{ page.url | absolute_url }}" />
+    <meta property="og:image" content="{{ site.baseurl }}{%- link assets/images/headshot.jpg -%}" />
     <meta
-      name="og:description"
+      property="og:description"
       content="Oren Kravetz's bio, résumé, portfolio, and contact information."
     />
     <meta
-      name="og:title"
+      property="og:title"
       content="Oren Kravetz's Portfolio"
     />
+    <meta name="twitter:card" content="summary_large_image" />
     <meta
       name="twitter:title"
       content="Oren Kravetz's Portfolio"
     />
+    <meta
+      name="twitter:description"
+      content="Oren Kravetz's bio, résumé, portfolio, and contact information."
+    />
+    <meta name="twitter:image" content="{{ site.baseurl }}{%- link assets/images/headshot.jpg -%}" />
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="shortcut icon" href="{{ "/assets/images/favicon.ico" | relative_url }}" type="image/x-icon" />
     <link rel="stylesheet" href="{{ "/assets/css/styles.css" | relative_url }}">
@@ -29,16 +37,17 @@
     <!--[if lt IE 9]>
       <script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.js"></script>
     <![endif]-->
+
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-167RBEBRWP"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-167RBEBRWP');
+    </script>
   </head>
-  <!-- Google tag (gtag.js) -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-167RBEBRWP"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-  
-    gtag('config', 'G-167RBEBRWP');
-  </script>
   <body>
     <header>{%- include navigation.html -%}</header>
     <main>{{ content }}</main >

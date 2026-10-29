@@ -9,7 +9,7 @@ title: Oren Kravetz's Portfolio - Sitemap
     <ul>
       <li><a href="{{ site.baseurl }}/index.html">Home</a></li>
       {%- for item in site.data.casestudies -%}
-      <ul><li><a href="{{ page.cs_path }}{{ item.link }}" alt="{{ item.name }} Case Study">{{ item.name }}</a></li></ul>
+      {%- if item.link -%}<ul><li><a href="{{ page.cs_path }}{{ item.link }}" alt="{{ item.name }} Case Study">{{ item.name }}</a></li></ul>{%- endif -%}
       {%- endfor -%}
       <li><a href="{{ site.baseurl }}/sitemap.html">Sitemap</a></li>
       <li><a href="{{ site.baseurl }}/accessibility/accessibility-statement_2019-11-26.html">Accessibility Statement</a></li>

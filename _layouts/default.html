@@ -31,6 +31,9 @@
     <meta name="twitter:image" content="{{ site.baseurl }}{%- link assets/images/headshot.jpg -%}" />
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="shortcut icon" href="{{ "/assets/images/favicon.ico" | relative_url }}" type="image/x-icon" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,700&family=DM+Serif+Display&family=DM+Serif+Text&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="{{ "/assets/css/styles.css" | relative_url }}">
     {%- include theme-init.html -%}
 
@@ -50,9 +53,10 @@
     </script>
   </head>
   <body>
-    <header>{%- include navigation.html -%}</header>
-    <main>{{ content }}</main >
-    <footer>{%- include footer.html -%}</footer>
+    <header class="site-header dots">{%- include navigation.html -%}</header>
+    <main id="main" class="{% if page.url == "/" %}home{% else %}page{% endif %}">{{ content }}</main>
+    <footer class="site-footer dots-up">{%- include footer.html -%}</footer>
     <script src="{{ "/assets/js/theme.js" | relative_url }}" defer></script>
+    <script src="{{ "/assets/js/year.js" | relative_url }}" defer></script>
   </body>
 </html>

@@ -223,7 +223,7 @@
 }
 
 .dot-rule--accent {
-  background-image: radial-gradient(var(--cs-dot) 2px, transparent 2.3px);
+  background-image: radial-gradient(circle, var(--cs-dot) 2px, transparent 2.3px);
 }
 
 .cs-figure__head {

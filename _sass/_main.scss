@@ -583,8 +583,10 @@ small,
   }
 }
 
+// Muted, not soft: soft on the dark background is only Lc 34 (APCA); muted is Lc 76 in dark and
+// Lc 79 in light, so the label still reads as lighter than the value.
 .contact__label {
-  color: var(--soft);
+  color: var(--muted);
 }
 
 // Footer

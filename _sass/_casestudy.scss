@@ -37,9 +37,12 @@
     font-weight: 700;
   }
 
-  // The 12px label is too small for white on this orange (3.8:1); ink reaches 4.8:1.
+  // White on this orange only reaches contrast as large text (3.8:1 WCAG, Lc 69 APCA), so the
+  // label is set at 19px bold like the list. Dark text would pass WCAG but fail APCA (Lc 39).
   .cs-hero .eyebrow {
-    color: var(--ink);
+    font-size: 19px;
+    font-weight: 700;
+    letter-spacing: 0.12em;
   }
 }
 

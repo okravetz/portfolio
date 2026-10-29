@@ -350,7 +350,7 @@ small,
 }
 
 .card__description {
-  color: var(--body);
+  color: var(--ink);
 }
 
 .card__block {
@@ -435,17 +435,17 @@ small,
 
 .work-list__project {
   font-size: var(--small-size);
-  color: var(--muted);
+  color: var(--ink);
 }
 
 .work-list__years {
   flex: 0 0 110px;
-  color: var(--muted);
+  color: var(--ink);
 }
 
 .work-list__text {
   flex: 1 1 320px;
-  color: var(--body);
+  color: var(--ink);
 }
 
 .more {
@@ -584,7 +584,8 @@ small,
 }
 
 // Muted, not soft: soft on the dark background is only Lc 34 (APCA); muted is Lc 76 in dark and
-// Lc 79 in light, so the label still reads as lighter than the value.
+// Lc 79 in light, so the label still reads as lighter than the value. Large type only (22px+);
+// all smaller text is ink.
 .contact__label {
   color: var(--muted);
 }
@@ -641,7 +642,7 @@ main.page {
   }
 
   .cs-details {
-    color: var(--muted);
+    color: var(--ink);
 
     .cs-role {
       padding-left: 3rem;
@@ -674,7 +675,7 @@ main.page {
       }
 
       figcaption {
-        color: var(--muted);
+        color: var(--ink);
       }
     }
   }

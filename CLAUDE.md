@@ -5,12 +5,12 @@ Oren Kravetz's portfolio site. Jekyll, deployed to GitHub Pages at www.orenkrave
 ## How the site is built
 
 - **Deploys:** every push to `main` builds and publishes the live site (`.github/workflows/jekyll.yml`). There is no staging environment.
-- **Homepage:** `index.html` (About, Résumé, Clients, Work, Contact). Nav labels come from `_data/navigation.yml`.
-- **Case studies:** cards and image lists live in `_data/casestudies.yml` (`publish: false` hides a card). Page text lives in `casestudies/01.md`–`05.md` and uses `_layouts/casestudy.html`. Images are in `assets/images/wf/`.
+- **Homepage:** `index.html` (About with the clients card, Work, Résumé, Contact). Nav labels come from `_data/navigation.yml`. "More work" rows are in `_data/morework.yml` (first 3 show, the rest sit behind a toggle).
+- **Case studies:** homepage cards live in `_data/casestudies.yml` (`publish: false` hides a card; a card with no `link` isn't clickable). The three current studies are `casestudies/amex-value-builder.md`, `imax-relaunch.md` and `lhw-travel-advisor-portal.md`. Their text, facts and figures are in the front matter, and `_layouts/casestudy.html` renders them (a page with `overview:` in its front matter uses the new template; `01.md`–`05.md` are the old studies, hidden from the homepage, and use the old template in the same layout). Images are in `assets/images/wf/`.
 - **Contact:** `_includes/contact.html` and `_data/contact.yml`.
 - **Résumé download:** `assets/files/Resume 2026.pdf`, with a preview image at `assets/images/Resume 2026.png`. Update both together.
 - **Analytics:** Google Analytics 4 (`G-167RBEBRWP`), base tag only, in both layouts (`_layouts/default.html`, `_layouts/casestudy.html`). Change it in both places.
-- **Clients logos:** an Elfsight widget, configured on Elfsight's site, not in this repo.
+- **Clients logos:** one-color logos in `assets/images/logos/`, listed in `_data/clients.yml`. The Home Depot is under NDA and must never appear.
 - **Legacy pages:** `accessibility/` is an old page that still publishes. `1991/`, `1992/`, and `archive/` are excluded from the build (in `_config.yml`) until the era pages are rebuilt. `assets/incoming/` (originals for the redesign) is also excluded, so it isn't served. `_site/` is committed build output; don't edit it by hand.
 - **Local preview:** `bundle install`, then `bundle exec jekyll serve`.
 

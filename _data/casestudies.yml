@@ -1,8 +1,9 @@
 # Homepage cards. The original five studies below are hidden (publish: false) but their pages still exist.
-# `link` is left out until the case-study page exists; a card without a link isn't clickable.
+# `link` is the page under casestudies/; a card without a link isn't clickable.
 - name: Value Builder
   client: American Express
   accent: navy
+  link: amex-value-builder.html
   card_image: amex-card.webp
   image_alt: "Value Builder: the Maximizing Cash Flow screen"
   description: A sales tool that turned a manual, inconsistent value conversation into a repeatable, compliant one.
@@ -10,6 +11,7 @@
 - name: IMAX.com relaunch
   client: IMAX
   accent: violet
+  link: imax-relaunch.html
   card_image: imax-card.webp
   image_alt: IMAX.com homepage hero on desktop
   description: A redesign of IMAX.com that balances immersive, cinematic storytelling with a simplified booking flow.
@@ -17,6 +19,7 @@
 - name: Travel Advisor Portal
   client: The Leading Hotels of the World
   accent: orange
+  link: lhw-travel-advisor-portal.html
   card_image: lhw-card.webp
   image_alt: Travel Advisor Portal hotel detail page
   description: A new product for travel advisors, launched in 2025 at LHW's annual member-hotelier conference.

@@ -36,6 +36,14 @@
   .cs-hero__list a {
     font-weight: 700;
   }
+
+  // White on this orange only reaches contrast as large text (3.8:1 WCAG, Lc 69 APCA), so the
+  // label is set at 19px bold like the list. Dark text would pass WCAG but fail APCA (Lc 39).
+  .cs-hero .eyebrow {
+    font-size: 19px;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+  }
 }
 
 .cs-hero {
@@ -139,7 +147,7 @@
   font-size: 15px;
 
   dt {
-    color: var(--muted);
+    color: var(--ink);
   }
 
   dd {
@@ -205,7 +213,7 @@
   figcaption {
     font-size: var(--small-size);
     line-height: var(--small-line);
-    color: var(--muted);
+    color: var(--ink);
   }
 }
 
@@ -243,7 +251,7 @@
     margin: 0;
     font-size: var(--body-lg-size);
     line-height: var(--body-lg-line);
-    color: var(--body);
+    color: var(--ink);
   }
 }
 
@@ -314,7 +322,7 @@
   margin: 0;
   font-size: var(--small-size);
   line-height: var(--small-line);
-  color: var(--muted);
+  color: var(--ink);
 }
 
 .cs-next {

@@ -16,11 +16,13 @@ title: Oren Kravetz's Portfolio
     </div>
     <div class="clients-panel">
       <h3 id="clients-h" class="eyebrow">Clients</h3>
-      <ul class="logos" role="region" aria-labelledby="clients-h" tabindex="0">
-        {%- for client in site.data.clients -%}
-        <li><span class="logo" role="img" aria-label="{{ client.name }}" style="--logo: url('{{ site.baseurl }}/assets/images/logos/{{ client.file }}')"></span></li>
-        {%- endfor -%}
-      </ul>
+      <div class="logos-scroll" role="region" aria-labelledby="clients-h" tabindex="0">
+        <ul class="logos">
+          {%- for client in site.data.clients -%}
+          <li><span class="logo" role="img" aria-label="{{ client.name }}" style="--logo: url('{{ site.baseurl }}/assets/images/logos/{{ client.file }}')"></span></li>
+          {%- endfor -%}
+        </ul>
+      </div>
     </div>
   </div>
 </section>

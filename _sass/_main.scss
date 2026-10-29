@@ -10,6 +10,12 @@ html {
   html {
     scroll-behavior: auto;
   }
+
+  *,
+  *::before,
+  *::after {
+    transition: none !important;
+  }
 }
 
 body {
@@ -53,6 +59,11 @@ a {
 :focus-visible {
   outline: 2px solid var(--hover);
   outline-offset: 2px;
+}
+
+// <main> takes focus from the skip link but isn't a control, so it gets no ring.
+main:focus {
+  outline: none;
 }
 
 small,
@@ -339,7 +350,7 @@ small,
 }
 
 .card__description {
-  color: var(--body);
+  color: var(--ink);
 }
 
 .card__block {
@@ -424,17 +435,17 @@ small,
 
 .work-list__project {
   font-size: var(--small-size);
-  color: var(--muted);
+  color: var(--ink);
 }
 
 .work-list__years {
   flex: 0 0 110px;
-  color: var(--muted);
+  color: var(--ink);
 }
 
 .work-list__text {
   flex: 1 1 320px;
-  color: var(--body);
+  color: var(--ink);
 }
 
 .more {
@@ -572,8 +583,11 @@ small,
   }
 }
 
+// Muted, not soft: soft on the dark background is only Lc 34 (APCA); muted is Lc 76 in dark and
+// Lc 79 in light, so the label still reads as lighter than the value. Large type only (22px+);
+// all smaller text is ink.
 .contact__label {
-  color: var(--soft);
+  color: var(--muted);
 }
 
 // Footer
@@ -582,7 +596,8 @@ small,
   padding: 72px var(--gutter) 32px;
   font-size: var(--small-size);
   line-height: var(--small-line);
-  color: var(--muted);
+  // Ink, not muted: the dots sit behind this text and muted only reaches 3.4:1 on a dot.
+  color: var(--ink);
 
   .section--contact {
     padding-left: 0;
@@ -596,8 +611,10 @@ small,
   }
 
   .footer-links a {
+    display: inline-block;
     margin-right: var(--space-3);
-    color: var(--muted);
+    padding: var(--space-2) 0;
+    color: var(--ink);
   }
 }
 
@@ -625,7 +642,7 @@ main.page {
   }
 
   .cs-details {
-    color: var(--muted);
+    color: var(--ink);
 
     .cs-role {
       padding-left: 3rem;
@@ -658,7 +675,7 @@ main.page {
       }
 
       figcaption {
-        color: var(--muted);
+        color: var(--ink);
       }
     }
   }
@@ -666,6 +683,10 @@ main.page {
 
 .sitemap {
   padding-right: 3rem;
+}
+
+.sitemap-nested {
+  list-style: none;
 }
 
 @media screen and (max-width: $breakpoint-sm) {
@@ -703,12 +724,15 @@ main.page {
     padding: var(--space-4) 0 var(--space-4) var(--space-4);
   }
 
+  .logos-scroll {
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+  }
+
   .logos {
     display: flex;
     gap: var(--space-2);
     padding-right: var(--gutter);
-    overflow-x: auto;
-    scroll-snap-type: x mandatory;
 
     li {
       flex: 0 0 75px;

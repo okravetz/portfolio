@@ -63,7 +63,7 @@
         {%- if n == next_number -%}{%- assign next_item = item -%}{%- endif -%}
       {%- endif -%}
     {%- endfor -%}
-    <main id="main" class="casestudy casestudy--{{ page.accent }}">
+    <main id="main" tabindex="-1" class="casestudy casestudy--{{ page.accent }}">
       <section class="cs-hero" aria-labelledby="cs-title">
         <div class="container cs-hero__inner">
           <div class="cs-hero__title">
@@ -170,7 +170,7 @@
       </nav>
     </main>
     {%- else -%}
-    <main id="main" class="page">
+    <main id="main" tabindex="-1" class="page">
       <article id="cont" aria-labelledby="case-studty-title">
         <div class="cs-title-container">
           <h2 id="case-study-title">{{ page.title }}</h2>

@@ -5,22 +5,38 @@ $body: "Fira Sans", Verdana, sans-serif;
 $bold: 700;
 $regular: 400;
 $light: 300;
-$default-color: #333;
-$link-color: #6636ce;
-$link-color-active: #3d1f7f;
+$default-color: var(--ink);
+$link-color: var(--hover);
+$link-color-active: var(--primary-12);
 $base-size: 16px;
 $display-line-height: 1.15;
 $body-line-height: 1.45;
-$background-color: rgb(242, 242, 245);
+$background-color: var(--bg);
 $transition-time: 0.3s;
 // https://codepen.io/sosuke/pen/Pjoqqp
 $filter-hover: invert(21%) sepia(77%) saturate(3368%) hue-rotate(253deg)
   brightness(84%) contrast(91%);
 $filter-base: invert(20%) sepia(0%) saturate(1482%) hue-rotate(160deg)
   brightness(91%) contrast(95%);
+$filter-base-dark: brightness(0) invert(0.9);
 $breakpoint-large: 1440px;
 $breakpoint-medium: 768px;
 $breakpoint-small: 425px;
+
+// The contact icons are black SVGs recolored with a filter, so the filter changes with the theme.
+:root {
+  --icon-filter: #{$filter-base};
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --icon-filter: #{$filter-base-dark};
+  }
+}
+
+:root[data-theme="dark"] {
+  --icon-filter: #{$filter-base-dark};
+}
 
 @mixin center-align {
   display: flex;
@@ -201,7 +217,7 @@ main {
     width: 100%;
     opacity: 0;
     transition: $transition-time ease;
-    background-color: $link-color;
+    background-color: var(--primary-9);
   }
 
   &:hover .overlay {
@@ -210,7 +226,7 @@ main {
 }
 
 .overlay-text {
-  color: $background-color;
+  color: var(--on-primary);
   font-size: 2em;
   position: absolute;
   top: 50%;
@@ -239,7 +255,7 @@ ul.contact {
 
     a {
       img {
-        filter: $filter-base;
+        filter: var(--icon-filter);
         height: 2rem;
         width: 2rem;
       }
@@ -248,6 +264,7 @@ ul.contact {
         transition: $transition-time ease;
         filter: $filter-hover;
       }
+
     }
   }
 }
@@ -401,6 +418,48 @@ footer {
 
     li {
       flex: 0 1 calc(50% - 2rem);
+    }
+  }
+}
+.theme-toggle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  padding: 0;
+  border: 0;
+  border-radius: var(--radius-round);
+  background: transparent;
+  color: var(--ink);
+  cursor: pointer;
+
+  &:hover,
+  &:focus-visible {
+    color: var(--hover);
+  }
+
+  &:focus-visible {
+    outline: 2px solid var(--hover);
+    outline-offset: 2px;
+  }
+
+  // Show the icon for the theme you'd switch to.
+  .icon-moon {
+    display: block;
+  }
+
+  .icon-sun {
+    display: none;
+  }
+
+  &[aria-pressed="true"] {
+    .icon-moon {
+      display: none;
+    }
+
+    .icon-sun {
+      display: block;
     }
   }
 }

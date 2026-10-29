@@ -1,5 +1,5 @@
 {%- unless page.url == "/" -%}{%- include contact.html -%}{%- endunless -%}
 <div class="container">
-  <p class="copyright">© 2026 Oren Kravetz</p>
+  <p class="copyright">© <span id="copyright-years">{{ site.time | date: "%Y" }}</span> Oren Kravetz</p>
   <p class="footer-links"><a href="{% link sitemap.html %}">Sitemap</a> <a href="{% link accessibility/accessibility-statement_2019-11-26.html %}">Accessibility&nbsp;Statement</a></p>
 </div>

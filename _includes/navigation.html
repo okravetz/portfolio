@@ -3,13 +3,13 @@
 <img id="headshot" src="{{ site.baseurl }}{%- link assets/images/headshot.jpg -%}" alt="Headshot of Oren Kravetz" width="128" height="128" />
 {%- endif -%}
 <a href="{% link index.html %}" class="site-name"{% if page.url == "/" %} aria-current="page"{% endif %} aria-label="Oren Kravetz, home">
-  <h1>Oren Kravetz</h1>
+  {%- if page.overview -%}<span class="site-name__text">Oren Kravetz</span>{%- else -%}<h1>Oren Kravetz</h1>{%- endif -%}
 </a>
 <p class="eyebrow">UX designer &amp; manager · he/him/his</p>
 <nav aria-label="Main Navigation">
   <ul>
     {%- for item in site.data.navigation -%}
-    <li><a href="{% link index.html %}#{{ item.name | downcase | slugify: "latin" }}">{{ item.name }}</a></li>
+    <li><a href="{% link index.html %}#{{ item.name | downcase | slugify: "latin" }}"{% if page.overview and item.name == "Work" %} aria-current="page"{% endif %}>{{ item.name }}</a></li>
     {%- endfor -%}
     <li>
       <button type="button" id="theme-toggle" class="theme-toggle" aria-pressed="false" aria-label="Dark mode">

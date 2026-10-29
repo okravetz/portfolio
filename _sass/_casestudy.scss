@@ -1,0 +1,370 @@
+// Case-study pages (layout: casestudy with an overview in the front matter)
+
+.site-header {
+  .site-name__text {
+    display: block;
+    margin: 0 0 6px;
+    font-family: var(--font-display);
+    font-size: var(--heading-name-size);
+    line-height: var(--heading-name-line);
+  }
+
+  nav a[aria-current="page"] {
+    font-weight: 700;
+  }
+}
+
+.casestudy {
+  // One accent per case study: the band, the dot rules and nothing else.
+  --cs-accent: var(--accent-navy);
+  --cs-on: var(--on-accent);
+  --cs-dot: var(--accent-navy-dot);
+}
+
+.casestudy--violet {
+  --cs-accent: var(--accent-violet);
+  --cs-dot: var(--accent-violet-dot);
+}
+
+// On the orange band (light mode) white text only reaches contrast at large sizes, so the
+// smaller list items are bold.
+.casestudy--orange {
+  --cs-accent: var(--accent-orange);
+  --cs-on: var(--on-accent-orange);
+  --cs-dot: var(--accent-orange-dot);
+
+  .cs-hero__list a {
+    font-weight: 700;
+  }
+}
+
+.cs-hero {
+  padding: 88px var(--gutter);
+  background: var(--cs-accent);
+  color: var(--cs-on);
+
+  a,
+  .eyebrow {
+    color: var(--cs-on);
+  }
+
+  a:focus-visible {
+    outline-color: var(--cs-on);
+  }
+}
+
+.cs-hero__inner {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-7);
+  align-items: flex-end;
+  justify-content: space-between;
+}
+
+.cs-hero__title {
+  flex: 1 1 420px;
+
+  .eyebrow {
+    margin-bottom: var(--space-3);
+  }
+
+  h1 {
+    font-size: clamp(48px, 7vw, 88px);
+    line-height: var(--display-case-line);
+  }
+}
+
+.cs-hero__list {
+  flex: 0 1 380px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  font-size: 19px;
+
+  a {
+    display: block;
+    padding: var(--space-1) 0 var(--space-1) 32px;
+    text-decoration: none;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+
+  a.is-current {
+    display: flex;
+    gap: var(--space-2);
+    padding-left: 0;
+    font-weight: 700;
+
+    span {
+      width: 20px;
+    }
+  }
+}
+
+.cs-overview,
+.cs-behind,
+.cs-work {
+  padding: var(--space-11) var(--gutter);
+}
+
+.cs-behind {
+  background: var(--band);
+}
+
+.cs-two {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-9);
+}
+
+.cs-two__side {
+  flex: 1 1 320px;
+}
+
+.cs-h2 {
+  font-size: 48px;
+  line-height: 1.05;
+}
+
+.cs-facts {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 20px;
+  margin: var(--space-6) 0 0;
+  font-size: 15px;
+
+  dt {
+    color: var(--muted);
+  }
+
+  dd {
+    margin: 4px 0 0;
+    font-weight: 500;
+  }
+}
+
+.cs-items {
+  flex: 1 1 560px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: var(--space-7) var(--space-6);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+
+  li {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  h3 {
+    font-family: var(--font-serif);
+    font-size: var(--item-title-size);
+    line-height: var(--item-title-line);
+  }
+
+  p {
+    margin: 0;
+    font-size: var(--body-size);
+    line-height: var(--body-line);
+  }
+}
+
+.cs-items__num {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border: 1.5px solid var(--ink);
+  border-radius: var(--radius-round);
+  font-size: 15px;
+}
+
+.cs-side-figure {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  margin: var(--space-6) 0 0;
+
+  img {
+    display: block;
+    width: 100%;
+    height: auto;
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: var(--radius-md);
+  }
+
+  figcaption {
+    font-size: var(--small-size);
+    line-height: var(--small-line);
+    color: var(--muted);
+  }
+}
+
+.cs-work__inner {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-10);
+}
+
+.cs-figure {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-5);
+  margin: 0;
+}
+
+.dot-rule--accent {
+  background-image: radial-gradient(var(--cs-dot) 2px, transparent 2.3px);
+}
+
+.cs-figure__head {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-1) var(--space-7);
+  align-items: baseline;
+
+  h2 {
+    flex: 1 1 420px;
+    font-size: var(--heading-2-size);
+    line-height: var(--heading-2-line);
+  }
+
+  p {
+    flex: 1 1 360px;
+    margin: 0;
+    font-size: var(--body-lg-size);
+    line-height: var(--body-lg-line);
+    color: var(--body);
+  }
+}
+
+.cs-shots {
+  display: flex;
+  flex-direction: column;
+
+  &--multi {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 32px;
+  }
+
+  &:not(&--multi) .cs-shot {
+    max-width: 760px;
+  }
+}
+
+.cs-shot {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+// Tall full-page screens sit in a fixed-height frame that scrolls.
+.cs-shot__frame {
+  aspect-ratio: 4 / 5;
+  overflow-y: auto;
+  background: var(--fill);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-md);
+
+  img {
+    display: block;
+    width: 100%;
+    height: auto;
+  }
+}
+
+.cs-shot__plain {
+  display: block;
+  width: 100%;
+  height: auto;
+  background: #fff;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-md);
+}
+
+.cs-shot__caption {
+  margin: 0;
+  font-size: var(--small-size);
+  line-height: var(--small-line);
+  color: var(--muted);
+}
+
+.cs-next {
+  padding: 72px var(--gutter) var(--space-4);
+  border-top: 1px solid var(--line);
+}
+
+.cs-next__inner {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-4);
+}
+
+.cs-next__all {
+  display: inline-flex;
+  align-items: center;
+  min-height: 48px;
+  font-size: 16px;
+  white-space: nowrap;
+  text-decoration: none;
+
+  &:hover {
+    text-decoration: underline;
+  }
+}
+
+.cs-next__link {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin-left: auto;
+  text-align: right;
+  text-decoration: none;
+
+  .eyebrow {
+    margin: 0;
+  }
+
+  &:hover .cs-next__title {
+    text-decoration: underline;
+  }
+}
+
+.cs-next__title {
+  font-family: var(--font-display);
+  font-size: clamp(22px, 5vw, 36px);
+}
+
+@media screen and (max-width: $breakpoint-sm) {
+  .cs-hero,
+  .cs-overview,
+  .cs-behind,
+  .cs-work {
+    padding-top: var(--space-8);
+    padding-bottom: var(--space-8);
+  }
+
+  .cs-hero {
+    padding-top: var(--space-8);
+  }
+
+  .cs-h2 {
+    font-size: 36px;
+  }
+
+  .cs-work__inner {
+    gap: var(--space-7);
+  }
+}

@@ -1,4 +1,4 @@
-{%- unless page.url == "/" -%}{%- include contact.html -%}{%- endunless -%}
+{%- unless page.url == "/" or page.overview -%}{%- include contact.html -%}{%- endunless -%}
 <div class="container">
   <p class="copyright">© <span class="copyright-years">{{ site.time | date: "%Y" }}</span> Oren Kravetz. Source code licensed under GPL-3.0 (see <a href="https://github.com/okravetz/portfolio/blob/main/LICENSE">LICENSE</a>). Written content and images © <span class="copyright-years">{{ site.time | date: "%Y" }}</span> Oren Kravetz, all rights reserved.</p>
   <p class="footer-links"><a href="{% link sitemap.html %}">Sitemap</a> <a href="{% link accessibility/accessibility-statement_2019-11-26.html %}">Accessibility&nbsp;Statement</a></p>

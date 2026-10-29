@@ -10,9 +10,15 @@ title: Oren Kravetz's Portfolio
       <h2 id="about-h" class="section-title">Experienced Designer and Manager</h2>
       <p><strong>Hey! I’m Oren (he/him/his)</strong>—a product design leader, husband, and father of two exceedingly cute gingers.</p>
       <p>I am a UX designer and manager with 15+ years in B2B, B2C, and enterprise products. I lead teams of 1–5 designers and partner with PMs, engineers, and client leadership on healthcare, financial services, and more. My software engineering background lets me work closely with BAs and developers. I help turn your messy workflows into experiences that work for your users.</p>
-      <p>I’ve led cross-functional teams at agencies like Merkle, Dentsu Creative, and Isobar, working with clients ranging from American Express and Bloomberg to Anthem and the U.S. Air Force. I’ve launched a new product for travel advisors, established design systems for enterprise clients, mentored designers, led user research, and co-facilitated workshops that helped win a $6M+ contract. My approach combines deep user research, strategic thinking, and hands-on design—from wireframes and prototypes to high-fidelity UI.</p>
-      <p>Outside of work, I play video games with my kids, catch Broadway shows when I can, play D&amp;D, take photos, mix cocktails, and occasionally brew beer. I’m also president of a Fair Lawn community nonprofit, which I incorporated. I manage a board of 5–8 directors and run its monthly services. Before that, I was vice president of a 200-family congregation, where I helped grow membership 188%.</p>
-      <p>I’m always excited to meet new people and tackle interesting problems. Let’s work together to make the digital world a little bit better—one app at a time!</p>
+      <button type="button" class="about-toggle" aria-expanded="false" aria-controls="about-more">
+        <span><span class="lbl-open">Read more</span><span class="lbl-close">Show less</span></span>
+        {%- include icon-chevron.html -%}
+      </button>
+      <div id="about-more" class="about__more">
+        <p>I’ve led cross-functional teams at agencies like Merkle, Dentsu Creative, and Isobar, working with clients ranging from American Express and Bloomberg to Anthem and the U.S. Air Force. I’ve launched a new product for travel advisors, established design systems for enterprise clients, mentored designers, led user research, and co-facilitated workshops that helped win a $6M+ contract. My approach combines deep user research, strategic thinking, and hands-on design—from wireframes and prototypes to high-fidelity UI.</p>
+        <p>Outside of work, I play video games with my kids, catch Broadway shows when I can, play D&amp;D, take photos, mix cocktails, and occasionally brew beer. I’m also president of a Fair Lawn community nonprofit, which I incorporated. I manage a board of 5–8 directors and run its monthly services. Before that, I was vice president of a 200-family congregation, where I helped grow membership 188%.</p>
+        <p>I’m always excited to meet new people and tackle interesting problems. Let’s work together to make the digital world a little bit better—one app at a time!</p>
+      </div>
     </div>
     <div class="clients-panel">
       <h3 id="clients-h" class="eyebrow">Clients</h3>
@@ -59,7 +65,7 @@ title: Oren Kravetz's Portfolio
       <details class="more">
         <summary>
           <span><span class="lbl-open">Show all work ({{ site.data.morework.size | minus: 3 }} more)</span><span class="lbl-close">Show less</span></span>
-          <svg class="chev" aria-hidden="true" focusable="false" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>
+          {%- include icon-chevron.html -%}
         </summary>
         <ul class="work-list">
           {%- for item in site.data.morework offset: 3 -%}
@@ -83,3 +89,4 @@ title: Oren Kravetz's Portfolio
   </div>
 </section>
 {%- include contact.html -%}
+<script src="{{ site.baseurl }}/assets/js/about-toggle.js" defer></script>

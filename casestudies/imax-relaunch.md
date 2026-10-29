@@ -36,6 +36,7 @@ behind:
 figures:
   - title: "High-fidelity storytelling"
     text: "Balancing the needs of IMAX and their partners"
+    layout: device
     images:
       - file: imax-homepage-desktop.webp
         width: 1600
@@ -43,18 +44,20 @@ figures:
         scroll: true
         label: "IMAX.com homepage on desktop"
         alt: "IMAX.com homepage on desktop: a hero for Avatar: The Way of Water, a row of film posters, and a section asking why settle when you can experience more of what you love"
-  - title: "Immersive ticketing experience"
-    images:
       - file: imax-homepage-mobile.webp
         width: 750
         height: 14824
         scroll: true
+        phone: true
         label: "IMAX.com homepage on mobile"
         alt: "IMAX.com homepage on a phone, opening on a full-bleed film image under the IMAX header"
+  - title: "Immersive ticketing experience"
+    images:
       - file: imax-theater-details-mobile.webp
         width: 750
         height: 7836
         scroll: true
+        phone: true
         label: "IMAX.com theater details on mobile"
         alt: "Theater details on a phone: a map of Midtown Manhattan above AMC Empire 25 & IMAX, with its address, distance, and links"
 

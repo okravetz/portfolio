@@ -268,6 +268,24 @@
   gap: var(--space-2);
 }
 
+// A desktop screen beside a phone screen: the columns are sized so both frames come out the
+// same height (4:5 and 390:844 at a 1 : 0.577 width ratio).
+.cs-shots--device {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 0.577fr);
+  gap: 32px;
+  align-items: start;
+}
+
+// Phone screens are framed at iPhone proportions, so they are narrower than the desktop ones.
+.cs-shot--phone .cs-shot__frame {
+  aspect-ratio: 390 / 844;
+}
+
+.cs-shots:not(.cs-shots--device) .cs-shot--phone {
+  max-width: 360px;
+}
+
 // Tall full-page screens sit in a fixed-height frame that scrolls.
 .cs-shot__frame {
   aspect-ratio: 4 / 5;
@@ -366,5 +384,15 @@
 
   .cs-work__inner {
     gap: var(--space-7);
+  }
+}
+
+@media screen and (max-width: 760px) {
+  .cs-shots--device {
+    grid-template-columns: minmax(0, 1fr);
+
+    .cs-shot--phone {
+      max-width: 320px;
+    }
   }
 }

@@ -1,66 +1,83 @@
 ---
 
 title: Oren Kravetz's Portfolio
-download-text: Download Oren Kravetz's Résumé [PDF]
 
 ---
-
-<article aria-label="about" id="cont">
-  <h2 id="about">About</h2>
-  <div class="col2">
-    <p><strong>Hey! I'm Oren (he/him/his)</strong>—a product design leader, husband, and father of two exceedingly cute gingers.</p>
-    <p>I've spent 15+ years designing intuitive digital experiences across healthcare, financial services, e-commerce, and enterprise SaaS. I love the challenge of turning complex problems into simple, delightful solutions—whether that's building tools that professionals rely on daily, designing data-heavy dashboards that make sense, or finally replacing that thing your users are still doing in Excel.</p>
-    <p>I've led cross-functional teams at agencies like Merkle, Dentsu Creative, and Isobar, working with clients ranging from American Express and Bloomberg to Anthem and the U.S. Air Force. I've launched new products from scratch, established design systems for enterprise clients, mentored designers, and led research and workshops that have driven millions in business impact. My approach combines deep user research, strategic thinking, and hands-on design—from wireframes and prototypes to high-fidelity UI.</p>
-    <p>Outside of work, I play video games with my kids, catch Broadway shows when I can, play D&D, take photos, mix cocktails, and occasionally brew beer. I'm also involved in my local community, volunteering with organizations focused on building welcoming, inclusive spaces.</p>
-    <p>I'm always excited to meet new people and tackle interesting problems. Let's work together to make the digital world a little bit better—one app at a time!</p>
-    <br />
+<section id="about" class="section section--about" aria-labelledby="about-h">
+  <div class="container about">
+    <div class="about__text">
+      <p class="eyebrow">About</p>
+      <h2 id="about-h" class="section-title">Experienced Designer and Manager</h2>
+      <p><strong>Hey! I’m Oren (he/him/his)</strong>—a product design leader, husband, and father of two exceedingly cute gingers.</p>
+      <p>I am a UX designer and manager with 15+ years in B2B, B2C, and enterprise products. I lead teams of 1–5 designers and partner with PMs, engineers, and client leadership on healthcare, financial services, and more. My software engineering background lets me work closely with BAs and developers. I help turn your messy workflows into experiences that work for your users.</p>
+      <p>I’ve led cross-functional teams at agencies like Merkle, Dentsu Creative, and Isobar, working with clients ranging from American Express and Bloomberg to Anthem and the U.S. Air Force. I’ve launched a new product for travel advisors, established design systems for enterprise clients, mentored designers, led user research, and co-facilitated workshops that helped win a $6M+ contract. My approach combines deep user research, strategic thinking, and hands-on design—from wireframes and prototypes to high-fidelity UI.</p>
+      <p>Outside of work, I play video games with my kids, catch Broadway shows when I can, play D&amp;D, take photos, mix cocktails, and occasionally brew beer. I’m also president of a Fair Lawn community nonprofit, which I incorporated. I manage a board of 5–8 directors and run its monthly services. Before that, I was vice president of a 200-family congregation, where I helped grow membership 188%.</p>
+      <p>I’m always excited to meet new people and tackle interesting problems. Let’s work together to make the digital world a little bit better—one app at a time!</p>
+    </div>
+    <div class="clients-panel">
+      <h3 id="clients-h" class="eyebrow">Clients</h3>
+      <ul class="logos" role="region" aria-labelledby="clients-h" tabindex="0">
+        {%- for client in site.data.clients -%}
+        <li><span class="logo" role="img" aria-label="{{ client.name }}" style="--logo: url('{{ site.baseurl }}/assets/images/logos/{{ client.file }}')"></span></li>
+        {%- endfor -%}
+      </ul>
+    </div>
   </div>
-</article>
-<section aria-labelledby="resume">
-  <h2 id="resume">Résumé</h2>
-  <a href="{{ site.baseurl }}/assets/files/Resume 2026.pdf" download="Oren Kravetz Resume.pdf" aria-labelledby="resume-link">
-    <p id="resume-link">{{ page.download-text }}</p>
-    <div class="overlay-container">
-      <img src="{{ site.baseurl }}/assets/images/Resume 2026.png" alt="Oren Kravetz's résumé" class="resume-image" />
-      <div class="overlay">
-        <div class="overlay-text">{{ page.download-text }}</div>
+</section>
+<section id="work" class="section" aria-labelledby="work-h">
+  <div class="container">
+    <p class="eyebrow">Work</p>
+    <h2 id="work-h" class="section-title">Case studies</h2>
+    <div class="cards">
+      {%- assign n = 0 -%}
+      {%- for item in site.data.casestudies -%}
+        {%- if item.publish -%}
+        {%- assign n = n | plus: 1 -%}
+        <article class="card">
+          <div class="card__block card__block--{{ item.accent }}">
+            <img src="{{ site.baseurl }}/assets/images/wf/{{ item.card_image }}" alt="{{ item.image_alt }}" width="1200" height="900" loading="lazy" />
+          </div>
+          <p class="eyebrow">Case study {{ n }} · {{ item.client }}</p>
+          <h3>
+            {%- if item.link -%}<a href="{{ page.cs_path }}{{ item.link }}">{{ item.name }}</a>{%- else -%}{{ item.name }}{%- endif -%}
+          </h3>
+          <p class="card__description">{{ item.description }}</p>
+        </article>
+        {%- endif -%}
+      {%- endfor -%}
+    </div>
+    <div class="more-work">
+      <div class="dot-rule" aria-hidden="true"></div>
+      <h3>More work</h3>
+      <ul class="work-list">
+        {%- for item in site.data.morework limit: 3 -%}
+        {%- include work-row.html item=item -%}
+        {%- endfor -%}
+      </ul>
+      <details class="more">
+        <summary>
+          <span><span class="lbl-open">Show all work ({{ site.data.morework.size | minus: 3 }} more)</span><span class="lbl-close">Show less</span></span>
+          <svg class="chev" aria-hidden="true" focusable="false" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>
+        </summary>
+        <ul class="work-list">
+          {%- for item in site.data.morework offset: 3 -%}
+          {%- include work-row.html item=item -%}
+          {%- endfor -%}
+        </ul>
+      </details>
+    </div>
+  </div>
+</section>
+<section id="resume" class="section section--band-navy" aria-labelledby="resume-h">
+  <div class="container resume">
+    <div class="resume__text">
+      <h2 id="resume-h" class="section-title">Résumé</h2>
+      <div class="buttons">
+        <a class="button button--solid" href="{{ site.baseurl }}/assets/files/Resume 2026.pdf" download="Oren Kravetz Resume.pdf">Download résumé (PDF){%- include icon-download.html -%}</a>
+        <a class="button button--outline" href="{{ site.baseurl }}/assets/files/Oren Kravetz - Portfolio 2026.pdf" download="Oren Kravetz Portfolio.pdf">Download portfolio (PDF){%- include icon-download.html -%}</a>
       </div>
     </div>
-  </a>
-</section>
-<section aria-labelledby="clients">
-  <h2 id="clients">Clients</h2>
-  <!-- Elfsight Logo Showcase | Oren Kravetz Portfolio -->
-  <script src="https://elfsightcdn.com/platform.js" async></script>
-  <div class="elfsight-app-0f5649e0-194a-4204-b2b8-48b9d195598b" data-elfsight-app-lazy></div>
-  <script>new MutationObserver((m, o) => { const el = document.querySelector('.evlhdI a'); if (el) { el.remove(); o.disconnect(); } }).observe(document.body, { childList: true, subtree: true });</script>
-</section>
-<section aria-labelledby="work">
-  <h2 id="work">Work</h2>
-  <div class="cs-container">
-    {%- for item in site.data.casestudies -%}
-      {%- if item.publish -%}
-      <section aria-labelledby="{{ item.name | downcase | slugify: "latin" }}-cs-title" class="cs-card">
-          <a href="{{ page.cs_path }}{{ item.link }}" aria-label="{{ item.name | downcase | slugify: 'latin' }}-cs-title">
-            <div class="overlay-container">
-              {%- for img in item.images limit:1-%}
-              <img src="assets/images/wf/{{ img.link }}" alt="" class="cs-logo"/>
-              {%- endfor -%}
-              <div class="overlay"></div>
-            </div>
-            <h3 id="{{ item.name | downcase | slugify: "latin" }}-cs-title">{{ item.name }}</h3>
-          </a>
-          <p class="cs-description">{{ item.description }}</p>
-          <p class="cs-details">
-            <span class="cs-year">{{ item.year }}</span>
-            <span class="cs-role">{{ item.role }}</span>
-          </p>
-        </section>
-      {%- endif -%}
-    {%- endfor -%}
+    <img class="resume__preview" src="{{ site.baseurl }}/assets/images/Resume 2026.png" alt="Preview of Oren Kravetz’s résumé" width="1700" height="2200" loading="lazy" />
   </div>
 </section>
-<section aria-labelledby="contact">
-  <h2 id="contact">Contact</h2>
-  {%- include contact.html -%}
-</section>
+{%- include contact.html -%}

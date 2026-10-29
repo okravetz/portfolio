@@ -1,0 +1,56 @@
+# One-color logos in assets/images/logos/ (white areas are cut out; the page paints them in one color).
+# The Home Depot is under NDA and must never appear here.
+- name: "American Express"
+  file: american-express.webp
+- name: "Bloomberg"
+  file: bloomberg.webp
+- name: "HBO"
+  file: hbo.webp
+- name: "Sotheby’s"
+  file: sothebys.webp
+- name: "LPL Financial"
+  file: lpl-financial.webp
+- name: "MSCI"
+  file: msci.webp
+- name: "D. E. Shaw"
+  file: d-e-shaw.webp
+- name: "Google"
+  file: google.webp
+- name: "Umpqua Bank"
+  file: umpqua-bank.webp
+- name: "NBCUniversal"
+  file: nbcuniversal.webp
+- name: "The Wall Street Journal"
+  file: the-wall-street-journal.webp
+- name: "IntegraMed"
+  file: integramed-fertility.webp
+- name: "U.S. Air Force"
+  file: us-air-force.webp
+- name: "General Motors"
+  file: general-motors.webp
+- name: "Altar’d State"
+  file: altard-state.webp
+- name: "Flexport"
+  file: flexport.webp
+- name: "Baker Hughes"
+  file: baker-hughes.webp
+- name: "Cisco"
+  file: cisco.webp
+- name: "AllianceBernstein"
+  file: alliancebernstein.webp
+- name: "Olive Garden"
+  file: olive-garden.webp
+- name: "IMAX"
+  file: imax.webp
+- name: "End Family Fire"
+  file: end-family-fire.webp
+- name: "Santander"
+  file: santander.webp
+- name: "Openbank"
+  file: openbank.webp
+- name: "The Leading Hotels of the World"
+  file: the-leading-hotels-of-the-world.webp
+- name: "Carelon"
+  file: carelon.webp
+- name: "Lumen"
+  file: lumen-technologies.webp

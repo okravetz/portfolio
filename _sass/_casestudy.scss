@@ -36,6 +36,11 @@
   .cs-hero__list a {
     font-weight: 700;
   }
+
+  // The 12px label is too small for white on this orange (3.8:1); ink reaches 4.8:1.
+  .cs-hero .eyebrow {
+    color: var(--ink);
+  }
 }
 
 .cs-hero {

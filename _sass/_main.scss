@@ -10,6 +10,12 @@ html {
   html {
     scroll-behavior: auto;
   }
+
+  *,
+  *::before,
+  *::after {
+    transition: none !important;
+  }
 }
 
 body {
@@ -53,6 +59,11 @@ a {
 :focus-visible {
   outline: 2px solid var(--hover);
   outline-offset: 2px;
+}
+
+// <main> takes focus from the skip link but isn't a control, so it gets no ring.
+main:focus {
+  outline: none;
 }
 
 small,
@@ -582,7 +593,8 @@ small,
   padding: 72px var(--gutter) 32px;
   font-size: var(--small-size);
   line-height: var(--small-line);
-  color: var(--muted);
+  // Ink, not muted: the dots sit behind this text and muted only reaches 3.4:1 on a dot.
+  color: var(--ink);
 
   .section--contact {
     padding-left: 0;
@@ -596,8 +608,10 @@ small,
   }
 
   .footer-links a {
+    display: inline-block;
     margin-right: var(--space-3);
-    color: var(--muted);
+    padding: var(--space-2) 0;
+    color: var(--ink);
   }
 }
 
@@ -668,6 +682,10 @@ main.page {
   padding-right: 3rem;
 }
 
+.sitemap-nested {
+  list-style: none;
+}
+
 @media screen and (max-width: $breakpoint-sm) {
   .site-header nav {
     ul {
@@ -703,12 +721,15 @@ main.page {
     padding: var(--space-4) 0 var(--space-4) var(--space-4);
   }
 
+  .logos-scroll {
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+  }
+
   .logos {
     display: flex;
     gap: var(--space-2);
     padding-right: var(--gutter);
-    overflow-x: auto;
-    scroll-snap-type: x mandatory;
 
     li {
       flex: 0 0 75px;

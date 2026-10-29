@@ -268,7 +268,7 @@ small,
 
 .logos {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(75px, 1fr));
   justify-items: center;
   gap: var(--space-3) 20px;
   margin: 0;
@@ -277,11 +277,11 @@ small,
 }
 
 // One-color logos: the image's shape is the mask, the panel ink is the color.
-// Each is fitted and centered in a 100 x 100px box.
+// Each is fitted and centered in a 75 x 75px box.
 .logo {
   display: block;
-  width: 100px;
-  height: 100px;
+  width: 75px;
+  height: 75px;
   background-color: var(--panel-ink);
   -webkit-mask: var(--logo) center / contain no-repeat;
   mask: var(--logo) center / contain no-repeat;
@@ -711,7 +711,7 @@ main.page {
     scroll-snap-type: x mandatory;
 
     li {
-      flex: 0 0 100px;
+      flex: 0 0 75px;
       scroll-snap-align: start;
     }
   }

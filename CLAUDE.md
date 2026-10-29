@@ -11,7 +11,7 @@ Oren Kravetz's portfolio site. Jekyll, deployed to GitHub Pages at www.orenkrave
 - **Résumé download:** `assets/files/Resume 2026.pdf`, with a preview image at `assets/images/Resume 2026.png`. Update both together.
 - **Analytics:** Google Analytics 4 (`G-167RBEBRWP`), base tag only, in both layouts (`_layouts/default.html`, `_layouts/casestudy.html`). Change it in both places.
 - **Clients logos:** one-color logos in `assets/images/logos/`, listed in `_data/clients.yml`. The Home Depot is under NDA and must never appear.
-- **Legacy pages:** `accessibility/` is an old page that still publishes. `1991/`, `1992/`, and `archive/` are excluded from the build (in `_config.yml`) until the era pages are rebuilt. `assets/incoming/` (originals for the redesign) is also excluded, so it isn't served. `_site/` is committed build output; don't edit it by hand.
+- **Legacy pages:** `accessibility/` holds two old standalone audit reports (the accessibility statement was removed) that still publish, unlinked. `1991/`, `1992/`, and `archive/` are excluded from the build (in `_config.yml`) until the era pages are rebuilt. `assets/incoming/` (originals for the redesign) is also excluded, so it isn't served. `_site/` is committed build output; don't edit it by hand.
 - **Local preview:** `bundle install`, then `bundle exec jekyll serve`.
 
 ## Workflow

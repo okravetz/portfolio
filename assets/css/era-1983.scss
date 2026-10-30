@@ -154,6 +154,13 @@ main {
   outline: none;
 }
 
+// Focus also gets a ring, so it is still visible on the selected menu item (which is already lit).
+.screen button:focus-visible,
+.screen a.cmd:focus-visible {
+  outline: 2px solid $phosphor;
+  outline-offset: 3px;
+}
+
 .cur {
   display: inline-block;
   width: 0.55em;
@@ -164,7 +171,8 @@ main {
 
 @media (prefers-reduced-motion: no-preference) {
   .cur {
-    animation: crt-blink 1s steps(1) infinite;
+    // Five blinks, then it stays lit (WCAG 2.2.2: nothing blinks for more than 5 seconds). Each command restarts it.
+    animation: crt-blink 1s steps(1) 5;
   }
 }
 

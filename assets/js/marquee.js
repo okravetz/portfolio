@@ -1,4 +1,4 @@
-// 1996 marquee: stop it for visitors who ask for reduced motion. (Hovering also pauses it.)
+// 1996 marquee: stop it for visitors who ask for reduced motion. (Hovering, or tabbing to it, also pauses it.)
 (function () {
   if (!window.matchMedia || !window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
   var marquees = document.getElementsByTagName("marquee");

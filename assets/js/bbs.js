@@ -10,8 +10,17 @@
   var sections = crt.querySelectorAll(".sections section");
   var keys = crt.querySelectorAll(".prompt-key");
 
+  var cursors = crt.querySelectorAll(".cur");
+  var status = crt.querySelector(".bbs-status");
+
   function echo(letter) {
     for (var i = 0; i < keys.length; i++) keys[i].textContent = letter;
+    // The cursor blinks five times after each command, then stays lit.
+    for (var c = 0; c < cursors.length; c++) {
+      cursors[c].style.animation = "none";
+      void cursors[c].offsetWidth;
+      cursors[c].style.animation = "";
+    }
   }
 
   function show(name) {
@@ -28,7 +37,11 @@
   if (buttons.length && sections.length) {
     for (var k = 0; k < buttons.length; k++) {
       buttons[k].addEventListener("click", function () {
-        show(this.getAttribute("data-section"));
+        var name = this.getAttribute("data-section");
+        show(name);
+        // Screen readers: say which section is now on screen (its heading), since it appears below the menu.
+        var heading = crt.querySelector("#sec-" + name + " [role=heading]");
+        if (status && heading) status.textContent = heading.textContent;
       });
     }
     document.documentElement.classList.add("bbs");

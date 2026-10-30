@@ -239,6 +239,12 @@ body {
     text-align: center;
   }
 
+  // The loader and name are 324px wide: shrink them on the narrowest phones (and at 400% zoom).
+  .intro img {
+    max-width: 100%;
+    height: auto;
+  }
+
   .intro > tbody > tr > td.intro-skip {
     padding: 32px 16px 24px;
     text-align: right;

@@ -30,6 +30,7 @@ labels:
   contact: Get in touch
   case_study: Case study
   main_navigation: Main Navigation
+  menu: Menu
   # %n is replaced with the number of rows behind the toggle.
   show_all_work: "Show all work (%n more)"
   time_travel:

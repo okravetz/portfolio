@@ -1,0 +1,124 @@
+{%- comment -%}
+  2006: Web 2.0. CSS 2.1 floats, a liquid two-column layout (negative-margin trick), sliding-door tabs,
+  rounded corners, gloss and reflection all done with images (scripts/era-assets.py), Lucida Grande /
+  Verdana, and a tag cloud sized by how many projects each client has on the site (counted from
+  _data/morework.yml and the published case studies, never typed in). No border-radius, gradients,
+  shadows, flexbox or grid. Phones and narrow tablets get the stacked layout from the mobile board
+  (assets/css/era-2006.scss). All copy comes from _data/. The time-travel bar at the end is the modern exception.
+{%- endcomment -%}
+{%- assign era = site.data.eras | where: "slug", page.era | first -%}
+{%- assign s = site.data.site -%}
+{%- assign nav = site.data.navigation -%}
+{%- assign about = site.data.about -%}
+{%- assign about_paragraphs = about.paragraphs | where_exp: "p", "p.today_only != true" -%}
+{%- assign more_hidden = site.data.morework.size | minus: 3 -%}
+{%- assign published = site.data.casestudies | where: "publish", true -%}
+{%- assign img = "/assets/eras/2006/" | relative_url -%}
+{%- assign keys = "about,work,resume,contact" | split: "," -%}
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+{% include era-head.html era=era css="/assets/css/era-2006.css" %}
+  </head>
+  <body>
+<div class="w06">
+<div class="page06">
+
+<div class="masthead06">
+<div class="brand06">
+<h1><img src="{{ img }}06-logo.png" width="383" height="98" alt="{{ s.name }}"></h1>
+<p class="tagline06">{{ s.tagline | escape }}</p>
+</div>
+<ul class="tabs06">
+{%- for item in nav %}
+<li{% if forloop.first %} class="on"{% endif %}><a href="#{{ keys[forloop.index0] }}">{{ item.name }}</a></li>
+{%- endfor %}
+</ul>
+</div>
+
+<div class="panel06">
+
+<div class="main06"><div class="main06-in">
+<div id="about">
+<img class="photo06" src="{{ img }}06-headshot.jpg" width="88" height="88" alt="{{ s.headshot.alt }}">
+<h2>{{ about.heading | escape }}</h2>
+<div class="text06">
+{%- for p in about_paragraphs %}
+<p>{% if p.lead %}<strong>{{ p.lead | escape }}</strong>{% endif %}{{ p.text | escape }}</p>
+{%- endfor %}
+</div>
+</div>
+
+<div id="work">
+<h2>{{ s.labels.case_studies }}</h2>
+<div class="cases06">
+{%- for item in published %}
+{%- assign slug = item.link | split: "." | first %}
+{%- assign href = "/casestudies/" | append: item.link | relative_url %}
+<div class="case06{% if forloop.last %} last{% endif %}">
+<a href="{{ href }}"><img src="{{ img }}06-case-{{ slug }}.jpg" width="360" height="270" alt="{{ item.image_alt | escape }}"></a>
+<p class="eyebrow06">{{ s.labels.case_study }} {{ forloop.index }} · {{ item.client | escape }}</p>
+<p class="title06"><a href="{{ href }}">{{ item.name | escape }}</a></p>
+<p class="desc06">{{ item.description | escape }}</p>
+</div>
+{%- endfor %}
+</div>
+
+<h3>{{ s.labels.more_work }}</h3>
+<div class="more06">
+{%- for item in site.data.morework limit: 3 %}
+<div class="row06{% cycle '', ' alt' %}">
+<strong>{{ item.client | escape }}</strong> · {{ item.project | escape }} <span class="years06">{{ item.years }}</span><br>
+<span class="line06">{{ item.description | escape }}</span>
+</div>
+{%- endfor %}
+</div>
+{%- comment -%} Points at Today's list until the era all-work pages exist (PR 8). {%- endcomment %}
+<p class="all06"><a href="{{ '/' | relative_url }}#work">{{ s.labels.show_all_work | replace: "%n", more_hidden }} »</a></p>
+</div>
+</div></div>
+
+<div class="side06">
+<div id="resume">
+<h2 class="boxtop06"><b>{{ nav[2].name }}</b><span></span></h2>
+<div class="boxbody06">
+<a class="btn06 blue" href="{{ s.resume.file | prepend: '/' | relative_url }}">{{ s.resume.button }}</a>
+<a class="btn06 green" href="{{ s.portfolio.file | prepend: '/' | relative_url }}">{{ s.portfolio.button }}</a>
+</div>
+<div class="boxbot06"><span></span></div>
+</div>
+
+<h2 class="boxtop06"><b>{{ s.labels.clients }}</b><span></span></h2>
+<div class="boxbody06 cloud06">
+{%- for c in site.data.clients %}
+{%- assign k = site.data.morework | where: "client", c.name | size %}
+{%- assign k_cases = published | where: "client", c.name | size %}
+{%- assign k = k | plus: k_cases %}
+{%- if k < 1 %}{% assign k = 1 %}{% endif %}
+{%- assign px = k | minus: 1 | times: 3 | plus: 12 %}
+<a href="#work" style="font-size: {{ px }}px{% if k > 1 %}; font-weight: bold{% endif %}">{{ c.name | escape }}</a>
+{%- endfor %}
+</div>
+<div class="boxbot06"><span></span></div>
+
+<div id="contact">
+<h2 class="boxtop06"><b>{{ s.labels.contact }}</b><span></span></h2>
+<div class="boxbody06">
+{%- for item in site.data.contact %}
+{{ item.label }}: {% if item.href %}<a href="{{ item.href }}">{{ item.text }}</a>{% else %}{{ item.text }}{% endif %}{% unless forloop.last %}<br>{% endunless %}
+{%- endfor %}
+</div>
+<div class="boxbot06"><span></span></div>
+</div>
+</div>
+
+</div>
+<div class="panelbot06"><div class="l"></div><div class="r"></div><div class="m"></div></div>
+<p class="copy06">© {{ site.time | date: "%Y" }} {{ s.copyright.holder }}</p>
+
+</div>
+</div>
+{% include time-travel.html current=era.slug %}
+<script src="{{ '/assets/js/time-travel.js' | relative_url }}?v={{ site.time | date: '%s' }}" defer></script>
+  </body>
+</html>

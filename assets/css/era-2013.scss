@@ -1,0 +1,535 @@
+---
+---
+// 2013: Bootstrap 3 style. A 1170px container, floats and clearfix, media queries at 767px, CSS3
+// border-radius and transitions, Lato, padding-hack image boxes. No flexbox, grid, gap, aspect-ratio or
+// sticky (the time-travel bar is the modern exception and lives in era.css).
+
+$navy: #2c3e50;
+$green: #117a65;
+$teal: #1abc9c;
+$blue: #1a6fa8;
+$text: #34495e;
+$muted: #566573;
+$line: #d5dbdb;
+
+// These pages have no 8px page margin, so the bar (see era.scss) doesn't need to pull out of one.
+body {
+  margin: 0;
+  padding: 0;
+}
+
+.tt {
+  margin: 0;
+}
+
+.f13 {
+  font-family: "Lato", "Helvetica Neue", Arial, sans-serif;
+  font-size: 17px;
+  line-height: 1.6;
+  color: $text;
+  background: #ffffff;
+
+  * {
+    box-sizing: border-box;
+  }
+
+  a {
+    color: $blue;
+    transition: color 0.2s;
+  }
+
+  a:hover,
+  a:focus {
+    color: $green;
+  }
+
+  h1,
+  h2,
+  h3,
+  p,
+  ul {
+    margin: 0;
+  }
+
+  h2 {
+    text-align: center;
+    font-size: 40px;
+    font-weight: 300;
+    line-height: 1.2;
+    color: $navy;
+  }
+}
+
+.container {
+  max-width: 1170px;
+  margin: 0 auto;
+  padding: 0 15px;
+}
+
+.row {
+  margin: 0 -15px;
+}
+
+.row:after,
+.clearfix:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+.col-4 {
+  float: left;
+  width: 33.3333%;
+  padding: 0 15px;
+}
+
+.col-2 {
+  float: left;
+  width: 16.6667%;
+  padding: 0 6px 12px;
+}
+
+.center {
+  text-align: center;
+}
+
+.divider {
+  width: 64px;
+  height: 4px;
+  margin: 20px auto 40px;
+  background: $green;
+}
+
+.divider-light {
+  margin: 24px auto;
+  background: #ffffff;
+}
+
+.divider-wide {
+  margin-bottom: 48px;
+}
+
+// Navbar
+.navbar {
+  background: $navy;
+  color: #ffffff;
+
+  .container {
+    min-height: 64px;
+  }
+
+  a {
+    color: #ffffff;
+    text-decoration: none;
+  }
+
+  a:hover,
+  a:focus {
+    color: $teal;
+  }
+}
+
+.brand {
+  float: left;
+  line-height: 64px;
+  font-size: 20px;
+  font-weight: 900;
+  letter-spacing: 0.02em;
+}
+
+.navlinks {
+  float: right;
+  padding: 0 !important;
+  list-style: none;
+
+  li {
+    float: left;
+  }
+
+  a {
+    display: block;
+    padding: 0 16px;
+    line-height: 64px;
+    font-size: 14px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+  }
+}
+
+.burger {
+  display: none;
+  float: right;
+  width: 48px;
+  height: 44px;
+  margin-top: 10px;
+  border: 1px solid #5d6d7e;
+  border-radius: 4px;
+  background: transparent;
+  color: #ffffff;
+  cursor: pointer;
+}
+
+// Buttons
+.ghost,
+.btn {
+  display: inline-block;
+  margin: 0 8px 12px;
+  padding: 0 28px;
+  border-radius: 4px;
+  font-weight: 700;
+  text-decoration: none;
+  transition: background 0.2s, color 0.2s;
+}
+
+.f13 .ghost {
+  line-height: 44px;
+  border: 2px solid #ffffff;
+  color: #ffffff;
+}
+
+.f13 .ghost:hover,
+.f13 .ghost:focus {
+  background: #ffffff;
+  color: $navy;
+}
+
+.f13 .btn {
+  line-height: 48px;
+}
+
+.f13 .btn-green {
+  background: $green;
+  color: #ffffff;
+}
+
+.f13 .btn-green:hover,
+.f13 .btn-green:focus {
+  background: $navy;
+  color: #ffffff;
+}
+
+.f13 .btn-orange {
+  background: #e67e22;
+  color: #1b2631;
+}
+
+.f13 .btn-orange:hover,
+.f13 .btn-orange:focus {
+  background: #ffffff;
+  color: #1b2631;
+}
+
+// Hero
+.hero {
+  padding: 112px 15px 120px;
+  background: $green;
+  color: #ffffff;
+  text-align: center;
+
+  h1 {
+    font-size: 72px;
+    font-weight: 300;
+    line-height: 1.05;
+  }
+
+  .ghost {
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    font-size: 15px;
+  }
+}
+
+.avatar {
+  display: block;
+  margin: 0 auto 28px;
+  border: 6px solid #ffffff;
+  border-radius: 50%;
+}
+
+.tagline {
+  margin: 0 0 36px !important;
+  font-size: 18px;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+}
+
+// Sections
+.section {
+  padding: 96px 15px;
+}
+
+.narrow {
+  max-width: 780px;
+  margin: 0 auto;
+
+  p {
+    margin: 0 0 18px;
+  }
+
+  p.lead {
+    font-size: 21px;
+    font-weight: 300;
+    line-height: 1.5;
+    color: $navy;
+
+    strong {
+      font-weight: 700;
+    }
+  }
+}
+
+.band-light {
+  padding: 72px 15px;
+  background: #ecf0f1;
+}
+
+.f13 h2.label {
+  margin-bottom: 32px;
+  font-size: 14px;
+  font-weight: 900;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+}
+
+.clients {
+  margin: 0 -6px !important;
+  padding: 0;
+  list-style: none;
+
+  // A white tile with the name centered; long names wrap to two lines (table-cell centering, no flexbox).
+  li > span {
+    display: table;
+    width: 100%;
+    height: 56px;
+    background: #ffffff;
+  }
+
+  abbr {
+    border: 0;
+    text-decoration: none;
+  }
+
+  li > span > span {
+    display: table-cell;
+    padding: 4px 6px;
+    vertical-align: middle;
+    text-align: center;
+    line-height: 1.2;
+    color: $navy;
+    font-size: 14px;
+    font-weight: 700;
+  }
+}
+
+// Case studies: 4:3 image boxes made with the padding-bottom hack.
+.thumb {
+  display: block;
+  position: relative;
+  height: 0;
+  padding-bottom: 75%;
+  overflow: hidden;
+
+  img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+  }
+}
+
+.eyebrow {
+  margin: 20px 0 6px !important;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: $muted;
+}
+
+.col-4 h3 {
+  margin: 0 0 8px;
+  font-size: 26px;
+  font-weight: 400;
+
+  a {
+    color: $navy;
+    text-decoration: none;
+  }
+}
+
+.desc {
+  font-size: 16px;
+}
+
+.f13 h3.more-title {
+  margin: 72px 0 16px;
+  font-size: 24px;
+  font-weight: 400;
+  color: $navy;
+}
+
+.more {
+  padding: 0 !important;
+  list-style: none;
+  border: 1px solid $line;
+
+  li {
+    padding: 18px 20px;
+    border-bottom: 1px solid $line;
+  }
+
+  li:last-child {
+    border-bottom: 0;
+  }
+
+  strong {
+    color: $navy;
+  }
+}
+
+.who {
+  float: left;
+  width: 240px;
+}
+
+.project {
+  font-size: 15px;
+  color: $muted;
+}
+
+.years {
+  float: left;
+  width: 100px;
+  color: $muted;
+}
+
+.line {
+  display: block;
+  overflow: hidden;
+}
+
+.f13 p.center {
+  margin-top: 16px;
+}
+
+// Résumé band
+.band-dark {
+  padding: 96px 15px;
+  background: $navy;
+  color: #ffffff;
+  text-align: center;
+
+  h2 {
+    color: #ffffff !important;
+  }
+}
+
+// Contact
+#contact .col-4 p {
+  margin-top: 12px;
+}
+
+#contact strong {
+  color: $navy;
+}
+
+.icon {
+  display: inline-block;
+  width: 72px;
+  height: 72px;
+  line-height: 72px;
+  border-radius: 50%;
+  color: #ffffff;
+  text-align: center;
+  vertical-align: middle;
+
+  svg {
+    vertical-align: middle;
+  }
+}
+
+.icon-green {
+  background: $green;
+}
+
+.icon-blue {
+  background: $blue;
+}
+
+.icon-navy {
+  background: $navy;
+}
+
+.icon-text {
+  font-size: 26px;
+  font-weight: 900;
+}
+
+.footer {
+  padding: 28px 15px;
+  background: #1b2631;
+  color: $line;
+  text-align: center;
+  font-size: 14px;
+}
+
+// Phones: Bootstrap's own layout. The menu folds behind a button (only once the script can open it),
+// columns stack, clients go two to a row.
+@media (max-width: 767px) {
+  .js .burger {
+    display: block;
+  }
+
+  .navlinks {
+    float: none;
+    clear: both;
+
+    li {
+      float: none;
+    }
+
+    a {
+      line-height: 48px;
+    }
+  }
+
+  .js .navlinks {
+    display: none;
+  }
+
+  .js .navlinks.open {
+    display: block;
+  }
+
+  .hero {
+    padding: 72px 15px 80px;
+
+    h1 {
+      font-size: 44px;
+    }
+  }
+
+  .section {
+    padding: 64px 15px;
+  }
+
+  .col-4 {
+    float: none;
+    width: auto;
+    margin-bottom: 30px;
+  }
+
+  .col-2 {
+    width: 50%;
+  }
+
+  .who,
+  .years {
+    float: none;
+    display: block;
+    width: auto;
+  }
+}

@@ -36,7 +36,13 @@
     <link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,700&family=DM+Serif+Display&family=DM+Serif+Text&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="{{ "/assets/css/styles.css" | relative_url }}?v={{ site.time | date: "%s" }}">
     {%- include theme-init.html -%}
-    <script>document.documentElement.className += " js";</script>
+    <script>
+      document.documentElement.className += " js";
+      {%- if page.url == "/" %}
+      // Today's time-travel bar stays open if the visitor opened it or used it to leave, until they close it.
+      try { if (sessionStorage.getItem("tt-open") === "1") document.documentElement.className += " tt-keep"; } catch (e) {}
+      {%- endif %}
+    </script>
 
     <!-- the below three lines are a fix to get HTML5 semantic elements working in old versions of Internet Explorer-->
     <!--[if lt IE 9]>

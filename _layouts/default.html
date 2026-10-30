@@ -36,6 +36,7 @@
     <link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,700&family=DM+Serif+Display&family=DM+Serif+Text&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="{{ "/assets/css/styles.css" | relative_url }}?v={{ site.time | date: "%s" }}">
     {%- include theme-init.html -%}
+    <script>document.documentElement.className += " js";</script>
 
     <!-- the below three lines are a fix to get HTML5 semantic elements working in old versions of Internet Explorer-->
     <!--[if lt IE 9]>
@@ -56,6 +57,10 @@
     <header class="site-header dots">{%- include navigation.html -%}</header>
     <main id="main" tabindex="-1" class="{% if page.url == "/" %}home{% else %}page{% endif %}">{{ content }}</main>
     <footer class="site-footer dots-up">{%- include footer.html -%}</footer>
+    {%- if page.url == "/" -%}
+    {%- include time-travel.html current="today" closable=true -%}
+    <script src="{{ "/assets/js/time-travel.js" | relative_url }}?v={{ site.time | date: "%s" }}" defer></script>
+    {%- endif %}
     <script src="{{ "/assets/js/theme.js" | relative_url }}?v={{ site.time | date: "%s" }}" defer></script>
     <script src="{{ "/assets/js/year.js" | relative_url }}?v={{ site.time | date: "%s" }}" defer></script>
   </body>

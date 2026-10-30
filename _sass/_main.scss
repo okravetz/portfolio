@@ -654,6 +654,26 @@ small,
   }
 }
 
+// Today's "Time travel" button opens the bar (_includes/time-travel.html). It needs the script, so it
+// only shows once the script can run; without it the bar is always visible.
+.tt-open {
+  display: none;
+}
+
+.js .tt-open {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-1);
+  min-height: 44px;
+  padding: 0 var(--space-3);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-pill);
+  background: transparent;
+  color: var(--ink);
+  font: inherit;
+  cursor: pointer;
+}
+
 // Pages other than the homepage (case studies, sitemap, accessibility statement)
 
 main.page {

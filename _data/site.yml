@@ -1,0 +1,22 @@
+# Site-wide facts. Email, LinkedIn and location stay in contact.yml (the contact section already reads it).
+# PR 1 only adds this file; the templates still hard-code these values (see the PR for the list).
+name: Oren Kravetz
+tagline: "UX designer & manager · he/him/his"
+job_title: "UX designer & manager"
+url: https://www.orenkravetz.com
+meta_description: "Oren Kravetz's bio, résumé, portfolio, and contact information."
+headshot:
+  file: assets/images/headshot.jpg
+  alt: Headshot of Oren Kravetz
+resume:
+  file: assets/files/Resume 2026.pdf
+  download_as: Oren Kravetz Resume.pdf
+  preview: assets/images/Resume 2026.png
+  preview_alt: Preview of Oren Kravetz’s résumé
+portfolio:
+  file: assets/files/Oren Kravetz - Portfolio 2026.pdf
+  download_as: Oren Kravetz Portfolio.pdf
+copyright:
+  holder: Oren Kravetz
+  license: GPL-3.0
+  license_url: https://github.com/okravetz/portfolio/blob/main/LICENSE

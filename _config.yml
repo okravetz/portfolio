@@ -26,4 +26,5 @@ exclude:
   - 1992
   - archive
   - design
+  - docs
   - scripts

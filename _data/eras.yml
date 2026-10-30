@@ -1,6 +1,8 @@
 # The nine eras, oldest to newest. The time-travel bar, the mobile picker and the asset script read this file.
 # `name` is the short name shown in the picker. 1969 and 1983 are from the build plan; the others are
 # from the picker on the design board and are waiting for Oren's OK.
+# `ui` is text that is only part of that era's chrome. `badges` are listed top to bottom as they appear in
+# `badge_source`; the alt text is the badge's label. scripts/era-assets.py reads both when it draws images.
 # `url` is the era's homepage. Today ("/") is the default era.
 - order: 1
   slug: "1969"
@@ -22,16 +24,28 @@
   label: "1996"
   name: GeoCities on Netscape
   url: /1996/
+  badge_source: assets/incoming/the-netscape-now-and-microsoft-internet-explorer-buttons-v0-bo5t2umgfxn51.webp
+  badges:
+    - id: netscape
+      alt: Netscape Now! 3.0
+    - id: ie
+      alt: Microsoft Internet Explorer, free
 - order: 5
   slug: "2001"
   label: "2001"
   name: The Flash era
   url: /2001/
+  ui:
+    loading: Loading
+    skip: Skip intro >>
+    replay: Replay intro
 - order: 6
   slug: "2006"
   label: "2006"
   name: Web 2.0
   url: /2006/
+  ui:
+    beta: beta
 - order: 7
   slug: "2013"
   label: "2013"

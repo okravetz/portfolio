@@ -13,9 +13,19 @@ resume:
   download_as: Oren Kravetz Resume.pdf
   preview: assets/images/Resume 2026.png
   preview_alt: Preview of Oren Kravetz’s résumé
+  button: Download résumé (PDF)
 portfolio:
   file: assets/files/Oren Kravetz - Portfolio 2026.pdf
   download_as: Oren Kravetz Portfolio.pdf
+  button: Download portfolio (PDF)
+# Section headings and labels the homepage shows besides the nav names (navigation.yml) and the About
+# heading (about.yml). index.html and contact.html still hard-code these; keep them in step until the
+# templates read from here. scripts/era-assets.py draws some of them into the 2001 images.
+labels:
+  case_studies: Case studies
+  more_work: More work
+  clients: Clients
+  contact: Get in touch
 copyright:
   holder: Oren Kravetz
   license: GPL-3.0

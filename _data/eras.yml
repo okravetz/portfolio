@@ -66,11 +66,14 @@
   label: "2001"
   name: The Flash era
   url: /2001/
+  ready: true
   ui:
     loading: Loading
     skip: Skip intro >>
     replay: Replay intro
   photos:
+    headshot: [96, 96]
+    thumbnail: [200, 150]
     colors: thousands
     format: jpg
     quality: 40

@@ -1,5 +1,6 @@
 // The Future: scripted questions. All six answers are already in the page (in order); this shows the first two,
 // then reveals each of the others when its question is chosen, in the order chosen. "Start over" hides them all.
+// The question chips are docked at the bottom of the window (CSS), above the time-travel bar.
 // "What an agent sees" opens on wide screens and starts closed on phones. No network calls, nothing typed.
 (function () {
   var log = document.getElementById("log");
@@ -16,6 +17,14 @@
 
   var reduce = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
+  // The docked chips sit just above the time-travel bar: keep --tt-h equal to the bar's height.
+  var bar = document.getElementById("time-travel");
+  function barHeight() {
+    if (bar) document.documentElement.style.setProperty("--tt-h", bar.offsetHeight + "px");
+  }
+  barHeight();
+  window.addEventListener("resize", barHeight);
+
   function setAsked(id, asked) {
     var chip = chipById[id];
     if (!chip) return;
@@ -30,7 +39,8 @@
     log.appendChild(m); // newest last
     m.className = "msg is-new";
     setAsked(id, true);
-    if (m.scrollIntoView) m.scrollIntoView({ block: "nearest", behavior: reduce ? "auto" : "smooth" });
+    // Bring the new question to the top of the window; the answer follows below it, above the docked chips.
+    if (m.scrollIntoView) m.scrollIntoView({ block: "start", behavior: reduce ? "auto" : "smooth" });
   }
 
   for (i = 0; i < chips.length; i++) {

@@ -79,15 +79,13 @@
     });
   }
 
-  // Close: back to the top of Today. Focus goes to the start of the main content (not the footer
-  // button, which would scroll the page to the bottom).
-  var main = document.getElementById("main");
+  // Close: just closes. The page stays where it is, and focus goes back to the floating button (it is
+  // fixed to the window, so focusing it never moves the page).
   var closers = bar.querySelectorAll(".tt__close");
   for (var j = 0; j < closers.length; j++) {
     closers[j].addEventListener("click", function () {
       setOpen(false);
-      if (main) main.focus({ preventScroll: true });
-      window.scrollTo(0, 0);
+      if (opener) opener.focus({ preventScroll: true });
     });
   }
 })();

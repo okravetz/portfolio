@@ -82,11 +82,15 @@
     });
   }
 
+  // Close: back to the top of Today. Focus goes to the start of the main content (not the footer
+  // button, which would scroll the page to the bottom).
+  var main = document.getElementById("main");
   var closers = bar.querySelectorAll(".tt__close");
   for (var j = 0; j < closers.length; j++) {
     closers[j].addEventListener("click", function () {
       setOpen(false);
-      if (opener) opener.focus();
+      if (main) main.focus({ preventScroll: true });
+      window.scrollTo(0, 0);
     });
   }
 })();

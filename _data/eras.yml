@@ -24,6 +24,7 @@
     contents: "CONTENTS:"
     type: "@TYPE"
     logout: "@LOGOUT"
+    back: BACK
 - order: 2
   slug: "1983"
   label: "1983"
@@ -35,6 +36,7 @@
     connect: CONNECT 1200
     menu: MAIN MENU
     prompt: COMMAND?
+    back: Back
 - order: 3
   slug: "1991"
   label: "1991"

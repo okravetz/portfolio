@@ -75,7 +75,8 @@ main {
 
 .screen pre.wide,
 .screen pre.prompt,
-.screen .bbs-menu pre {
+.screen .bbs-menu pre,
+.screen .cmds pre {
   white-space: pre;
 }
 
@@ -108,11 +109,18 @@ main {
 
 // Each menu row is one line of text plus a small even gap, so the highlighted choice hugs its text and
 // never touches the row below or the prompt (a row is still 25px or taller, enough to tap).
-.bbs-menu nav div {
+.bbs-menu nav div,
+.cmds nav div {
   margin: 0 0 4px 2ch;
 }
 
-.screen button {
+// The all-work page's one command ("[B] Back"), under the list.
+.cmds {
+  margin-top: 18px;
+}
+
+.screen button,
+.screen a.cmd {
   display: inline-block;
   font: inherit;
   line-height: 1.2;
@@ -121,12 +129,15 @@ main {
   background: transparent;
   border: 0;
   padding: 2px 4px;
+  text-decoration: none;
   cursor: pointer;
 }
 
 .screen button:hover,
 .screen button:focus-visible,
-.screen button[aria-pressed="true"] {
+.screen button[aria-pressed="true"],
+.screen a.cmd:hover,
+.screen a.cmd:focus-visible {
   background: $phosphor;
   color: $glass;
   text-shadow: none;

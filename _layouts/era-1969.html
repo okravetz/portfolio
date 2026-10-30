@@ -1,6 +1,7 @@
 {%- comment -%}
   1969: a teletype printout. Plain 7-bit ASCII text in <pre> blocks, all capitals, no links and no markup
-  inside the printout. With page.work (/1969/work/) the same printout lists every project. The paper, its feed holes and shadow are device presentation (assets/css/era-1969.scss).
+  inside the printout. With page.work (/1969/work/) the same printout lists every project, and a key below the
+  paper (outside the printout, so it can be a link) returns to the 1969 page. The paper, its feed holes and shadow are device presentation (assets/css/era-1969.scss).
   Lines are not hard-wrapped: the <pre> wraps at 72 columns (and at the screen's width on phones).
   All copy comes from _data/; _includes/era-text/ does the ASCII swaps and the capitals.
   The time-travel bar at the end is the modern exception.
@@ -57,6 +58,11 @@
 <pre>{% include era-text/part.html part="copyright" upper=true %}</pre>
 <pre>{{ ui.logout }}</pre>
 </main>
+{%- if page.work %}
+<div class="keys">
+<a class="key" href="{{ era.url | relative_url }}"><span>{% include era-text/part.html part="text" text=ui.back upper=true %}</span></a>
+</div>
+{%- endif %}
 {% include time-travel.html current=era.slug %}
 <script src="{{ '/assets/js/time-travel.js' | relative_url }}?v={{ site.time | date: '%s' }}" defer></script>
   </body>

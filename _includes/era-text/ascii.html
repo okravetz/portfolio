@@ -1,0 +1,7 @@
+{%- comment -%}
+  Plain ASCII for the text-only eras. Sets `ascii_out` (the parent page can read it).
+  include.text: the text. include.upper: true to upper-case it (1969).
+  No plugins: this is Liquid `replace` only.
+{%- endcomment -%}
+{%- assign ascii_out = include.text | replace: "’", "'" | replace: "‘", "'" | replace: "“", '"' | replace: "”", '"' | replace: "—", "--" | replace: "–", "-" | replace: "·", "-" | replace: "é", "e" | replace: "É", "E" | replace: "×", "x" | replace: "©", "(C)" -%}
+{%- if include.upper -%}{%- assign ascii_out = ascii_out | upcase -%}{%- endif -%}

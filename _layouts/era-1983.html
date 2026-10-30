@@ -1,0 +1,92 @@
+{%- comment -%}
+  1983: a bulletin board on a glass terminal. Plain ASCII text in <pre> blocks, 80 columns (36 on phones),
+  no box-drawing characters. The menu letters are buttons that switch sections (assets/js/bbs.js); without
+  JavaScript every section is shown in turn and the menu is hidden. The beige case, the green phosphor
+  glow, the scanlines and the blinking cursor are device presentation (assets/css/era-1983.scss).
+  All copy comes from _data/; _includes/era-text/ does the ASCII swaps.
+  The time-travel bar at the end is the modern exception.
+{%- endcomment -%}
+{%- assign era = site.data.eras | where: "slug", page.era | first -%}
+{%- assign ui = era.ui -%}
+{%- assign s = site.data.site -%}
+{%- assign nav = site.data.navigation -%}
+{%- assign keys = "about,work,resume,contact" | split: "," -%}
+{%- assign tagline = s.tagline | split: " · " -%}
+{%- assign tagline_job = tagline[0] -%}
+{%- assign tagline_pronouns = tagline[1] -%}
+{%- assign dashes80 = "--------------------------------------------------------------------------------" -%}
+{%- assign wide = dashes80 | slice: 0, 78 -%}
+{%- assign narrow = dashes80 | slice: 0, 34 -%}
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+{% include era-head.html era=era css="/assets/css/era-1983.css" fonts="family=VT323&" %}
+  </head>
+  <body>
+<main>
+<div class="case">
+<div class="crt" role="region" aria-label="{{ ui.aria_label }}">
+<div class="screen">
+<pre class="wide">{{ ui.connect }}
+
++{{ wide }}+
+{% include era-text/boxline.html text=s.name upper=true width=80 %}
+{% include era-text/boxline.html text=s.tagline width=80 %}
++{{ wide }}+</pre>
+<pre class="narrow">{{ ui.connect }}
+
++{{ narrow }}+
+{% include era-text/boxline.html text=s.name upper=true width=36 %}
+{% include era-text/boxline.html text=tagline_job width=36 %}
+{% include era-text/boxline.html text=tagline_pronouns width=36 %}
++{{ narrow }}+</pre>
+<div class="bbs-menu">
+<nav aria-label="{{ s.labels.main_navigation }}">
+<pre>{{ ui.menu }}</pre>
+{%- for item in nav %}
+{%- include era-text/ascii.html text=item.name %}
+{%- assign letter = ascii_out | slice: 0, 1 | upcase %}
+<div><button type="button" data-section="{{ keys[forloop.index0] }}" data-key="{{ letter }}" aria-controls="sec-{{ keys[forloop.index0] }}" aria-pressed="false">[{{ letter }}] {{ ascii_out | escape }}</button></div>
+{%- endfor %}
+</nav>
+<pre class="prompt">{{ ui.prompt }} <span class="prompt-key"></span><span class="cur" aria-hidden="true"></span></pre>
+</div>
+<div class="sections">
+{%- for item in nav %}
+{%- case keys[forloop.index0] %}
+{%- when "about" %}
+{%- capture title %}{{ item.name }}{% endcapture %}
+<section id="sec-about"><pre>{% include era-text/part.html part="text" text=title upper=true %}
+{% include era-text/part.html part="underline" text=title upper=true %}
+{% include era-text/part.html part="about" %}</pre></section>
+{%- when "work" %}
+<section id="sec-work"><pre>{% include era-text/part.html part="text" text=s.labels.case_studies upper=true %}
+{% include era-text/part.html part="underline" text=s.labels.case_studies %}
+{% include era-text/part.html part="cases" sep=" -- " indent="   " %}
+
+{% include era-text/part.html part="text" text=s.labels.more_work upper=true %}
+{% include era-text/part.html part="underline" text=s.labels.more_work %}
+{% include era-text/part.html part="more" indent="   " %}</pre></section>
+{%- when "resume" %}
+{%- capture title %}{{ item.name }}{% endcapture %}
+<section id="sec-resume"><pre>{% include era-text/part.html part="text" text=title upper=true %}
+{% include era-text/part.html part="underline" text=title %}
+{% include era-text/part.html part="resume" %}</pre></section>
+{%- when "contact" %}
+<section id="sec-contact"><pre>{% include era-text/part.html part="text" text=s.labels.contact upper=true %}
+{% include era-text/part.html part="underline" text=s.labels.contact %}
+{% include era-text/part.html part="contact" align=true %}</pre></section>
+{%- endcase %}
+{%- endfor %}
+</div>
+<pre class="copy">{% include era-text/part.html part="copyright" %}</pre>
+</div>
+<div class="scan" aria-hidden="true"></div>
+</div>
+</div>
+</main>
+{% include time-travel.html current=era.slug %}
+<script src="{{ '/assets/js/time-travel.js' | relative_url }}?v={{ site.time | date: '%s' }}" defer></script>
+<script src="{{ '/assets/js/bbs.js' | relative_url }}?v={{ site.time | date: '%s' }}"></script>
+  </body>
+</html>

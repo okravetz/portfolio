@@ -15,11 +15,26 @@
   label: "1969"
   name: Teletype printout
   url: /1969/
+  ready: true
+  # Terminal chrome from the design board, approved in the build plan.
+  ui:
+    aria_label: Oren Kravetz, as a 1969 teletype printout
+    login: "@LOGIN OREN"
+    connected: CONNECTED. ONE MOMENT.
+    contents: "CONTENTS:"
+    type: "@TYPE"
+    logout: "@LOGOUT"
 - order: 2
   slug: "1983"
   label: "1983"
   name: Bulletin board
   url: /1983/
+  ready: true
+  ui:
+    aria_label: Oren Kravetz, as a 1983 bulletin board system
+    connect: CONNECT 1200
+    menu: MAIN MENU
+    prompt: COMMAND?
 - order: 3
   slug: "1991"
   label: "1991"

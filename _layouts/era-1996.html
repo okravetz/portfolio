@@ -24,7 +24,7 @@
   </head>
   <body bgcolor="#000033" background="{{ img }}96-stars.gif" text="#000000" link="#0000ee" vlink="#551a8b" alink="#ff0000">
 <br>
-<center>
+<center role="main">
 <table class="m96-page" width="780" border="3" cellpadding="0" cellspacing="0" bgcolor="#ffffcc">
 <tr>
 <td colspan="2" bgcolor="#000080" align="center">
@@ -75,7 +75,7 @@
 <p>{% if p.lead %}<b>{{ p.lead | escape }}</b>{% endif %}{{ p.text | escape }}</p>
 {%- endfor %}
 
-<marquee bgcolor="#000080" scrollamount="3" width="100%" onmouseover="this.stop()" onmouseout="this.start()"><font face="Arial, Helvetica" size="3" color="#ffff00"><b>{{ s.labels.clients }}: {% for c in site.data.clients %}{{ c.name | escape }}{% unless forloop.last %} * {% endunless %}{% endfor %}</b></font></marquee>
+<marquee bgcolor="#000080" scrollamount="3" width="100%" tabindex="0" onmouseover="this.stop()" onmouseout="this.start()" onfocus="this.stop()" onblur="this.start()"><font face="Arial, Helvetica" size="3" color="#ffff00"><b>{{ s.labels.clients }}: {% for c in site.data.clients %}{{ c.name | escape }}{% unless forloop.last %} * {% endunless %}{% endfor %}</b></font></marquee>
 
 <p align="center"><img class="m96-rule" src="{{ img }}96-rainbow.gif" width="520" height="6" alt=""></p>
 

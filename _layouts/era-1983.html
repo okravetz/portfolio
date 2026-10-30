@@ -35,13 +35,15 @@
 <div class="case">
 <div class="crt" role="region" aria-label="{{ ui.aria_label }}" tabindex="0">
 <div class="screen">
-<pre class="wide">{{ ui.connect }}
+<h1 class="sr">{{ s.name | escape }}</h1>
+<p class="sr">{{ s.tagline | escape }}</p>
+<pre class="wide" aria-hidden="true">{{ ui.connect }}
 
 +{{ wide }}+
 {% include era-text/boxline.html text=s.name upper=true width=80 %}
 {% include era-text/boxline.html text=s.tagline width=80 %}
 +{{ wide }}+</pre>
-<pre class="narrow">{{ ui.connect }}
+<pre class="narrow" aria-hidden="true">{{ ui.connect }}
 
 +{{ narrow }}+
 {% include era-text/boxline.html text=s.name upper=true width=36 %}
@@ -50,8 +52,8 @@
 +{{ narrow }}+</pre>
 {%- if page.work %}
 <div class="sections">
-<section id="sec-work"><pre>{% include era-text/part.html part="text" text=s.labels.more_work upper=true %}
-{% include era-text/part.html part="underline" text=s.labels.more_work %}
+<section id="sec-work"><pre><span role="heading" aria-level="2">{% include era-text/part.html part="text" text=s.labels.more_work upper=true %}</span>
+<span aria-hidden="true">{% include era-text/part.html part="underline" text=s.labels.more_work %}</span>
 {% include era-text/part.html part="more" all=true indent="   " %}</pre></section>
 </div>
 {%- assign back_key = ui.back | slice: 0, 1 | upcase %}
@@ -80,30 +82,30 @@
 {%- case keys[forloop.index0] %}
 {%- when "about" %}
 {%- capture title %}{{ item.name }}{% endcapture %}
-<section id="sec-about"><pre>{% include era-text/part.html part="text" text=title upper=true %}
-{% include era-text/part.html part="underline" text=title upper=true %}
+<section id="sec-about"><pre><span role="heading" aria-level="2">{% include era-text/part.html part="text" text=title upper=true %}</span>
+<span aria-hidden="true">{% include era-text/part.html part="underline" text=title upper=true %}</span>
 {% include era-text/part.html part="about" %}</pre></section>
 {%- when "work" %}
-<section id="sec-work"><pre>{% include era-text/part.html part="text" text=s.labels.case_studies upper=true %}
-{% include era-text/part.html part="underline" text=s.labels.case_studies %}
+<section id="sec-work"><pre><span role="heading" aria-level="2">{% include era-text/part.html part="text" text=s.labels.case_studies upper=true %}</span>
+<span aria-hidden="true">{% include era-text/part.html part="underline" text=s.labels.case_studies %}</span>
 {% include era-text/part.html part="cases" sep=" -- " indent="   " %}
 
-{% include era-text/part.html part="text" text=s.labels.more_work upper=true %}
-{% include era-text/part.html part="underline" text=s.labels.more_work %}
+<span role="heading" aria-level="2">{% include era-text/part.html part="text" text=s.labels.more_work upper=true %}</span>
+<span aria-hidden="true">{% include era-text/part.html part="underline" text=s.labels.more_work %}</span>
 {% include era-text/part.html part="more" indent="   " noshow=true %}
 
 {% include era-text/cmd.html key=cmd.work href=work_href text=show_all %}</pre></section>
 {%- when "resume" %}
 {%- capture title %}{{ item.name }}{% endcapture %}
-<section id="sec-resume"><pre>{% include era-text/part.html part="text" text=title upper=true %}
-{% include era-text/part.html part="underline" text=title %}
+<section id="sec-resume"><pre><span role="heading" aria-level="2">{% include era-text/part.html part="text" text=title upper=true %}</span>
+<span aria-hidden="true">{% include era-text/part.html part="underline" text=title %}</span>
 {%- assign resume_href = s.resume.file | prepend: '/' | relative_url %}
 {%- assign portfolio_href = s.portfolio.file | prepend: '/' | relative_url %}
 {% include era-text/cmd.html key=cmd.resume href=resume_href text=s.resume.button %}
 {% include era-text/cmd.html key=cmd.portfolio href=portfolio_href text=s.portfolio.button %}</pre></section>
 {%- when "contact" %}
-<section id="sec-contact"><pre>{% include era-text/part.html part="text" text=s.labels.contact upper=true %}
-{% include era-text/part.html part="underline" text=s.labels.contact %}
+<section id="sec-contact"><pre><span role="heading" aria-level="2">{% include era-text/part.html part="text" text=s.labels.contact upper=true %}</span>
+<span aria-hidden="true">{% include era-text/part.html part="underline" text=s.labels.contact %}</span>
 {%- for item in site.data.contact %}
 {%- capture line %}{{ item.label }}: {{ item.text }}{% endcapture %}
 {%- if item.href %}
@@ -119,6 +121,7 @@
 {%- endif %}
 <pre class="copy">{% include era-text/part.html part="copyright" %}</pre>
 </div>
+<p class="sr bbs-status" aria-live="polite"></p>
 <div class="scan" aria-hidden="true"></div>
 </div>
 </div>

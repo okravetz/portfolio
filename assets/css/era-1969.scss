@@ -45,8 +45,10 @@ main.feed {
   box-shadow: 0 1px 2px rgba(0, 0, 0, 0.35), 0 6px 14px rgba(0, 0, 0, 0.3), 0 30px 70px rgba(0, 0, 0, 0.55);
 }
 
+// The HTML keeps the copy's own capitalisation, so screen readers say "PMs", not "PMS"; the capitals are drawn here.
 .feed pre {
   margin: 0 0 1.55em;
+  text-transform: uppercase;
   font: inherit;
   white-space: pre-wrap;
   overflow-wrap: anywhere;

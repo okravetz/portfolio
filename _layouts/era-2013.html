@@ -24,7 +24,7 @@
   <body>
 <div class="f13">
 
-<div class="navbar">
+<div class="navbar" role="navigation" aria-label="{{ s.labels.main_navigation }}">
 <div class="container clearfix">
 <a class="brand" href="#top">{{ s.name | escape }}</a>
 <button type="button" class="burger" aria-label="{{ s.labels.menu }}" aria-expanded="false" aria-controls="navlinks">
@@ -38,6 +38,7 @@
 </div>
 </div>
 
+<main>
 <div id="top" class="hero">
 <img class="avatar" src="{{ img }}13-headshot.jpg" width="160" height="160" alt="{{ s.headshot.alt }}">
 <h1>{{ s.name | escape }}</h1>
@@ -126,8 +127,9 @@
 </div>
 </div>
 </div>
+</main>
 
-<div class="footer">© {{ site.time | date: "%Y" }} {{ s.copyright.holder }}</div>
+<div class="footer" role="contentinfo">© {{ site.time | date: "%Y" }} {{ s.copyright.holder }}</div>
 </div>
 <script src="{{ '/assets/js/era-2013.js' | relative_url }}?v={{ site.time | date: '%s' }}" defer></script>
 {% include time-travel.html current=era.slug %}

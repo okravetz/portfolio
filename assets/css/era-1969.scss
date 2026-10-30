@@ -35,6 +35,7 @@ main.feed {
   font-family: "Courier Prime", "Courier New", monospace;
   font-size: 18px;
   line-height: 1.55;
+  font-variant-ligatures: none; // one character per column, no joined letters
   background:
     radial-gradient(circle, $hole 6px, transparent 6.6px) left top / 40px 36px repeat-y,
     radial-gradient(circle, $hole 6px, transparent 6.6px) right top / 40px 36px repeat-y,

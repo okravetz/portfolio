@@ -2,6 +2,8 @@
   One piece of the page's copy as plain ASCII text, read from _data/, for 1969 and 1983. The text is
   escaped for HTML and meant to go inside a <pre>; lines are not hard-wrapped (the <pre> wraps them).
   include.part: text | underline | title | contents | about | cases | more | resume | contact | copyright
+  ("resume" also prints the two files' web addresses under their labels: in their real letter case, flush left,
+  with line-break hints (<wbr>) after slashes and %20 so a long address breaks at sensible places.)
   include.text: the text for `text` and `underline` ("underline" prints dashes as long as the text).
   include.sep: between a case study's name and its client. include.indent: before descriptions.
   include.align: true to line contact values up in a column (1983). include.upper: true for 1969's capitals.
@@ -27,5 +29,17 @@
 {%- endcase -%}
 {%- endcapture -%}
 {%- assign raw = raw | rstrip -%}
+{%- if include.part == "resume" -%}
+{%- comment -%} The addresses keep their real letter case, even in 1969's capitals: file names are case-sensitive. {%- endcomment -%}
+{%- include era-text/ascii.html text=s.resume.button upper=include.upper -%}
+{%- assign resume_line = ascii_out -%}
+{%- include era-text/ascii.html text=s.portfolio.button upper=include.upper -%}
+{%- assign resume_path = s.resume.file | uri_escape -%}
+{%- assign portfolio_path = s.portfolio.file | uri_escape -%}
+{%- assign resume_url = s.url | append: "/" | append: resume_path | escape | replace: "/", "/<wbr>" | replace: "%20", "%20<wbr>" -%}
+{%- assign portfolio_url = s.url | append: "/" | append: portfolio_path | escape | replace: "/", "/<wbr>" | replace: "%20", "%20<wbr>" -%}
+{{- resume_line | escape }}{{ nl }}{{ resume_url }}{{ nl }}{{ ascii_out | escape }}{{ nl }}{{ portfolio_url -}}
+{%- else -%}
 {%- include era-text/ascii.html text=raw upper=include.upper -%}
 {%- if include.part == "underline" -%}{{ dashes | slice: 0, ascii_out.size }}{%- else -%}{{ ascii_out | escape }}{%- endif -%}
+{%- endif -%}

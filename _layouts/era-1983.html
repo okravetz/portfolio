@@ -71,7 +71,7 @@
 {%- capture title %}{{ item.name }}{% endcapture %}
 <section id="sec-resume"><pre>{% include era-text/part.html part="text" text=title upper=true %}
 {% include era-text/part.html part="underline" text=title %}
-{% include era-text/part.html part="resume" %}</pre></section>
+{% include era-text/part.html part="resume" indent="   " %}</pre></section>
 {%- when "contact" %}
 <section id="sec-contact"><pre>{% include era-text/part.html part="text" text=s.labels.contact upper=true %}
 {% include era-text/part.html part="underline" text=s.labels.contact %}

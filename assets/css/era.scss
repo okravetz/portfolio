@@ -4,9 +4,24 @@
 // window. The padding gives back the browser's default 8px around the page content.
 @import "time-travel";
 
+// Tabbing to a link near the bottom of the page scrolls it above the fixed time-travel bar, not behind it.
+html {
+  scroll-padding-bottom: 104px;
+}
+
 body {
   margin: 0;
   padding: 8px 8px 0;
+}
+
+// Text for screen readers only (e.g. 1983's name, which the screen draws as a box).
+.sr {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
 }
 
 .tt {

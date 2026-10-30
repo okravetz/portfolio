@@ -70,6 +70,9 @@
   ready: true
   ui:
     counter_alt: Visitor counter
+    # The button under the clients marquee (assets/js/marquee.js swaps the two).
+    marquee_pause: Pause scrolling
+    marquee_play: Start scrolling
     more_work_columns: [Client, Years, What I did]
   photos:
     headshot: [128, 128]

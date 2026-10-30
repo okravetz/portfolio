@@ -19,8 +19,11 @@
 
   // The docked chips sit just above the time-travel bar: keep --tt-h equal to the bar's height.
   var bar = document.getElementById("time-travel");
+  // --dock-h (the docked chips) keeps anything reached with Tab clear of both (see scroll-padding-bottom).
+  var dock = document.querySelector(".prompts");
   function barHeight() {
     if (bar) document.documentElement.style.setProperty("--tt-h", bar.offsetHeight + "px");
+    if (dock) document.documentElement.style.setProperty("--dock-h", dock.offsetHeight + "px");
   }
   barHeight();
   window.addEventListener("resize", barHeight);

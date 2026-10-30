@@ -56,6 +56,12 @@ body {
     outline-offset: 2px;
   }
 
+  // The agent card clips anything outside it, so its toggle's ring goes inside, light on the dark card.
+  .agent-toggle-card:focus-visible {
+    outline: 2px solid $paper;
+    outline-offset: -6px;
+  }
+
   h1,
   h2,
   p,
@@ -333,6 +339,11 @@ main {
 }
 
 // Question chips: docked at the bottom of the window, above the time-travel bar, like a chat app's input.
+// Tabbing to something below the fold scrolls it above the dock and the bar, not behind them.
+html {
+  scroll-padding-bottom: calc(var(--tt-h, 80px) + var(--dock-h, 160px) + 24px);
+}
+
 // --tt-h is the bar's height (set by assets/js/era-future.js). The dock stays inside the chat column.
 .prompts {
   position: sticky;

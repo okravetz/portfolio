@@ -423,7 +423,7 @@ def make_2006(out, L):
     gloss(12, 44, '#ffffff', '#ffffff', '#ffffff', '#ffffff', 10, '06-tab-on-r.png', corners=(0, 1, 0, 0))
     # Gloss buttons (fixed width, sidebar)
     gloss(250, 44, '#3375b8', '#2a6aa8', '#1d5a96', '#1f5f9e', 10, '06-btn-blue.png', border='#174a7c')
-    gloss(250, 44, '#5a8f2a', '#4f8224', '#437320', '#467a21', 10, '06-btn-green.png', border='#355d18')
+    gloss(250, 44, '#4e7d24', '#467422', '#3c681d', '#3f6e1e', 10, '06-btn-green.png', border='#30541a')  # white text needs 4.5:1 on the top half too
 
     # Sidebar box top (header) and bottom
     def box_top(w, h, name):

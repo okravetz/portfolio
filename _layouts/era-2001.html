@@ -27,7 +27,7 @@
   </head>
   <body bgcolor="#000000" text="#dcdcdc" link="#ff9933" vlink="#ff9933" alink="#ffcc66">
 <div class="s01">
-<center>
+<center role="main">
 
 {%- unless page.work %}
 <table id="intro" class="stage intro" width="960" height="640" border="0" cellpadding="0" cellspacing="0" bgcolor="#202328">
@@ -52,13 +52,13 @@
 <div class="tagline">{{ s.tagline | escape }}</div>
 </td>
 </tr></table>
-<div class="tabs tabs-wide">
+<div class="tabs tabs-wide" role="navigation" aria-label="{{ s.labels.main_navigation }}">
 {%- for item in nav %}
 {%- assign key = keys[forloop.index0] %}
 <a href="{% if page.work %}{{ home }}{% endif %}#{{ key }}" data-section="{{ key }}"><img src="{{ img }}01-tab-{{ key }}-off.gif" data-off="{{ img }}01-tab-{{ key }}-off.gif" data-over="{{ img }}01-tab-{{ key }}-over.gif" data-on="{{ img }}01-tab-{{ key }}-on.gif" width="200" height="40" border="0" vspace="3" alt="{{ item.name }}"></a><br>
 {%- endfor %}
 </div>
-<div class="tabs tabs-narrow">
+<div class="tabs tabs-narrow" role="navigation" aria-label="{{ s.labels.main_navigation }}">
 {%- for item in nav %}
 {%- assign key = keys[forloop.index0] %}
 <a href="{% if page.work %}{{ home }}{% endif %}#{{ key }}" data-section="{{ key }}"><img src="{{ img }}01m-tab-{{ key }}-off.gif" data-off="{{ img }}01m-tab-{{ key }}-off.gif" data-over="{{ img }}01m-tab-{{ key }}-over.gif" data-on="{{ img }}01m-tab-{{ key }}-on.gif" width="358" height="44" border="0" alt="{{ item.name }}"></a>
@@ -69,7 +69,7 @@
 {%- endunless %}
 </td>
 <td class="content" valign="top" background="{{ img }}01-content-bg.jpg">
-<div id="panel" class="panel">
+<div id="panel" class="panel" tabindex="0">
 
 {%- if page.work %}
 <div id="more" class="allwork">

@@ -1,6 +1,6 @@
 {%- comment -%}
   1991: only tags from "HTML Tags" (h1-h6, p, a href/name, ul/li, dl/dt/dd, address), browser defaults,
-  white background. No CSS, images, id, strong, hr or br in the page itself; the <nav> carries no styling.
+  white background. No CSS, images, id, strong, hr or br in the page itself; the <header>, <nav> and <main> (landmarks for screen readers) carry no styling.
   All copy comes from _data/. With page.work (/1991/work/) the page lists every project. The time-travel bar at the end is the modern exception.
 {%- endcomment -%}
 {%- assign era = site.data.eras | where: "slug", page.era | first -%}
@@ -17,8 +17,10 @@
 {% include era-head.html era=era %}
   </head>
   <body>
+<header>
 <h1>{{ s.name | escape }}</h1>
 <p>{{ s.tagline | escape }}</p>
+</header>
 <nav aria-label="{{ s.labels.main_navigation }}">
 <ul>
 <li><a href="{% if page.work %}{{ home }}{% endif %}#about">{{ nav[0].name }}</a></li>
@@ -27,7 +29,7 @@
 <li><a href="{% if page.work %}{{ home }}{% endif %}#contact">{{ nav[3].name }}</a></li>
 </ul>
 </nav>
-
+<main>
 {%- if page.work %}
 <h2>{{ s.labels.more_work }}</h2>
 <dl>
@@ -76,6 +78,7 @@
 {%- endif %}
 
 <address>© {{ site.time | date: "%Y" }} {{ s.copyright.holder }}</address>
+</main>
 {% include time-travel.html current=era.slug %}
 <script src="{{ '/assets/js/time-travel.js' | relative_url }}?v={{ site.time | date: '%s' }}" defer></script>
   </body>

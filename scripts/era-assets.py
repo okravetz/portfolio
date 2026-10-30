@@ -23,7 +23,7 @@ from PIL import Image, ImageChops, ImageDraw, ImageFilter, ImageFont
 
 ROOT = Path(__file__).resolve().parent.parent
 DATA = ROOT / '_data'
-GROUPS = ('1996', '2001', '2006', 'badges', 'thumbs')
+GROUPS = ('shared', '1996', '2001', '2006', 'badges', 'thumbs')
 
 SANS_B = MONO_B = None  # set in main() from --fonts
 
@@ -53,6 +53,7 @@ def read_labels():
         'portfolio_button': site['portfolio']['button'],
         'eras': eras,
         'cases': [c for c in load('casestudies.yml') if c.get('publish')],
+        'headshot': site['headshot']['file'],
     }
 
 
@@ -176,6 +177,42 @@ def make_thumbs(out, L):
         src = Image.open(ROOT / 'assets' / 'images' / 'wf' / case['card_image']).convert('RGB')
         thumb = src.resize((120, 90), Image.LANCZOS)
         thumb.save(out / f"96-case-{Path(case['link']).stem}.jpg", quality=85)
+
+
+# ======================= square headshot =======================
+def make_headshot(out, L):
+    """The headshot is a circle on black. Older eras show it as a square photo: everything outside the
+    circle is filled by extending the circle's edge colors straight outward (the gray background,
+    and the sweater at the bottom), smoothed around the circle, then the photo is laid back on top."""
+    src = Image.open(ROOT / L['headshot']).convert('RGB')
+    w, h = src.size
+    px = src.load()
+    cx, cy = (w - 1) / 2, (h - 1) / 2
+    R = w / 2 - 4  # just inside the antialiased edge, which is mixed with the black
+    edge = []  # average edge color per degree, over a thin band and +-4 degrees
+    for deg in range(360):
+        acc, n = [0, 0, 0], 0
+        for dd in range(-4, 5):
+            a = math.radians(deg + dd)
+            for r in (R - 3, R - 2, R - 1, R):
+                c = px[int(round(cx + r * math.cos(a))), int(round(cy + r * math.sin(a)))]
+                acc = [acc[i] + c[i] for i in range(3)]
+                n += 1
+        edge.append(tuple(v // n for v in acc))
+    fill = Image.new('RGB', (w, h))
+    fp = fill.load()
+    for y in range(h):
+        for x in range(w):
+            deg = math.degrees(math.atan2(y - cy, x - cx)) % 360
+            i, t = int(deg) % 360, deg - int(deg)
+            a, b = edge[i], edge[(i + 1) % 360]
+            fp[x, y] = tuple(int(a[k] + (b[k] - a[k]) * t) for k in range(3))
+    fill = fill.filter(ImageFilter.GaussianBlur(1.5))
+    mask = Image.new('L', (w * 4, h * 4), 0)
+    r = R - 1
+    ImageDraw.Draw(mask).ellipse([4 * (cx - r), 4 * (cy - r), 4 * (cx + r), 4 * (cy + r)], fill=255)
+    fill.paste(src, (0, 0), mask.resize((w, h), Image.LANCZOS))
+    fill.save(out / 'headshot-square.jpg', quality=90)
 
 
 # ======================= badges =======================
@@ -472,8 +509,9 @@ def main():
     global SANS_B, MONO_B
     ap = argparse.ArgumentParser(description=__doc__.split('\n\n')[0])
     ap.add_argument('--only', choices=GROUPS, action='append',
-                    help="draw only this group (repeatable): 1996 (includes the badges and thumbnails), 2001 "
-                         "(includes the mobile tabs), 2006, badges, or thumbs. Default: all.")
+                    help="draw only this group (repeatable): shared (the square headshot, used by every older "
+                         "era), 1996 (includes the badges and thumbnails), 2001 (includes the mobile tabs), "
+                         "2006, badges, or thumbs. Default: all.")
     ap.add_argument('--out', type=Path, default=ROOT / 'assets' / 'eras',
                     help='output folder; each era gets its own subfolder (default: assets/eras)')
     ap.add_argument('--fonts', type=Path, default=ROOT / 'scripts' / 'fonts',
@@ -490,7 +528,7 @@ def main():
     if '1996' in want:
         want |= {'badges', 'thumbs'}  # the 1996 group includes the badges and case-study thumbnails
     L = read_labels()
-    steps = [('1996', '1996', make_1996), ('badges', '1996', make_badges), ('thumbs', '1996', make_thumbs),
+    steps = [('shared', '.', make_headshot), ('1996', '1996', make_1996), ('badges', '1996', make_badges), ('thumbs', '1996', make_thumbs),
              ('2001', '2001', make_2001), ('2006', '2006', make_2006)]
     for group, folder, fn in steps:
         if group in want:

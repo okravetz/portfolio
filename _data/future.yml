@@ -6,35 +6,45 @@
 #   clients.yml           -> every name, in order (the design board abbreviates some; the build must not)
 #   site.yml              -> resume.file and portfolio.file
 #   contact.yml           -> every row
+# `anchor` is the section of Today the "Source" link goes to. The first two questions start answered
+# (`start: true`); the others are one tap away.
 - id: do
   question: What does Oren do?
   section: about
   data: about.yml
   paragraph: 2
   source: About
+  anchor: about
+  start: true
 - id: work
   question: Show me his work
   section: work
   data: casestudies.yml
   source: Work
+  anchor: work
+  start: true
 - id: clients
   question: Who has he worked with?
   section: clients
   data: clients.yml
   source: Clients
+  anchor: about
 - id: outside
   question: What does he do outside work?
   section: about
   data: about.yml
   paragraph: 3
   source: About
+  anchor: about
 - id: resume
   question: Can I get his résumé?
   section: resume
   data: site.yml
   source: Résumé
+  anchor: resume
 - id: contact
   question: How do I reach him?
   section: contact
   data: contact.yml
   source: Contact
+  anchor: contact

@@ -116,3 +116,14 @@
   label: Future
   name: Scripted agent
   url: /future/
+  ready: true
+  # The page's own wording, from the design board. Questions and sources are in future.yml.
+  ui:
+    title: Ask about Oren
+    badge: Scripted, not AI. Every answer is text from this site.
+    choose: Choose a question
+    reset: Start over
+    agent: What an agent sees
+    agent_note: The same facts, as structured data in this page’s source.
+    you_asked: "You asked: "
+    source: "Source: %s on orenkravetz.com"

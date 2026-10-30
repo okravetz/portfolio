@@ -4,6 +4,7 @@
   GIF loader, Verdana, and pixel headings drawn as images (scripts/era-assets.py). The intro skips itself, can
   be skipped, and never plays when reduced motion is requested. No Flash, no web fonts, no CSS3.
   Without JavaScript there is no intro and every section is shown in the scrolling panel; the tabs jump to them.
+  With page.work (/2001/work/) the panel lists every project; there is no intro, and the tabs go back to the era's sections.
   Phones (and narrow tablets) get the stacked layout from the design board: assets/css/era-2001.scss.
   All copy comes from _data/; image alt text comes from the same field as the image's label.
   The time-travel bar at the end is the modern exception.
@@ -15,6 +16,8 @@
 {%- assign about = site.data.about -%}
 {%- assign about_paragraphs = about.paragraphs | where_exp: "p", "p.today_only != true" -%}
 {%- assign more_hidden = site.data.morework.size | minus: 3 -%}
+{%- assign home = era.url | relative_url -%}
+{%- assign work_href = era.url | append: "work/" | relative_url -%}
 {%- assign img = "/assets/eras/2001/" | relative_url -%}
 {%- assign keys = "about,work,resume,contact" | split: "," -%}
 <!DOCTYPE html>
@@ -26,6 +29,7 @@
 <div class="s01">
 <center>
 
+{%- unless page.work %}
 <table id="intro" class="stage intro" width="960" height="640" border="0" cellpadding="0" cellspacing="0" bgcolor="#202328">
 <tr><td align="center" valign="middle">
 <img src="{{ img }}01-loading.gif" alt="{{ ui.loading }}"><br><br>
@@ -36,6 +40,7 @@
 <a id="skip" href="#stage"><img src="{{ img }}01-skip.gif" border="0" alt="{{ ui.skip | remove: ' >>' }}"></a>
 </td></tr>
 </table>
+{%- endunless %}
 
 <table id="stage" class="stage" width="960" height="640" border="0" cellpadding="0" cellspacing="0">
 <tr>
@@ -50,20 +55,33 @@
 <div class="tabs tabs-wide">
 {%- for item in nav %}
 {%- assign key = keys[forloop.index0] %}
-<a href="#{{ key }}" data-section="{{ key }}"><img src="{{ img }}01-tab-{{ key }}-off.gif" data-off="{{ img }}01-tab-{{ key }}-off.gif" data-over="{{ img }}01-tab-{{ key }}-over.gif" data-on="{{ img }}01-tab-{{ key }}-on.gif" width="200" height="40" border="0" vspace="3" alt="{{ item.name }}"></a><br>
+<a href="{% if page.work %}{{ home }}{% endif %}#{{ key }}" data-section="{{ key }}"><img src="{{ img }}01-tab-{{ key }}-off.gif" data-off="{{ img }}01-tab-{{ key }}-off.gif" data-over="{{ img }}01-tab-{{ key }}-over.gif" data-on="{{ img }}01-tab-{{ key }}-on.gif" width="200" height="40" border="0" vspace="3" alt="{{ item.name }}"></a><br>
 {%- endfor %}
 </div>
 <div class="tabs tabs-narrow">
 {%- for item in nav %}
 {%- assign key = keys[forloop.index0] %}
-<a href="#{{ key }}" data-section="{{ key }}"><img src="{{ img }}01m-tab-{{ key }}-off.gif" data-off="{{ img }}01m-tab-{{ key }}-off.gif" data-over="{{ img }}01m-tab-{{ key }}-over.gif" data-on="{{ img }}01m-tab-{{ key }}-on.gif" width="358" height="44" border="0" alt="{{ item.name }}"></a>
+<a href="{% if page.work %}{{ home }}{% endif %}#{{ key }}" data-section="{{ key }}"><img src="{{ img }}01m-tab-{{ key }}-off.gif" data-off="{{ img }}01m-tab-{{ key }}-off.gif" data-over="{{ img }}01m-tab-{{ key }}-over.gif" data-on="{{ img }}01m-tab-{{ key }}-on.gif" width="358" height="44" border="0" alt="{{ item.name }}"></a>
 {%- endfor %}
 </div>
+{%- unless page.work %}
 <p class="replay replay-wide"><a href="#intro"><img src="{{ img }}01-replay.gif" border="0" alt="{{ ui.replay }}"></a></p>
+{%- endunless %}
 </td>
 <td class="content" valign="top" background="{{ img }}01-content-bg.jpg">
 <div id="panel" class="panel">
 
+{%- if page.work %}
+<div id="more" class="allwork">
+<h2><img src="{{ img }}01-h-more.gif" alt="{{ s.labels.more_work }}"></h2>
+{%- for item in site.data.morework %}
+<div class="row">
+<b>{{ item.client | escape }}</b> · {{ item.project | escape }} · <span class="years">{{ item.years }}</span><br>
+<span class="small">{{ item.description | escape }}</span>
+</div>
+{%- endfor %}
+</div>
+{%- else %}
 <div id="about" class="section">
 <h2><img src="{{ img }}01-h-about.gif" alt="{{ about.heading | escape }}"></h2>
 {%- for p in about_paragraphs %}
@@ -109,8 +127,7 @@
 <span class="small">{{ item.description | escape }}</span>
 </div>
 {%- endfor %}
-{%- comment -%} Points at Today's list until the era all-work pages exist (PR 8). {%- endcomment %}
-<p class="more"><a href="{{ '/' | relative_url }}#work">{{ s.labels.show_all_work | replace: "%n", more_hidden }} »</a></p>
+<p class="more"><a href="{{ work_href }}">{{ s.labels.show_all_work | replace: "%n", more_hidden }} »</a></p>
 </div>
 
 <div id="resume" class="section">
@@ -128,7 +145,11 @@
 {%- endfor %}
 </div>
 
+{%- endif %}
+
+{%- unless page.work %}
 <p class="replay replay-narrow"><a href="#intro"><img src="{{ img }}01-replay.gif" border="0" alt="{{ ui.replay }}"></a></p>
+{%- endunless %}
 <p class="copyright">© {{ site.time | date: "%Y" }} {{ s.copyright.holder }}</p>
 </div>
 </td>

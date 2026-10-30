@@ -3,7 +3,8 @@
   a hit counter, 88 x 31 badges, <marquee>. No CSS layout. Images come from assets/eras/1996/
   (scripts/era-assets.py) and their alt text from the same _data/ fields as their labels.
   The m96-* classes are hooks for the phone layer only (assets/css/era-1996.scss, modern media
-  queries on top). All copy comes from _data/. The time-travel bar at the end is the modern exception.
+  queries on top). All copy comes from _data/. With page.work (/1996/work/) the main cell lists every project.
+  The time-travel bar at the end is the modern exception.
 {%- endcomment -%}
 {%- assign era = site.data.eras | where: "slug", page.era | first -%}
 {%- assign s = site.data.site -%}
@@ -11,6 +12,8 @@
 {%- assign about = site.data.about -%}
 {%- assign about_paragraphs = about.paragraphs | where_exp: "p", "p.today_only != true" -%}
 {%- assign more_hidden = site.data.morework.size | minus: 3 -%}
+{%- assign home = era.url | relative_url -%}
+{%- assign work_href = era.url | append: "work/" | relative_url -%}
 {%- assign img = "/assets/eras/1996/" | relative_url -%}
 {%- assign sections = "about,work,resume,contact" | split: "," -%}
 {%- assign counter = era.label | prepend: "0000000" | slice: -7, 7 -%}
@@ -36,7 +39,7 @@
 <br>
 {%- for item in nav %}
 {%- assign key = sections[forloop.index0] %}
-<a class="m96-nav" href="#{{ key }}"><img src="{{ img }}96-btn-{{ key }}.gif" width="140" height="34" border="0" alt="{{ item.name }}"{% if forloop.index0 == 1 or forloop.index0 == 3 %} vspace="4"{% endif %}></a><br>
+<a class="m96-nav" href="{% if page.work %}{{ home }}{% endif %}#{{ key }}"><img src="{{ img }}96-btn-{{ key }}.gif" width="140" height="34" border="0" alt="{{ item.name }}"{% if forloop.index0 == 1 or forloop.index0 == 3 %} vspace="4"{% endif %}></a><br>
 {%- endfor %}
 <br>
 <table class="m96-photo" border="2" cellpadding="0" cellspacing="0" bgcolor="#808080">
@@ -49,6 +52,23 @@
 <td class="m96-main" valign="top">
 <table width="100%" border="0" cellpadding="16" cellspacing="0"><tr><td>
 
+{%- if page.work %}
+<h2><font face="Comic Sans MS" color="#990000">{{ s.labels.more_work }}</font></h2>
+<table class="m96-more" width="100%" border="1" cellpadding="4" cellspacing="0" bgcolor="#ffffff">
+<tr class="m96-head" bgcolor="#c0c0c0">
+{%- for col in era.ui.more_work_columns %}
+<th align="left"><font face="Arial, Helvetica" size="2">{{ col }}</font></th>
+{%- endfor %}
+</tr>
+{%- for item in site.data.morework %}
+<tr>
+<td valign="top" width="150"><b>{{ item.client | escape }}</b><br>{{ item.project | escape }}</td>
+<td valign="top" width="76">{{ item.years }}</td>
+<td valign="top">{{ item.description | escape }}</td>
+</tr>
+{%- endfor %}
+</table>
+{%- else %}
 <a name="about"></a>
 <h2><font face="Comic Sans MS" color="#990000">{{ about.heading | escape }}</font></h2>
 {%- for p in about_paragraphs %}
@@ -92,8 +112,7 @@
 </tr>
 {%- endfor %}
 </table>
-{%- comment -%} Points at Today's list until the era all-work pages exist (PR 8). {%- endcomment %}
-<p><a href="{{ '/' | relative_url }}#work">{{ s.labels.show_all_work | replace: "%n", more_hidden }}</a></p>
+<p><a href="{{ work_href }}">{{ s.labels.show_all_work | replace: "%n", more_hidden }}</a></p>
 
 <p align="center"><img class="m96-rule" src="{{ img }}96-rainbow.gif" width="520" height="6" alt=""></p>
 
@@ -115,6 +134,7 @@
 {%- endfor %}
 </p>
 
+{%- endif %}
 </td></tr></table>
 </td>
 </tr>

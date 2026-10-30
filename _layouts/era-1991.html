@@ -1,7 +1,7 @@
 {%- comment -%}
   1991: only tags from "HTML Tags" (h1-h6, p, a href/name, ul/li, dl/dt/dd, address), browser defaults,
   white background. No CSS, images, id, strong, hr or br in the page itself; the <nav> carries no styling.
-  All copy comes from _data/. The time-travel bar at the end is the modern exception.
+  All copy comes from _data/. With page.work (/1991/work/) the page lists every project. The time-travel bar at the end is the modern exception.
 {%- endcomment -%}
 {%- assign era = site.data.eras | where: "slug", page.era | first -%}
 {%- assign s = site.data.site -%}
@@ -9,6 +9,8 @@
 {%- assign about = site.data.about -%}
 {%- assign about_paragraphs = about.paragraphs | where_exp: "p", "p.today_only != true" -%}
 {%- assign more_hidden = site.data.morework.size | minus: 3 -%}
+{%- assign home = era.url | relative_url -%}
+{%- assign work_href = era.url | append: "work/" | relative_url -%}
 <!DOCTYPE html>
 <html lang="en-US">
   <head>
@@ -19,13 +21,22 @@
 <p>{{ s.tagline | escape }}</p>
 <nav aria-label="{{ s.labels.main_navigation }}">
 <ul>
-<li><a href="#about">{{ nav[0].name }}</a></li>
-<li><a href="#work">{{ nav[1].name }}</a></li>
-<li><a href="#resume">{{ nav[2].name }}</a></li>
-<li><a href="#contact">{{ nav[3].name }}</a></li>
+<li><a href="{% if page.work %}{{ home }}{% endif %}#about">{{ nav[0].name }}</a></li>
+<li><a href="{% if page.work %}{{ home }}{% endif %}#work">{{ nav[1].name }}</a></li>
+<li><a href="{% if page.work %}{{ home }}{% endif %}#resume">{{ nav[2].name }}</a></li>
+<li><a href="{% if page.work %}{{ home }}{% endif %}#contact">{{ nav[3].name }}</a></li>
 </ul>
 </nav>
 
+{%- if page.work %}
+<h2>{{ s.labels.more_work }}</h2>
+<dl>
+{%- for item in site.data.morework %}
+<dt>{{ item.client | escape }}: {{ item.project | escape }}, {{ item.years }}</dt>
+<dd>{{ item.description | escape }}</dd>
+{%- endfor %}
+</dl>
+{%- else %}
 <h2><a name="about">{{ nav[0].name }}: {{ about.heading | escape }}</a></h2>
 {%- for p in about_paragraphs %}
 <p>{% if p.lead %}{{ p.lead | escape }}{% endif %}{{ p.text | escape }}</p>
@@ -47,8 +58,7 @@
 <dd>{{ item.description | escape }}</dd>
 {%- endfor %}
 </dl>
-{%- comment -%} Points at Today's list until the era all-work pages exist (PR 8). {%- endcomment %}
-<p><a href="{{ '/' | relative_url }}#work">{{ s.labels.show_all_work | replace: "%n", more_hidden }}</a></p>
+<p><a href="{{ work_href }}">{{ s.labels.show_all_work | replace: "%n", more_hidden }}</a></p>
 
 <h2><a name="resume">{{ nav[2].name }}</a></h2>
 <ul>
@@ -62,6 +72,8 @@
 <li>{{ item.label }}: {% if item.href %}<a href="{{ item.href }}">{{ item.text }}</a>{% else %}{{ item.text }}{% endif %}</li>
 {%- endfor %}
 </ul>
+
+{%- endif %}
 
 <address>© {{ site.time | date: "%Y" }} {{ s.copyright.holder }}</address>
 {% include time-travel.html current=era.slug %}

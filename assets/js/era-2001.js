@@ -49,10 +49,13 @@
   }
 
   for (var k = 0; k < tabs.length; k++) {
-    tabs[k].onclick = function () {
-      show(this.getAttribute("data-section"));
-      return false;
-    };
+    // On the all-work page there are no sections: the tabs are plain links back to the era's page.
+    if (sections.length) {
+      tabs[k].onclick = function () {
+        show(this.getAttribute("data-section"));
+        return false;
+      };
+    }
     tabs[k].onmouseover = tabs[k].onfocus = function () { hover(this, true); };
     tabs[k].onmouseout = tabs[k].onblur = function () { hover(this, false); };
   }
@@ -95,6 +98,8 @@
       return false;
     };
   }
+
+  if (!sections.length) return;
 
   var start = (location.hash || "").replace("#", "");
   var known = false;

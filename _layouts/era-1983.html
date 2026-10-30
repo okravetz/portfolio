@@ -4,6 +4,7 @@
   JavaScript every section is shown in turn and the menu is hidden. The beige case, the green phosphor
   glow, the scanlines and the blinking cursor are device presentation (assets/css/era-1983.scss).
   All copy comes from _data/; _includes/era-text/ does the ASCII swaps.
+  With page.work (/1983/work/) the screen lists every project instead of the menu and sections.
   The time-travel bar at the end is the modern exception.
 {%- endcomment -%}
 {%- assign era = site.data.eras | where: "slug", page.era | first -%}
@@ -17,6 +18,7 @@
 {%- assign dashes80 = "--------------------------------------------------------------------------------" -%}
 {%- assign wide = dashes80 | slice: 0, 78 -%}
 {%- assign narrow = dashes80 | slice: 0, 34 -%}
+{%- assign work_url = s.url | append: era.url | append: "work/" -%}
 <!DOCTYPE html>
 <html lang="en-US">
   <head>
@@ -40,6 +42,13 @@
 {% include era-text/boxline.html text=tagline_job width=36 %}
 {% include era-text/boxline.html text=tagline_pronouns width=36 %}
 +{{ narrow }}+</pre>
+{%- if page.work %}
+<div class="sections">
+<section id="sec-work"><pre>{% include era-text/part.html part="text" text=s.labels.more_work upper=true %}
+{% include era-text/part.html part="underline" text=s.labels.more_work %}
+{% include era-text/part.html part="more" all=true indent="   " %}</pre></section>
+</div>
+{%- else %}
 <div class="bbs-menu">
 <nav aria-label="{{ s.labels.main_navigation }}">
 <pre>{{ ui.menu }}</pre>
@@ -66,7 +75,7 @@
 
 {% include era-text/part.html part="text" text=s.labels.more_work upper=true %}
 {% include era-text/part.html part="underline" text=s.labels.more_work %}
-{% include era-text/part.html part="more" indent="   " %}</pre></section>
+{% include era-text/part.html part="more" indent="   " work_url=work_url %}</pre></section>
 {%- when "resume" %}
 {%- capture title %}{{ item.name }}{% endcapture %}
 <section id="sec-resume"><pre>{% include era-text/part.html part="text" text=title upper=true %}
@@ -79,6 +88,7 @@
 {%- endcase %}
 {%- endfor %}
 </div>
+{%- endif %}
 <pre class="copy">{% include era-text/part.html part="copyright" %}</pre>
 </div>
 <div class="scan" aria-hidden="true"></div>
@@ -87,6 +97,8 @@
 </main>
 {% include time-travel.html current=era.slug %}
 <script src="{{ '/assets/js/time-travel.js' | relative_url }}?v={{ site.time | date: '%s' }}" defer></script>
+{%- unless page.work %}
 <script src="{{ '/assets/js/bbs.js' | relative_url }}?v={{ site.time | date: '%s' }}"></script>
+{%- endunless %}
   </body>
 </html>

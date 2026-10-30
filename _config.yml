@@ -25,3 +25,5 @@ exclude:
   - 1991
   - 1992
   - archive
+  - design
+  - scripts

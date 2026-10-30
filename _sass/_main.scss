@@ -1,60 +1,55 @@
-@import url('https://fonts.googleapis.com/css2?family=Fira+Sans:wght@300;400;700&family=Yeseva+One&display=swap');
+$transition-time: 0.2s;
+$breakpoint-sm: 600px; // matches --breakpoint-sm in the tokens
 
-$display: "Yeseva One", Georgia, serif;
-$body: "Fira Sans", Verdana, sans-serif;
-$bold: 700;
-$regular: 400;
-$light: 300;
-$default-color: #333;
-$link-color: #6636ce;
-$link-color-active: #3d1f7f;
-$base-size: 16px;
-$display-line-height: 1.15;
-$body-line-height: 1.45;
-$background-color: rgb(242, 242, 245);
-$transition-time: 0.3s;
-// https://codepen.io/sosuke/pen/Pjoqqp
-$filter-hover: invert(21%) sepia(77%) saturate(3368%) hue-rotate(253deg)
-  brightness(84%) contrast(91%);
-$filter-base: invert(20%) sepia(0%) saturate(1482%) hue-rotate(160deg)
-  brightness(91%) contrast(95%);
-$breakpoint-large: 1440px;
-$breakpoint-medium: 768px;
-$breakpoint-small: 425px;
-
-@mixin center-align {
+// The "Show all work" / "Read more" row: label on the left, chevron on the right, hairline below.
+@mixin more-row {
   display: flex;
-  flex-direction: column;
   align-items: center;
+  justify-content: space-between;
+  min-height: 56px;
+  border-bottom: 1px solid var(--line);
+  font-size: 15px;
+  font-weight: 500;
+  list-style: none;
+  cursor: pointer;
+
+  &:hover {
+    color: var(--hover);
+  }
 }
 
 html {
-  font-size: $base-size;
+  font-size: 16px;
   scroll-behavior: smooth;
 }
 
-body {
-  background-color: $background-color;
-  font: {
-    family: $body;
-    weight: $regular;
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
   }
-  line-height: $body-line-height;
-  color: $default-color;
-  @include center-align;
-  margin: 0 auto;
-  width: 85.5555556%;
-  max-width: 77em;
+
+  *,
+  *::before,
+  *::after {
+    transition: none !important;
+  }
+}
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--ink);
+  font-family: var(--font-sans);
+  font-size: var(--body-size);
+  line-height: var(--body-line);
 }
 
 p {
-  font-size: 1em;
-  margin-bottom: 1.25em;
-  margin-top: 0;
-  
-  strong {
-    font-weight: $bold;
-  }
+  margin: 0 0 1.25em;
+}
+
+strong {
+  font-weight: 700;
 }
 
 h1,
@@ -62,254 +57,616 @@ h2,
 h3,
 h4,
 h5 {
-  margin: 2.75rem 0 1rem;
-  font-family: $display;
-  font-weight: $regular;
-  line-height: $display-line-height;
+  margin: 0;
+  font-family: var(--font-display);
+  font-weight: 400;
+  line-height: 1.1;
 }
 
-h1 {
-  font-size: 3.052em;
-  text-align: center;
+a {
+  color: var(--ink);
+  text-decoration: underline;
+  text-underline-offset: 0.2em;
+
+  &:hover {
+    color: var(--hover);
+  }
 }
 
-h2 {
-  font-size: 2.441em;
+:focus-visible {
+  outline: 2px solid var(--hover);
+  outline-offset: 2px;
 }
 
-h3 {
-  font-size: 1.953em;
-  margin: 1rem auto;
-}
-
-h4 {
-  font-size: 1.563em;
-}
-
-h5 {
-  font-size: 1.25em;
+// <main> takes focus from the skip link but isn't a control, so it gets no ring.
+main:focus {
+  outline: none;
 }
 
 small,
 .text_small {
-  font-size: 0.8em;
-}
-
-a {
-  &:link,
-  &:visited {
-    color: $default-color;
-    text-decoration: none;
-  }
-
-  &:hover,
-  &:focus {
-    color: $link-color;
-    text-decoration: underline;
-  }
-}
-
-a:active {
-  color: $link-color-active;
-  text-decoration: underline;
-}
-
-header {
-  margin: 2.5rem 0;
-  @include center-align;
-
-  nav {
-    ul {
-      list-style: none;
-      padding-left: 0px;
-
-      li {
-        float: left;
-        padding: 1.5rem;
-      }
-    }
-  }
-}
-
-main {
-  width: 100%;
+  font-size: var(--small-size);
 }
 
 .skip {
   position: absolute;
   left: -200px;
+  padding: var(--space-1) var(--space-3);
+  background: var(--bg);
 
   &:focus {
     left: 0.5em;
+    z-index: 1;
   }
 }
 
 .hidden {
-  /*position: absolute;
-  left: -10000px;
-  top: auto; */
   width: 1px;
   height: 1px;
   overflow: hidden;
 }
 
-#work,
-#about,
-#resume,
-#contact,
-#clients {
-  margin: 1rem auto 1rem auto;
-  padding-top: 1.5rem;
-  text-align: center;
+.container {
+  max-width: var(--container-max);
+  margin: 0 auto;
 }
 
-.col2 {
-  columns: 2;
-  column: {
-    width: 26rem;
-    gap: 2rem;
-  }
-  margin: 2.5rem 0;
-  p {
-    font-size: 1.5em;  
-    font-weight: $light;
-  }
+.eyebrow {
+  margin: 0 0 var(--space-3);
+  font-family: var(--font-sans);
+  font-size: var(--eyebrow-size);
+  line-height: var(--eyebrow-line);
+  font-weight: var(--eyebrow-weight);
+  letter-spacing: var(--eyebrow-tracking);
+  text-transform: uppercase;
+  color: var(--ink);
 }
 
-#resume-link {
-  text-align: center;
-  margin-bottom: 2rem;
+// The dot grid behind the header, fading out downward; the footer's fades out upward.
+.dots,
+.dots-up {
+  background-size: 100% 100%, 28px 28px;
 }
 
-.resume-image {
-  display: block;
-  width: 100%;
-  max-width: 77rem;
+.dots {
+  background-image: linear-gradient(to bottom, transparent 35%, var(--bg) 100%),
+    radial-gradient(circle, var(--dot) 1.2px, transparent 1.3px);
 }
 
-.overlay-container {
-  position: relative;
-  width: 100%;
-
-  .overlay {
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    height: 100%;
-    width: 100%;
-    opacity: 0;
-    transition: $transition-time ease;
-    background-color: $link-color;
-  }
-
-  &:hover .overlay {
-    opacity: 0.8;
-  }
+.dots-up {
+  background-image: linear-gradient(to top, transparent 35%, var(--bg) 100%),
+    radial-gradient(circle, var(--dot) 1.2px, transparent 1.3px);
 }
 
-.overlay-text {
-  color: $background-color;
-  font-size: 2em;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  -ms-transform: translate(-50%, -50%);
-  text-align: center;
-}
+// Header
 
-ul.contact {
-  list-style: none;
-  padding-left: 0px;
-  margin: 2.5rem auto;
+.site-header {
   display: flex;
-  flex: {
-    direction: row;
-    wrap: wrap;
-  }
-  justify-content: space-between;
-  width: 50%;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: var(--space-6) var(--gutter) 32px;
 
-  li {
-    float: left;
-    padding: 1rem;
-    text-align: center;
+  #headshot {
+    width: 128px;
+    height: 128px;
+    border-radius: var(--radius-round);
+    object-fit: cover;
+    margin-bottom: 20px;
+  }
+
+  .site-name {
+    text-decoration: none;
+  }
+
+  h1 {
+    margin: 0 0 6px;
+    font-size: var(--heading-name-size);
+    line-height: var(--heading-name-line);
+  }
+
+  .eyebrow {
+    margin: 0;
+  }
+
+  nav ul {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    gap: var(--space-1);
+    margin: var(--space-3) 0 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  nav a {
+    display: block;
+    padding: var(--space-2) var(--space-3) 15px;
+    font-size: var(--nav-size);
+    line-height: var(--nav-line);
+    text-decoration: none;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+}
+
+.theme-toggle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  margin-left: 4px;
+  padding: 0;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-pill);
+  background: transparent;
+  color: var(--ink);
+  cursor: pointer;
+
+  &:hover {
+    color: var(--hover);
+  }
+
+  // Show the icon for the theme you'd switch to.
+  .icon-moon {
+    display: block;
+  }
+
+  .icon-sun {
+    display: none;
+  }
+
+  &[aria-pressed="true"] {
+    .icon-moon {
+      display: none;
+    }
+
+    .icon-sun {
+      display: block;
+    }
+  }
+}
+
+// Sections
+
+.section {
+  padding: var(--space-12) var(--gutter);
+}
+
+.section-title {
+  margin: 0 0 var(--space-8);
+  font-size: var(--heading-1-size);
+  line-height: var(--heading-1-line);
+}
+
+// About + clients
+
+.section--about {
+  padding: var(--space-10) var(--gutter) 0;
+
+  .section-title {
+    max-width: 520px;
+    margin-bottom: var(--space-5);
+  }
+}
+
+.about {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-9);
+  align-items: center;
+
+  p {
+    max-width: 560px;
+    margin: 0 0 18px;
+    font-size: var(--body-lg-size);
+    line-height: var(--body-lg-line);
+  }
+
+  p:last-child {
+    margin-bottom: 0;
+  }
+}
+
+.about__text {
+  flex: 1 1 420px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+// Phones only, and only once the script has run (see assets/js/about-toggle.js).
+.about-toggle {
+  @include more-row;
+  display: none;
+  box-sizing: border-box;
+  width: 100%;
+  max-width: 560px;
+  margin: 0 0 18px;
+  padding: 0;
+  border-width: 0 0 1px;
+  border-style: solid;
+  border-color: var(--line);
+  background: none;
+  color: var(--ink);
+  font-family: inherit;
+  text-align: left;
+
+  .chev {
+    transition: transform $transition-time;
+  }
+
+  &[aria-expanded="true"] .chev {
+    transform: rotate(180deg);
+  }
+
+  &[aria-expanded="true"] .lbl-open,
+  &[aria-expanded="false"] .lbl-close {
+    display: none;
+  }
+}
+
+.clients-panel {
+  flex: 1 1 420px;
+  min-width: 0;
+  box-sizing: border-box;
+  padding: var(--space-6);
+  border-radius: var(--radius-lg);
+  background: var(--pastel-lavender);
+  color: var(--panel-ink);
+
+  .eyebrow {
+    margin-bottom: var(--space-5);
+    color: var(--panel-ink);
+  }
+}
+
+.logos {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(75px, 1fr));
+  justify-items: center;
+  gap: var(--space-3) 20px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+// One-color logos: the image's shape is the mask, the panel ink is the color.
+// Each is fitted and centered in a 75 x 75px box.
+.logo {
+  display: block;
+  width: 75px;
+  height: 75px;
+  background-color: var(--panel-ink);
+  -webkit-mask: var(--logo) center / contain no-repeat;
+  mask: var(--logo) center / contain no-repeat;
+}
+
+// Case cards
+
+.cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: var(--space-6);
+}
+
+.card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+
+  .eyebrow,
+  h3,
+  p {
+    margin: 0;
+  }
+
+  h3 {
+    font-size: var(--heading-3-size);
+    line-height: var(--heading-3-line);
 
     a {
-      img {
-        filter: $filter-base;
-        height: 2rem;
-        width: 2rem;
+      text-decoration: none;
+
+      // The whole card is the link.
+      &::after {
+        content: "";
+        position: absolute;
+        inset: 0;
       }
 
-      img:hover {
-        transition: $transition-time ease;
-        filter: $filter-hover;
+      &:hover {
+        text-decoration: underline;
       }
     }
   }
-}
 
-#email {
-  font-size: 1.75rem;
-  text-align: center;
-}
+  &:focus-within {
+    outline: 2px solid var(--hover);
+    outline-offset: 4px;
+    border-radius: var(--radius-lg);
+  }
 
-footer {
-  @include center-align;
-  width: 100%;
-
-  .copyright {
-    text-align: center;
-    margin: 1rem 0;
+  a:focus-visible {
+    outline: none;
   }
 }
 
-.cs-container {
+.card__description {
+  color: var(--ink);
+}
+
+.card__block {
   display: flex;
-  flex: {
-    direction: row;
-    wrap: wrap;
+  align-items: flex-end;
+  box-sizing: border-box;
+  aspect-ratio: 4 / 3;
+  padding: var(--space-4);
+  border-radius: var(--radius-lg);
+  color: var(--on-accent);
+
+  img {
+    flex: 1;
+    min-width: 0;
+    height: 78%;
+    object-fit: cover;
+    object-position: top left;
+    background: var(--card);
+    border-radius: var(--radius-md);
+    box-shadow: var(--shadow-on-accent);
   }
+}
+
+.card__block--navy {
+  background: var(--accent-navy);
+}
+
+.card__block--violet {
+  background: var(--accent-violet);
+}
+
+.card__block--orange {
+  background: var(--accent-orange);
+}
+
+// More work
+
+.more-work {
+  margin-top: 72px;
+
+  h3 {
+    margin: var(--space-5) 0 var(--space-1);
+    font-family: var(--font-serif);
+    font-size: var(--item-title-size);
+    line-height: var(--item-title-line);
+  }
+}
+
+.dot-rule {
+  width: 100%;
+  height: 8px;
+  background-image: radial-gradient(circle, var(--dot) 2px, transparent 2.3px);
+  background-size: 16px 8px;
+  background-repeat: repeat-x;
+  background-position: left center;
+}
+
+.work-list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+
+  li {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 4px var(--space-4);
+    padding: 18px 0;
+    border-bottom: 1px solid var(--line);
+  }
+}
+
+.work-list__client {
+  flex: 0 0 220px;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.work-list__name {
+  font-weight: 500;
+}
+
+.work-list__project {
+  font-size: var(--small-size);
+  color: var(--ink);
+}
+
+.work-list__years {
+  flex: 0 0 110px;
+  color: var(--ink);
+}
+
+.work-list__text {
+  flex: 1 1 320px;
+  color: var(--ink);
+}
+
+.more {
+  summary {
+    @include more-row;
+
+    &::-webkit-details-marker {
+      display: none;
+    }
+  }
+
+  .chev {
+    transition: transform $transition-time;
+  }
+
+  &[open] .chev {
+    transform: rotate(180deg);
+  }
+
+  &[open] .lbl-open,
+  &:not([open]) .lbl-close {
+    display: none;
+  }
+}
+
+// Resume band
+
+.section--band-navy {
+  padding: var(--space-10) var(--gutter);
+  background: var(--accent-navy);
+  color: var(--on-accent);
+
+  a:focus-visible {
+    outline-color: var(--on-accent);
+  }
+
+  .section-title {
+    margin-bottom: var(--space-5);
+  }
+}
+
+.resume {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-7);
+  align-items: center;
   justify-content: space-between;
-  align-items: flex-start;
-  margin: 2.5rem 0;
+}
 
-  .cs-card {
-    flex: 0 1 calc(50% - 1em);
-    padding-bottom: 2rem;
+.resume__text {
+  flex: 1 1 420px;
+}
 
-    .cs-logo {
-      width: 100%;
-      display: block;
-      border-radius: 1rem;
-      -webkit-box-shadow: 0 0 24px 4px rgba(0,0,0,.12);
-      box-shadow: 0 0 24px 4px rgba(0,0,0,.12);
-    }
+.resume__preview {
+  flex: 0 1 340px;
+  width: 340px;
+  max-width: 100%;
+  height: auto;
+  aspect-ratio: 8.5 / 11;
+  background: var(--card);
+  border-radius: 8px;
+  box-shadow: var(--shadow-document);
+}
 
-    p {
-      margin-bottom: 0.25em;
-    }
+.buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+}
 
-    .cs-description {
-      font-size: 1.25em;
-    }
+.button {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  box-sizing: border-box;
+  min-height: 48px;
+  padding: 0 var(--space-4);
+  border-radius: var(--radius-pill);
+  font-size: 16px;
+  font-weight: 500;
+  text-decoration: none;
 
-    .cs-details {
-      font-weight: $light;
+  &:hover {
+    text-decoration: underline;
+  }
+}
 
-      .cs-role {
-        padding-left: 3rem;
-      }
+.button--solid,
+.button--solid:hover {
+  background: var(--on-accent);
+  color: var(--accent-navy);
+}
+
+.button--outline,
+.button--outline:hover {
+  border: 1.5px solid var(--on-accent);
+  color: var(--on-accent);
+}
+
+// Contact
+
+.section--contact {
+  padding-bottom: var(--space-7);
+}
+
+.contact {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  font-family: var(--font-serif);
+  font-size: clamp(22px, 3vw, 34px);
+  line-height: var(--contact-line);
+
+  a {
+    text-decoration: none;
+
+    &:hover {
+      text-decoration: underline;
     }
   }
+}
+
+// Muted, not soft: soft on the dark background is only Lc 34 (APCA); muted is Lc 76 in dark and
+// Lc 79 in light, so the label still reads as lighter than the value. Large type only (22px+);
+// all smaller text is ink.
+.contact__label {
+  color: var(--muted);
+}
+
+// Footer
+
+.site-footer {
+  padding: 72px var(--gutter) 32px;
+  font-size: var(--small-size);
+  line-height: var(--small-line);
+  // Ink, not muted: the dots sit behind this text and muted only reaches 3.4:1 on a dot.
+  color: var(--ink);
+
+  .section--contact {
+    padding-left: 0;
+    padding-right: 0;
+    color: var(--ink);
+  }
+
+  .copyright,
+  .footer-links {
+    margin: 0 0 var(--space-1);
+  }
+
+  .footer-links a {
+    display: inline-block;
+    margin-right: var(--space-3);
+    padding: var(--space-2) 0;
+    color: var(--ink);
+  }
+}
+
+// Pages other than the homepage (case studies, sitemap, accessibility statement)
+
+main.page {
+  max-width: var(--container-max);
+  margin: 0 auto;
+  padding: var(--space-4) var(--gutter) var(--space-9);
 }
 
 .cs-title-container {
   h2 {
     margin-top: 0;
+    font-size: var(--heading-1-size);
+    line-height: var(--heading-1-line);
   }
 
   p {
@@ -317,11 +674,11 @@ footer {
   }
 
   .cs-description {
-    font-size: 1.25em;
+    font-size: var(--body-lg-size);
   }
 
   .cs-details {
-    font-weight: $light;
+    color: var(--ink);
 
     .cs-role {
       padding-left: 3rem;
@@ -331,12 +688,11 @@ footer {
 
 .casestudy-container {
   display: flex;
-  flex: {
-    direction: row;
-    wrap: wrap;
-  }
+  flex-direction: row;
+  flex-wrap: wrap;
   justify-content: space-between;
   align-items: flex-start;
+  margin-top: var(--space-6);
 
   section,
   div {
@@ -349,13 +705,13 @@ footer {
 
       img {
         width: 100%;
-        border-radius: 1rem;
-        -webkit-box-shadow: 0 0 24px 4px rgba(0,0,0,.12);
-        box-shadow: 0 0 24px 4px rgba(0,0,0,.12);
+        height: auto;
+        border-radius: var(--radius-md);
+        border: 1px solid var(--line);
       }
 
       figcaption {
-        font-weight: $light;
+        color: var(--ink);
       }
     }
   }
@@ -365,15 +721,72 @@ footer {
   padding-right: 3rem;
 }
 
-@media screen and (max-width: $breakpoint-small) {
-  header nav ul li {
-    padding: 1rem;
-  }
-  .cs-container {
-    flex-direction: column;
+.sitemap-nested {
+  list-style: none;
+}
 
-    .cs-card {
-      flex: 0 1 100%;
+@media screen and (max-width: $breakpoint-sm) {
+  .site-header nav {
+    ul {
+      gap: 0;
+    }
+
+    a {
+      padding: var(--space-2) 9px;
+    }
+  }
+
+  .section {
+    padding-top: var(--space-8);
+    padding-bottom: var(--space-8);
+  }
+
+  .is-collapsible {
+    .about-toggle {
+      display: flex;
+    }
+
+    .about__more {
+      display: none;
+    }
+
+    &.is-open .about__more {
+      display: block;
+    }
+  }
+
+  .section--band-navy {
+    padding-top: var(--space-8);
+    padding-bottom: var(--space-8);
+  }
+
+  .section-title {
+    margin-bottom: var(--space-4);
+    font-size: 36px;
+  }
+
+  .cards {
+    gap: var(--space-6);
+  }
+
+  // The clients panel runs to the right edge and its logos scroll sideways in one row.
+  .clients-panel {
+    padding: var(--space-4) 0 var(--space-4) var(--space-4);
+  }
+
+  .logos-scroll {
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+  }
+
+  .logos {
+    display: flex;
+    gap: var(--space-2);
+    padding-right: var(--gutter);
+
+    li {
+      flex: 0 0 75px;
+      scroll-snap-align: start;
     }
   }
 
@@ -394,13 +807,5 @@ footer {
     width: auto;
     height: auto;
     overflow: visible;
-  }
-
-  ul.contact {
-    width: 100%;
-
-    li {
-      flex: 0 1 calc(50% - 2rem);
-    }
   }
 }

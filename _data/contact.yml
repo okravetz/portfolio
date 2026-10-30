@@ -1,2 +1,8 @@
-- name: LinkedIn
-- name: GitHub
+- label: Email
+  text: email@orenkravetz.com
+  href: mailto:email@orenkravetz.com
+- label: LinkedIn
+  text: linkedin.com/in/okravetz
+  href: https://linkedin.com/in/okravetz
+- label: Location
+  text: Fair Lawn, NJ

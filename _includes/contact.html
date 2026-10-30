@@ -1,16 +1,11 @@
-<p id="email">oren@orenkravetz.com</p>
-<ul class="contact">
-    <li><a href="mailto:oren@orenkravetz.com">
-      <img src="https://cdn.jsdelivr.net/npm/simple-icons@latest/icons/microsoftoutlook.svg" alt="" />
-      <p>Email</p>
-    </a>
-  </li>
-  {%- for item in site.data.contact -%}
-  <li>
-    <a href="https://www.{{ item.name | downcase }}.com/{%- if item.name == "LinkedIn" -%}in/{%- endif -%}okravetz" title="opens in a new window" aria-label="Oren Kravetz's {{ item.name }} profile" target="_blank" rel="noopener">
-      <img src="https://cdn.jsdelivr.net/npm/simple-icons@latest/icons/{{ item.name | downcase }}.svg" alt="" />
-      <p>{{ item.name }}</p>
-    </a>
-  </li>
-  {%- endfor -%}
-</ul>
+<section id="contact" class="section section--contact" aria-labelledby="contact-h">
+  <div class="container">
+    <p class="eyebrow">Contact</p>
+    <h2 id="contact-h" class="section-title">Get in touch</h2>
+    <ul class="contact">
+      {%- for item in site.data.contact -%}
+      <li><span class="contact__label">{{ item.label }}:</span> {% if item.href %}<a href="{{ item.href }}">{{ item.text }}</a>{% else %}{{ item.text }}{% endif %}</li>
+      {%- endfor -%}
+    </ul>
+  </div>
+</section>

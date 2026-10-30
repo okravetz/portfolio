@@ -31,7 +31,11 @@
     <meta name="twitter:image" content="{{ site.baseurl }}{%- link assets/images/headshot.jpg -%}" />
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="shortcut icon" href="{{ "/assets/images/favicon.ico" | relative_url }}" type="image/x-icon" />
-    <link rel="stylesheet" href="{{ "/assets/css/styles.css" | relative_url }}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,700&family=DM+Serif+Display&family=DM+Serif+Text&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ "/assets/css/styles.css" | relative_url }}?v={{ site.time | date: "%s" }}">
+    {%- include theme-init.html -%}
 
     <!-- the below three lines are a fix to get HTML5 semantic elements working in old versions of Internet Explorer-->
     <!--[if lt IE 9]>
@@ -49,8 +53,124 @@
     </script>
   </head>
   <body>
-    <header>{%- include navigation.html -%}</header>
-    <main>
+    <header class="site-header dots">{%- include navigation.html -%}</header>
+    {%- if page.overview -%}
+    {%- assign next_number = page.number | plus: 1 -%}
+    {%- assign n = 0 -%}
+    {%- for item in site.data.casestudies -%}
+      {%- if item.publish and item.link -%}
+        {%- assign n = n | plus: 1 -%}
+        {%- if n == next_number -%}{%- assign next_item = item -%}{%- endif -%}
+      {%- endif -%}
+    {%- endfor -%}
+    <main id="main" tabindex="-1" class="casestudy casestudy--{{ page.accent }}">
+      <section class="cs-hero" aria-labelledby="cs-title">
+        <div class="container cs-hero__inner">
+          <div class="cs-hero__title">
+            <p class="eyebrow">Case study {{ page.number }}</p>
+            <h1 id="cs-title">{{ page.title }}</h1>
+          </div>
+          <nav aria-label="Case studies">
+            <ol class="cs-hero__list">
+              {%- assign n = 0 -%}
+              {%- for item in site.data.casestudies -%}
+                {%- if item.publish and item.link -%}
+                  {%- assign n = n | plus: 1 -%}
+                  <li>
+                    {%- if n == page.number -%}
+                    <a href="{{ site.baseurl }}/casestudies/{{ item.link }}" aria-current="page" class="is-current"><span aria-hidden="true">→</span>{{ item.client }}</a>
+                    {%- else -%}
+                    <a href="{{ site.baseurl }}/casestudies/{{ item.link }}">{{ item.client }}</a>
+                    {%- endif -%}
+                  </li>
+                {%- endif -%}
+              {%- endfor -%}
+            </ol>
+          </nav>
+        </div>
+      </section>
+
+      <section class="section cs-overview" aria-labelledby="overview-h">
+        <div class="container cs-two">
+          <div class="cs-two__side">
+            <p class="eyebrow">Overview</p>
+            <h2 id="overview-h" class="cs-h2">What I did</h2>
+            <dl class="cs-facts">
+              <div><dt>Client</dt><dd>{{ page.client }}</dd></div>
+              <div><dt>Years</dt><dd>{{ page.years }}</dd></div>
+              <div><dt>My role</dt><dd>{{ page.role }}</dd></div>
+              <div><dt>Team</dt><dd>{{ page.team }}</dd></div>
+            </dl>
+          </div>
+          <ol class="cs-items">
+            {%- for item in page.overview -%}
+            <li><span class="cs-items__num" aria-hidden="true">{{ forloop.index }}</span><h3>{{ item.title }}</h3><p>{{ item.text }}</p></li>
+            {%- endfor -%}
+          </ol>
+        </div>
+      </section>
+
+      <section class="section cs-behind" aria-labelledby="behind-h">
+        <div class="container cs-two">
+          <div class="cs-two__side">
+            <p class="eyebrow">Case study {{ page.number }}</p>
+            <h2 id="behind-h" class="cs-h2">Behind the work</h2>
+            <figure class="cs-side-figure">
+              <img src="{{ page.cs_img_path }}{{ page.behind.image.file }}" alt="{{ page.behind.image.alt }}" width="{{ page.behind.image.width }}" height="{{ page.behind.image.height }}" loading="lazy" />
+              <figcaption>{{ page.behind.image.caption }}</figcaption>
+            </figure>
+          </div>
+          <ol class="cs-items">
+            {%- for item in page.behind.items -%}
+            <li><span class="cs-items__num" aria-hidden="true">{{ forloop.index }}</span><h3>{{ item.title }}</h3><p>{{ item.text }}</p></li>
+            {%- endfor -%}
+          </ol>
+        </div>
+      </section>
+
+      <section class="section cs-work" aria-label="The work">
+        <div class="container cs-work__inner">
+          {%- for figure in page.figures -%}
+          <figure class="cs-figure">
+            <div class="dot-rule dot-rule--accent" aria-hidden="true"></div>
+            <figcaption class="cs-figure__head">
+              <h2>{{ figure.title }}</h2>
+              {%- if figure.text -%}<p>{{ figure.text }}</p>{%- endif -%}
+            </figcaption>
+            <div class="cs-shots{% if figure.layout == "device" %} cs-shots--device{% elsif figure.images.size > 1 %} cs-shots--multi{% endif %}">
+              {%- for img in figure.images -%}
+              <div class="cs-shot{% if img.phone %} cs-shot--phone{% endif %}">
+                {%- if img.scroll -%}
+                <div class="cs-shot__frame" role="region" aria-label="{{ img.label }}, scrollable" tabindex="0">
+                  <img src="{{ page.cs_img_path }}{{ img.file }}" alt="{{ img.alt }}" width="{{ img.width }}" height="{{ img.height }}" loading="lazy" />
+                </div>
+                {%- if img.caption -%}<p class="cs-shot__caption">{{ img.caption }}</p>{%- endif -%}
+                {%- else -%}
+                <img class="cs-shot__plain" src="{{ page.cs_img_path }}{{ img.file }}" alt="{{ img.alt }}" width="{{ img.width }}" height="{{ img.height }}" loading="lazy" />
+                {%- if img.caption -%}<p class="cs-shot__caption">{{ img.caption }}</p>{%- endif -%}
+                {%- endif -%}
+              </div>
+              {%- endfor -%}
+            </div>
+          </figure>
+          {%- endfor -%}
+        </div>
+      </section>
+
+      <nav class="cs-next" aria-label="More case studies">
+        <div class="container cs-next__inner">
+          <a class="cs-next__all" href="{{ site.baseurl }}/#work">← All work</a>
+          {%- if next_item -%}
+          <a class="cs-next__link" href="{{ site.baseurl }}/casestudies/{{ next_item.link }}">
+            <span class="eyebrow">Next · Case study {{ page.number | plus: 1 }}</span>
+            <span class="cs-next__title">{{ next_item.name }} →</span>
+          </a>
+          {%- endif -%}
+        </div>
+      </nav>
+    </main>
+    {%- else -%}
+    <main id="main" tabindex="-1" class="page">
       <article id="cont" aria-labelledby="case-studty-title">
         <div class="cs-title-container">
           <h2 id="case-study-title">{{ page.title }}</h2>
@@ -74,7 +194,10 @@
           </section>
         </div>
       </article>
-    </main >
-    <footer>{%- include footer.html -%}</footer>
+    </main>
+    {%- endif -%}
+    <footer class="site-footer dots-up">{%- include footer.html -%}</footer>
+    <script src="{{ "/assets/js/theme.js" | relative_url }}?v={{ site.time | date: "%s" }}" defer></script>
+    <script src="{{ "/assets/js/year.js" | relative_url }}?v={{ site.time | date: "%s" }}" defer></script>
   </body>
 </html>

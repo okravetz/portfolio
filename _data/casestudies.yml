@@ -1,9 +1,35 @@
+# Homepage cards. The original five studies below are hidden (publish: false) but their pages still exist.
+# `link` is the page under casestudies/; a card without a link isn't clickable.
+- name: Value Builder
+  client: American Express
+  accent: navy
+  link: amex-value-builder.html
+  card_image: amex-card.webp
+  image_alt: "Value Builder: the Maximizing Cash Flow screen"
+  description: A sales tool that turned a manual, inconsistent value conversation into a repeatable, compliant one.
+  publish: true
+- name: IMAX.com relaunch
+  client: IMAX
+  accent: violet
+  link: imax-relaunch.html
+  card_image: imax-card.webp
+  image_alt: IMAX.com homepage hero on desktop
+  description: A redesign of IMAX.com that balances immersive, cinematic storytelling with a simplified booking flow.
+  publish: true
+- name: Travel Advisor Portal
+  client: The Leading Hotels of the World
+  accent: orange
+  link: lhw-travel-advisor-portal.html
+  card_image: lhw-card.webp
+  image_alt: Travel Advisor Portal hotel detail page
+  description: A new product for travel advisors, launched in 2025 at LHW's annual member-hotelier conference.
+  publish: true
 - name: Responsive redesign of business unit
   link: 01.html
   description: Breaking free of an overly restrictive design system
   year: 2019
   role: Team Lead
-  publish: true
+  publish: false
   images:
     - title: Landing Page
       link: 01-01-landing-page.png
@@ -18,7 +44,7 @@
   description: Balancing MVP vs. Phase 2 releases
   year: 2019
   role: Team Lead
-  publish: true
+  publish: false
   images:
     - title: Featured Category Page
       link: 02-03-category-page-2.png
@@ -31,7 +57,7 @@
   description: Establishing the client's trust
   year: 2019–2019
   role: Team Lead
-  publish: true
+  publish: false
   images:
     - title: Our Vision Page (Wireframe)
       link: 03-03-our-vision.png
@@ -44,7 +70,7 @@
   description: Learning valuable insights from contextual inquiries
   year: 2018
   role: Senior Designer
-  publish: true
+  publish: false
   images:
     - title: Design System
       link: 04-02-design-system.png
@@ -59,7 +85,7 @@
   description: Leveraging testing to improve designs
   year: 2016–2018
   role: Senior Designer
-  publish: true
+  publish: false
   images:
     - title: Patient Portal Schedule (v2)
       link: 05-02-patient-portal-v2.png

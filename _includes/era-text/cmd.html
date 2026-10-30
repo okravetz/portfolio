@@ -1,0 +1,7 @@
+{%- comment -%}
+  A 1983 terminal command: "[K] Text" as a link, drawn like the menu's choices. The letter also works from the
+  keyboard (assets/js/bbs.js). include.key, include.href, include.text (made plain ASCII here).
+{%- endcomment -%}
+{%- include era-text/ascii.html text=include.text -%}
+<a class="cmd" href="{{ include.href }}" data-key="{{ include.key }}">[{{ include.key }}] {{ ascii_out | escape }}</a>
+{%- comment -%}{%- endcomment -%}

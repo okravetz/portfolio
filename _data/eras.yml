@@ -25,6 +25,19 @@
     type: "@TYPE"
     logout: "@LOGOUT"
     back: BACK
+    # Keys below the paper on the 1969 page (the printout itself has no links). `to`: resume, portfolio,
+    # work (the all-work page), or a contact.yml label. Each key's accessible name is that thing's full label.
+    keys:
+      - legend: RESUME
+        to: resume
+      - legend: PORTFOLIO
+        to: portfolio
+      - legend: ALL WORK
+        to: work
+      - legend: EMAIL
+        to: Email
+      - legend: LINKEDIN
+        to: LinkedIn
 - order: 2
   slug: "1983"
   label: "1983"
@@ -37,6 +50,12 @@
     menu: MAIN MENU
     prompt: COMMAND?
     back: Back
+    # Command letters for the links on the 1983 screen. The menu uses each section's first letter (A W R C),
+    # contact links use their label's first letter (E L), and Back uses B; these fill in the rest.
+    commands:
+      resume: D
+      portfolio: P
+      work: S
 - order: 3
   slug: "1991"
   label: "1991"

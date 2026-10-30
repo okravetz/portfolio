@@ -1,7 +1,8 @@
 {%- comment -%}
   1969: a teletype printout. Plain 7-bit ASCII text in <pre> blocks, all capitals, no links and no markup
-  inside the printout. With page.work (/1969/work/) the same printout lists every project, and a key below the
-  paper (outside the printout, so it can be a link) returns to the 1969 page. The paper, its feed holes and shadow are device presentation (assets/css/era-1969.scss).
+  inside the printout. Below the paper (outside the printout, so they can be links) sit teletype keys: on the
+  home page RESUME, PORTFOLIO, ALL WORK, EMAIL and LINKEDIN (eras.yml ui.keys); on /1969/work/, which lists every
+  project, a BACK key to the home page. The paper, its feed holes and shadow are device presentation (assets/css/era-1969.scss).
   Lines are not hard-wrapped: the <pre> wraps at 72 columns (and at the screen's width on phones).
   All copy comes from _data/; _includes/era-text/ does the ASCII swaps and the capitals.
   The time-travel bar at the end is the modern exception.
@@ -11,7 +12,6 @@
 {%- assign nav = site.data.navigation -%}
 {%- assign keys = "about,work,resume,contact" | split: "," -%}
 {%- assign rule = "------------------------------------------------------------------------" -%}
-{%- assign work_url = site.data.site.url | append: era.url | append: "work/" -%}
 <!DOCTYPE html>
 <html lang="en-US">
   <head>
@@ -45,7 +45,7 @@
 {% include era-text/part.html part="cases" sep=" - " upper=true %}</pre>
 <pre>{% include era-text/part.html part="text" text=site.data.site.labels.more_work upper=true %}
 
-{% include era-text/part.html part="more" work_url=work_url upper=true %}</pre>
+{% include era-text/part.html part="more" upper=true %}</pre>
 {%- when "resume" %}
 <pre>{% include era-text/part.html part="resume" upper=true %}</pre>
 {%- when "contact" %}
@@ -58,11 +58,22 @@
 <pre>{% include era-text/part.html part="copyright" upper=true %}</pre>
 <pre>{{ ui.logout }}</pre>
 </main>
-{%- if page.work %}
 <div class="keys">
+{%- if page.work %}
 <a class="key" href="{{ era.url | relative_url }}"><span>{% include era-text/part.html part="text" text=ui.back upper=true %}</span></a>
-</div>
+{%- else %}
+{%- assign s = site.data.site %}
+{%- for k in ui.keys %}
+{%- case k.to %}
+{%- when "resume" %}{% assign href = s.resume.file | prepend: '/' | relative_url %}{% assign name = s.resume.button %}
+{%- when "portfolio" %}{% assign href = s.portfolio.file | prepend: '/' | relative_url %}{% assign name = s.portfolio.button %}
+{%- when "work" %}{% assign href = era.url | append: "work/" | relative_url %}{% assign hidden = site.data.morework.size | minus: 3 %}{% assign name = s.labels.show_all_work | replace: "%n", hidden %}
+{%- else %}{% assign row = site.data.contact | where: "label", k.to | first %}{% assign href = row.href %}{% capture name %}{{ row.label }}: {{ row.text }}{% endcapture %}
+{%- endcase %}
+<a class="key" href="{{ href }}" aria-label="{{ name | escape }}"><span>{{ k.legend }}</span></a>
+{%- endfor %}
 {%- endif %}
+</div>
 {% include time-travel.html current=era.slug %}
 <script src="{{ '/assets/js/time-travel.js' | relative_url }}?v={{ site.time | date: '%s' }}" defer></script>
   </body>

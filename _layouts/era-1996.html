@@ -75,7 +75,8 @@
 <p>{% if p.lead %}<b>{{ p.lead | escape }}</b>{% endif %}{{ p.text | escape }}</p>
 {%- endfor %}
 
-<marquee bgcolor="#000080" scrollamount="3" width="100%" tabindex="0" onmouseover="this.stop()" onmouseout="this.start()" onfocus="this.stop()" onblur="this.start()"><font face="Arial, Helvetica" size="3" color="#ffff00"><b>{{ s.labels.clients }}: {% for c in site.data.clients %}{{ c.name | escape }}{% unless forloop.last %} * {% endunless %}{% endfor %}</b></font></marquee>
+<marquee id="ticker" bgcolor="#000080" scrollamount="3" width="100%"><font face="Arial, Helvetica" size="3" color="#ffff00"><b>{{ s.labels.clients }}: {% for c in site.data.clients %}{{ c.name | escape }}{% unless forloop.last %} * {% endunless %}{% endfor %}</b></font></marquee>
+<p class="m96-pause" align="center" hidden><input id="ticker-toggle" type="button" value="{{ era.ui.marquee_pause }}" data-pause="{{ era.ui.marquee_pause }}" data-play="{{ era.ui.marquee_play }}"></p>
 
 <p align="center"><img class="m96-rule" src="{{ img }}96-rainbow.gif" width="520" height="6" alt=""></p>
 

@@ -53,6 +53,8 @@ main {
   font-family: "VT323", "Courier New", monospace;
   font-size: 24px;
   line-height: 1.2;
+  // A terminal draws one character per cell: no joined letters like "fi".
+  font-variant-ligatures: none;
 }
 
 .scan {
@@ -104,17 +106,21 @@ main {
   display: block;
 }
 
+// Each menu row is one line of text plus a small even gap, so the highlighted choice hugs its text and
+// never touches the row below or the prompt (a row is still 25px or taller, enough to tap).
 .bbs-menu nav div {
-  margin-left: 2ch;
+  margin: 0 0 4px 2ch;
 }
 
 .screen button {
+  display: inline-block;
   font: inherit;
+  line-height: 1.2;
   color: inherit;
   text-shadow: inherit;
   background: transparent;
   border: 0;
-  padding: 0 4px;
+  padding: 2px 4px;
   cursor: pointer;
 }
 
@@ -180,10 +186,6 @@ main {
 
   .screen pre.narrow {
     display: block;
-  }
-
-  .screen button {
-    min-height: 32px;
   }
 
   .sections section,

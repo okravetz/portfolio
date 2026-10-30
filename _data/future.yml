@@ -1,0 +1,40 @@
+# The Future era's scripted questions, in the order the chips appear. No live AI, no free text.
+# `section` names where the answer comes from; the answer itself is pulled from that data at build time
+# and never copied here. `source` is the label shown under the answer ("Source: <source> on orenkravetz.com").
+#   about.yml paragraphs  -> `paragraph` is the 1-based position in `paragraphs`
+#   casestudies.yml       -> entries with publish: true
+#   clients.yml           -> every name, in order (the design board abbreviates some; the build must not)
+#   site.yml              -> resume.file and portfolio.file
+#   contact.yml           -> every row
+- id: do
+  question: What does Oren do?
+  section: about
+  data: about.yml
+  paragraph: 2
+  source: About
+- id: work
+  question: Show me his work
+  section: work
+  data: casestudies.yml
+  source: Work
+- id: clients
+  question: Who has he worked with?
+  section: clients
+  data: clients.yml
+  source: Clients
+- id: outside
+  question: What does he do outside work?
+  section: about
+  data: about.yml
+  paragraph: 3
+  source: About
+- id: resume
+  question: Can I get his résumé?
+  section: resume
+  data: site.yml
+  source: Résumé
+- id: contact
+  question: How do I reach him?
+  section: contact
+  data: contact.yml
+  source: Contact

@@ -23,7 +23,7 @@ from PIL import Image, ImageChops, ImageDraw, ImageFilter, ImageFont
 
 ROOT = Path(__file__).resolve().parent.parent
 DATA = ROOT / '_data'
-GROUPS = ('1996', '2001', '2006', 'badges')
+GROUPS = ('1996', '2001', '2006', 'badges', 'thumbs')
 
 SANS_B = MONO_B = None  # set in main() from --fonts
 
@@ -52,6 +52,7 @@ def read_labels():
         'resume_button': site['resume']['button'],
         'portfolio_button': site['portfolio']['button'],
         'eras': eras,
+        'cases': [c for c in load('casestudies.yml') if c.get('publish')],
     }
 
 
@@ -165,6 +166,16 @@ def make_1996(out, L):
     d.rectangle([0, 0, 99, 23], outline='#808080')
     d.text((7, 2), f"{int(L['eras']['1996']['label']):07d}", font=ImageFont.truetype(MONO_B, 16), fill='#00ff00')
     save_gif(cnt, out, '96-counter.gif')
+
+
+# ======================= 1996 case-study thumbnails =======================
+def make_thumbs(out, L):
+    """120 x 90 JPEGs of the approved Phase 1 card images (already 4:3, cropped from the top), one per
+    published case study, named after its page: 96-case-amex-value-builder.jpg."""
+    for case in L['cases']:
+        src = Image.open(ROOT / 'assets' / 'images' / 'wf' / case['card_image']).convert('RGB')
+        thumb = src.resize((120, 90), Image.LANCZOS)
+        thumb.save(out / f"96-case-{Path(case['link']).stem}.jpg", quality=85)
 
 
 # ======================= badges =======================
@@ -461,8 +472,8 @@ def main():
     global SANS_B, MONO_B
     ap = argparse.ArgumentParser(description=__doc__.split('\n\n')[0])
     ap.add_argument('--only', choices=GROUPS, action='append',
-                    help="draw only this group (repeatable): 1996 (includes the badges), 2001 (includes "
-                         "the mobile tabs), 2006, or badges. Default: all.")
+                    help="draw only this group (repeatable): 1996 (includes the badges and thumbnails), 2001 "
+                         "(includes the mobile tabs), 2006, badges, or thumbs. Default: all.")
     ap.add_argument('--out', type=Path, default=ROOT / 'assets' / 'eras',
                     help='output folder; each era gets its own subfolder (default: assets/eras)')
     ap.add_argument('--fonts', type=Path, default=ROOT / 'scripts' / 'fonts',
@@ -477,9 +488,9 @@ def main():
 
     want = set(args.only or GROUPS)
     if '1996' in want:
-        want.add('badges')  # the 1996 group includes the badges
+        want |= {'badges', 'thumbs'}  # the 1996 group includes the badges and case-study thumbnails
     L = read_labels()
-    steps = [('1996', '1996', make_1996), ('badges', '1996', make_badges),
+    steps = [('1996', '1996', make_1996), ('badges', '1996', make_badges), ('thumbs', '1996', make_thumbs),
              ('2001', '2001', make_2001), ('2006', '2006', make_2006)]
     for group, folder, fn in steps:
         if group in want:

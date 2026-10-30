@@ -26,6 +26,16 @@ labels:
   more_work: More work
   clients: Clients
   contact: Get in touch
+  case_study: Case study
+  main_navigation: Main Navigation
+  # %n is replaced with the number of rows behind the toggle.
+  show_all_work: "Show all work (%n more)"
+  time_travel:
+    title: Time travel
+    back_to_today: Back to today
+    close: Close
+    previous: Previous era
+    next: Next era
 copyright:
   holder: Oren Kravetz
   license: GPL-3.0

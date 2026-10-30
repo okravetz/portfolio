@@ -4,6 +4,8 @@
 # `ui` is text that is only part of that era's chrome. `badges` are listed top to bottom as they appear in
 # `badge_source`; the alt text is the badge's label. scripts/era-assets.py reads both when it draws images.
 # `url` is the era's homepage. Today ("/") is the default era.
+# `ready: true` marks eras whose page exists. The time-travel bar links only to ready eras and shows the
+# others as plain labels, so nothing on the live site points at a page that isn't built yet.
 - order: 1
   slug: "1969"
   label: "1969"
@@ -19,11 +21,16 @@
   label: "1991"
   name: The first web page
   url: /1991/
+  ready: true
 - order: 4
   slug: "1996"
   label: "1996"
   name: GeoCities on Netscape
   url: /1996/
+  ready: true
+  ui:
+    counter_alt: Visitor counter
+    more_work_columns: [Client, Years, What I did]
   badge_source: assets/incoming/the-netscape-now-and-microsoft-internet-explorer-buttons-v0-bo5t2umgfxn51.webp
   badges:
     - id: netscape
@@ -57,6 +64,7 @@
   name: Current site
   url: /
   default: true
+  ready: true
 - order: 9
   slug: future
   label: Future

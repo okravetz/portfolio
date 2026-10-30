@@ -11,7 +11,7 @@ python3 scripts/era-assets.py
 
 Options:
 
-- `--only 1996 | 2001 | 2006 | badges` draws one group (repeatable). `1996` includes the badges; `2001` includes the mobile tabs and header.
+- `--only 1996 | 2001 | 2006 | badges | thumbs` draws one group (repeatable). `1996` includes the badges and the case-study thumbnails; `2001` includes the mobile tabs and header.
 - `--out DIR` writes somewhere else (each era gets its own subfolder). Default: `assets/eras`.
 - `--fonts DIR` uses another folder with `LiberationSans-Bold.ttf` and `LiberationMono-Bold.ttf`. Default: `scripts/fonts/`, which holds copies of both (SIL Open Font License; the license text is beside them).
 
@@ -31,6 +31,7 @@ Edit the YAML, re-run the script, commit the YAML and the images together. Alt t
 | 2001 "Loading", "Skip intro >>", "Replay intro"; 2006 "beta" | `_data/eras.yml`, that era's `ui` |
 | Hit counter "0001996" | `_data/eras.yml`, the 1996 `label`, padded to seven digits |
 | Badge file names and alt text | `_data/eras.yml`, the 1996 `badges` |
+| 1996 case-study thumbnails (120 × 90) | `_data/casestudies.yml`: each published study's `card_image`, scaled down; alt text is its `image_alt` |
 
 The 2001 pixel font has no accents, so those images use plain letters and capitals ("Résumé" becomes "RESUME"). The script stops with an error if a label contains a character that can't be reduced to plain ASCII.
 
@@ -48,4 +49,4 @@ To use a new source image, change `badge_source` and run `python3 scripts/era-as
 
 ## Reproducibility
 
-The output was checked against the original canvas scripts (`assets/incoming/era-assets-gen.py`, `era-assets-gen-mobile-tabs.py`, `era-badges.py`): all 66 images match pixel for pixel when drawn with the same Liberation fonts and Pillow 12.3.0. A different Pillow version may change GIF palettes or PNG bytes slightly, so re-run it only when a label or design changes, not as a routine step.
+The output was checked against the original canvas scripts (`assets/incoming/era-assets-gen.py`, `era-assets-gen-mobile-tabs.py`, `era-badges.py`): all 66 images they make match pixel for pixel when drawn with the same Liberation fonts and Pillow 12.3.0. The case-study thumbnails were added later and have no canvas original. A different Pillow version may change GIF palettes or PNG bytes slightly, so re-run it only when a label or design changes, not as a routine step.

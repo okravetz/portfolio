@@ -306,6 +306,11 @@ body {
     background: #ffffff;
   }
 
+  abbr {
+    border: 0;
+    text-decoration: none;
+  }
+
   li > span > span {
     display: table-cell;
     padding: 4px 6px;

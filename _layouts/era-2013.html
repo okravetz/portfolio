@@ -60,7 +60,7 @@
 <h2 class="label">{{ s.labels.clients }}</h2>
 <ul class="clients clearfix">
 {%- for c in site.data.clients %}
-<li class="col-2"><span><span>{{ c.name | escape }}</span></span></li>
+<li class="col-2"><span><span>{% if c.short %}<abbr title="{{ c.name | escape }}">{{ c.short | escape }}</abbr>{% else %}{{ c.name | escape }}{% endif %}</span></span></li>
 {%- endfor %}
 </ul>
 </div>

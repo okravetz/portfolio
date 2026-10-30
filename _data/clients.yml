@@ -49,6 +49,7 @@
 - name: "Openbank"
   file: openbank.webp
 - name: "The Leading Hotels of the World"
+  short: "LHW" # where space is tight (2013's client tiles)
   file: the-leading-hotels-of-the-world.webp
 - name: "Anthem"
   file: carelon.webp

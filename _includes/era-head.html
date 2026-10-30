@@ -1,13 +1,28 @@
 {%- comment -%}
   <head> contents for the era pages. Everything here is modern and invisible (charset, viewport, title,
-  the time-travel bar's stylesheet and font, analytics); the page itself uses only its era's markup.
+  the time-travel bar's stylesheet and font, analytics, share previews: scripts/era-previews.js makes assets/eras/<slug>/og.png); the page itself uses only its era's markup.
   include.era: the era's entry from _data/eras.yml. include.css: an extra stylesheet (the 1996 phone layout).
   include.fonts: extra Google Fonts families, e.g. "family=VT323&" (a terminal's typeface, device presentation).
 {%- endcomment -%}
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>{% if page.work %}{{ site.data.site.labels.more_work }} · {% endif %}{{ include.era.label }} · {{ include.era.name }} · {{ site.data.site.name }}</title>
+    {%- capture era_title %}{% if page.work %}{{ site.data.site.labels.more_work }} · {% endif %}{{ include.era.label }} · {{ include.era.name }} · {{ site.data.site.name }}{% endcapture %}
+    {%- assign era_image = site.data.site.url | append: "/assets/eras/" | append: include.era.slug | append: "/og.png" %}
+    <title>{{ era_title }}</title>
     <meta name="description" content="{{ site.data.site.meta_description }}">
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="{{ site.data.site.name | escape }}">
+    <meta property="og:url" content="{{ page.url | prepend: site.data.site.url }}">
+    <meta property="og:title" content="{{ era_title | escape }}">
+    <meta property="og:description" content="{{ site.data.site.meta_description }}">
+    <meta property="og:image" content="{{ era_image }}">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:image:alt" content="{{ include.era.name }}: the {{ include.era.label }} version of {{ site.data.site.name | escape }}'s portfolio">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="{{ era_title | escape }}">
+    <meta name="twitter:description" content="{{ site.data.site.meta_description }}">
+    <meta name="twitter:image" content="{{ era_image }}">
     <link rel="shortcut icon" href="{{ "/assets/images/favicon.ico" | relative_url }}" type="image/x-icon">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>

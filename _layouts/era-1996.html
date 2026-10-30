@@ -1,0 +1,140 @@
+{%- comment -%}
+  1996: Netscape 3-era HTML. Tables, bgcolor/background, <font>, <center>, GIF buttons and dividers,
+  a hit counter, 88 x 31 badges, <marquee>. No CSS layout. Images come from assets/eras/1996/
+  (scripts/era-assets.py) and their alt text from the same _data/ fields as their labels.
+  The m96-* classes are hooks for the phone layer only (assets/css/era-1996.scss, modern media
+  queries on top). All copy comes from _data/. The time-travel bar at the end is the modern exception.
+{%- endcomment -%}
+{%- assign era = site.data.eras | where: "slug", page.era | first -%}
+{%- assign s = site.data.site -%}
+{%- assign nav = site.data.navigation -%}
+{%- assign about = site.data.about -%}
+{%- assign about_paragraphs = about.paragraphs | where_exp: "p", "p.today_only != true" -%}
+{%- assign more_hidden = site.data.morework.size | minus: 3 -%}
+{%- assign img = "/assets/eras/1996/" | relative_url -%}
+{%- assign sections = "about,work,resume,contact" | split: "," -%}
+{%- assign counter = era.label | prepend: "0000000" | slice: -7, 7 -%}
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+{% include era-head.html era=era css="/assets/css/era-1996.css" %}
+  </head>
+  <body bgcolor="#000033" background="{{ img }}96-stars.gif" text="#000000" link="#0000ee" vlink="#551a8b" alink="#ff0000">
+<br>
+<center>
+<table class="m96-page" width="780" border="3" cellpadding="0" cellspacing="0" bgcolor="#ffffcc">
+<tr>
+<td colspan="2" bgcolor="#000080" align="center">
+<br>
+<h1><font face="Comic Sans MS" size="7" color="#ffff00">{{ s.name | escape }}</font></h1>
+<font face="Arial, Helvetica" size="2" color="#ffffff">{{ s.tagline | escape }}</font>
+<br><br>
+</td>
+</tr>
+<tr>
+<td class="m96-side" width="168" valign="top" align="center" bgcolor="#c0c0c0">
+<br>
+{%- for item in nav %}
+{%- assign key = sections[forloop.index0] %}
+<a class="m96-nav" href="#{{ key }}"><img src="{{ img }}96-btn-{{ key }}.gif" width="140" height="34" border="0" alt="{{ item.name }}"{% if forloop.index0 == 1 or forloop.index0 == 3 %} vspace="4"{% endif %}></a><br>
+{%- endfor %}
+<br>
+<table class="m96-photo" border="2" cellpadding="0" cellspacing="0" bgcolor="#808080">
+<tr><td><img src="{{ img }}96-headshot.gif" width="128" height="128" alt="{{ s.headshot.alt }}"></td></tr>
+</table>
+<br>
+<img class="m96-counter" src="{{ img }}96-counter.gif" width="100" height="24" alt="{{ era.ui.counter_alt }}: {{ counter }}">
+<br><br>
+</td>
+<td class="m96-main" valign="top">
+<table width="100%" border="0" cellpadding="16" cellspacing="0"><tr><td>
+
+<a name="about"></a>
+<h2><font face="Comic Sans MS" color="#990000">{{ about.heading | escape }}</font></h2>
+{%- for p in about_paragraphs %}
+<p>{% if p.lead %}<b>{{ p.lead | escape }}</b>{% endif %}{{ p.text | escape }}</p>
+{%- endfor %}
+
+<marquee bgcolor="#000080" scrollamount="3" width="100%" onmouseover="this.stop()" onmouseout="this.start()"><font face="Arial, Helvetica" size="3" color="#ffff00"><b>{{ s.labels.clients }}: {% for c in site.data.clients %}{{ c.name | escape }}{% unless forloop.last %} * {% endunless %}{% endfor %}</b></font></marquee>
+
+<p align="center"><img class="m96-rule" src="{{ img }}96-rainbow.gif" width="520" height="6" alt=""></p>
+
+<a name="work"></a>
+<h2><font face="Comic Sans MS" color="#990000">{{ s.labels.case_studies }}</font></h2>
+<table class="m96-cases" width="100%" border="0" cellpadding="4" cellspacing="8">
+{%- assign n = 0 %}
+{%- for item in site.data.casestudies %}{% if item.publish %}
+{%- assign n = n | plus: 1 %}
+{%- assign slug = item.link | split: "." | first %}
+<tr>
+<td class="m96-thumb" width="120" height="90" valign="middle" align="center"><img src="{{ img }}96-case-{{ slug }}.gif" width="120" height="90" alt="{{ item.image_alt | escape }}"></td>
+<td valign="top">
+<font face="Arial, Helvetica" size="2">{{ s.labels.case_study }} {{ n }} · {{ item.client | escape }}</font><br>
+<font size="5"><b><a href="{{ '/casestudies/' | append: item.link | relative_url }}">{{ item.name | escape }}</a></b></font><br>
+{{ item.description | escape }}
+</td>
+</tr>
+{%- endif %}{% endfor %}
+</table>
+
+<h3><font face="Comic Sans MS" color="#000080">{{ s.labels.more_work }}</font></h3>
+<table class="m96-more" width="100%" border="1" cellpadding="4" cellspacing="0" bgcolor="#ffffff">
+<tr class="m96-head" bgcolor="#c0c0c0">
+{%- for col in era.ui.more_work_columns %}
+<th align="left"><font face="Arial, Helvetica" size="2">{{ col }}</font></th>
+{%- endfor %}
+</tr>
+{%- for item in site.data.morework limit: 3 %}
+<tr>
+<td valign="top" width="150"><b>{{ item.client | escape }}</b><br>{{ item.project | escape }}</td>
+<td valign="top" width="76">{{ item.years }}</td>
+<td valign="top">{{ item.description | escape }}</td>
+</tr>
+{%- endfor %}
+</table>
+{%- comment -%} Points at Today's list until the era all-work pages exist (PR 8). {%- endcomment %}
+<p><a href="{{ '/' | relative_url }}#work">{{ s.labels.show_all_work | replace: "%n", more_hidden }}</a></p>
+
+<p align="center"><img class="m96-rule" src="{{ img }}96-rainbow.gif" width="520" height="6" alt=""></p>
+
+<a name="resume"></a>
+<h2><font face="Comic Sans MS" color="#990000">{{ nav[2].name }}</font></h2>
+<p class="m96-buttons">
+<a href="{{ s.resume.file | prepend: '/' | relative_url }}"><img src="{{ img }}96-btn-dl-resume.gif" width="200" height="34" border="0" alt="{{ s.resume.button }}"></a>
+&nbsp;
+<a href="{{ s.portfolio.file | prepend: '/' | relative_url }}"><img src="{{ img }}96-btn-dl-portfolio.gif" width="210" height="34" border="0" alt="{{ s.portfolio.button }}"></a>
+</p>
+
+<p align="center"><img class="m96-rule" src="{{ img }}96-rainbow.gif" width="520" height="6" alt=""></p>
+
+<a name="contact"></a>
+<h2><font face="Comic Sans MS" color="#990000">{{ s.labels.contact }}</font></h2>
+<p>
+{%- for item in site.data.contact %}
+{{ item.label }}: {% if item.href %}<a href="{{ item.href }}">{{ item.text }}</a>{% else %}{{ item.text }}{% endif %}{% unless forloop.last %}<br>{% endunless %}
+{%- endfor %}
+</p>
+
+</td></tr></table>
+</td>
+</tr>
+<tr>
+<td class="m96-foot" colspan="2" bgcolor="#c0c0c0">
+<table width="100%" border="0" cellpadding="8" cellspacing="0"><tr>
+<td valign="middle"><font face="Arial, Helvetica" size="2">© {{ site.time | date: "%Y" }} {{ s.copyright.holder }}</font></td>
+<td align="right" valign="middle">
+{%- for badge in era.badges -%}
+<img class="m96-badge" src="{{ img }}96-badge-{{ badge.id }}.png" width="88" height="31" alt="{{ badge.alt }}" hspace="4">
+{%- endfor -%}
+</td>
+</tr></table>
+</td>
+</tr>
+</table>
+</center>
+<br>
+{% include time-travel.html current=era.slug %}
+<script src="{{ '/assets/js/time-travel.js' | relative_url }}?v={{ site.time | date: '%s' }}" defer></script>
+<script src="{{ '/assets/js/marquee.js' | relative_url }}?v={{ site.time | date: '%s' }}" defer></script>
+  </body>
+</html>

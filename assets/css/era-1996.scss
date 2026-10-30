@@ -1,0 +1,149 @@
+---
+---
+// 1996: a modern layer on top of the period table markup (the m96-* hooks in _layouts/era-1996.html).
+
+// Period images are 1x pixels; on today's high-density screens show them as sharp square pixels
+// instead of smoothing them. The badges are stored at 2x, so they scale normally.
+img {
+  image-rendering: pixelated;
+}
+
+.m96-badge {
+  image-rendering: auto;
+}
+
+// No gap under the photo inside its frame (the space browsers leave below an image's text baseline).
+.m96-photo img {
+  vertical-align: bottom;
+}
+
+// Phones: the page stacks. The desktop page is untouched: a 780px table, as in 1996.
+
+@media screen and (max-width: 600px) {
+  body {
+    padding: 10px 10px 0;
+  }
+
+  .tt {
+    margin-left: -10px;
+    margin-right: -10px;
+  }
+
+  // The page table stacks: header, buttons, content, footer.
+  .m96-page,
+  .m96-page > tbody,
+  .m96-page > tbody > tr,
+  .m96-page > tbody > tr > td {
+    display: block;
+    box-sizing: border-box;
+    width: auto;
+  }
+
+  .m96-page h1 font {
+    font-size: 32px;
+  }
+
+  // Nav buttons in a 2 x 2 grid, then the photo and counter side by side.
+  .m96-side {
+    padding: 8px 0 12px;
+
+    > br {
+      display: none;
+    }
+  }
+
+  .m96-nav {
+    display: inline-block;
+    margin: 3px;
+
+    img {
+      margin: 0;
+    }
+  }
+
+  .m96-photo {
+    margin-top: 8px;
+  }
+
+  .m96-photo {
+    display: inline-table;
+    vertical-align: bottom;
+    margin-right: 12px;
+
+    img {
+      width: 88px;
+      height: 88px;
+    }
+  }
+
+  .m96-counter {
+    vertical-align: bottom;
+  }
+
+  .m96-main > table > tbody > tr > td {
+    padding: 12px;
+  }
+
+  .m96-rule {
+    width: 100%;
+    max-width: 320px;
+    height: 6px;
+  }
+
+  // Case studies: smaller thumbnails beside the text.
+  .m96-cases {
+    border-spacing: 0 8px;
+
+    td {
+      padding: 0 0 4px 8px;
+    }
+
+    .m96-thumb {
+      width: 96px;
+      padding-left: 0;
+
+      img {
+        width: 96px;
+        height: 72px;
+      }
+    }
+  }
+
+  // More work: one cell per row, no column headings.
+  .m96-more {
+    .m96-head {
+      display: none;
+    }
+
+    tr,
+    td {
+      display: block;
+      width: auto;
+    }
+
+    td {
+      border: 0;
+      padding: 2px 5px;
+    }
+
+    tr {
+      border-bottom: 1px solid #808080;
+      padding: 4px 0;
+    }
+  }
+
+  .m96-buttons {
+    text-align: center;
+
+    a {
+      display: inline-block;
+      margin: 3px 0;
+    }
+  }
+
+  // Footer: copyright above the badges, centered.
+  .m96-foot td {
+    display: block;
+    text-align: center;
+  }
+}

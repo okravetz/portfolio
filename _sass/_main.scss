@@ -279,37 +279,6 @@ small,
   justify-content: center;
 }
 
-// Phones only, and only once the script has run (see assets/js/about-toggle.js).
-.about-toggle {
-  @include more-row;
-  display: none;
-  box-sizing: border-box;
-  width: 100%;
-  max-width: 560px;
-  margin: 0 0 18px;
-  padding: 0;
-  border-width: 0 0 1px;
-  border-style: solid;
-  border-color: var(--line);
-  background: none;
-  color: var(--ink);
-  font-family: inherit;
-  text-align: left;
-
-  .chev {
-    transition: transform $transition-time;
-  }
-
-  &[aria-expanded="true"] .chev {
-    transform: rotate(180deg);
-  }
-
-  &[aria-expanded="true"] .lbl-open,
-  &[aria-expanded="false"] .lbl-close {
-    display: none;
-  }
-}
-
 .clients-panel {
   flex: 1 1 420px;
   min-width: 0;
@@ -654,6 +623,26 @@ small,
   }
 }
 
+// Today's "Time travel" button opens the bar (_includes/time-travel.html). It needs the script, so it
+// only shows once the script can run; without it the bar is always visible.
+.tt-open {
+  display: none;
+}
+
+.js .tt-open {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-1);
+  min-height: 44px;
+  padding: 0 var(--space-3);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-pill);
+  background: transparent;
+  color: var(--ink);
+  font: inherit;
+  cursor: pointer;
+}
+
 // Pages other than the homepage (case studies, sitemap, accessibility statement)
 
 main.page {
@@ -739,20 +728,6 @@ main.page {
   .section {
     padding-top: var(--space-8);
     padding-bottom: var(--space-8);
-  }
-
-  .is-collapsible {
-    .about-toggle {
-      display: flex;
-    }
-
-    .about__more {
-      display: none;
-    }
-
-    &.is-open .about__more {
-      display: block;
-    }
   }
 
   .section--band-navy {

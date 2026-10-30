@@ -8,6 +8,8 @@ meta_description: "Oren Kravetz's bio, résumé, portfolio, and contact informat
 headshot:
   file: assets/images/headshot.jpg
   alt: Headshot of Oren Kravetz
+  # Oren's original square photo (not published); scripts/era-assets.py scales it for the older eras.
+  square_original: assets/incoming/headshot-square.jpg
 resume:
   file: assets/files/Resume 2026.pdf
   download_as: Oren Kravetz Resume.pdf
@@ -26,6 +28,16 @@ labels:
   more_work: More work
   clients: Clients
   contact: Get in touch
+  case_study: Case study
+  main_navigation: Main Navigation
+  # %n is replaced with the number of rows behind the toggle.
+  show_all_work: "Show all work (%n more)"
+  time_travel:
+    title: Time travel
+    back_to_today: Back to today
+    close: Close
+    previous: Previous era
+    next: Next era
 copyright:
   holder: Oren Kravetz
   license: GPL-3.0

@@ -1,0 +1,14 @@
+---
+---
+// The era pages load only this stylesheet: the time-travel bar, plus one rule so the bar can span the
+// window. The padding gives back the browser's default 8px around the page content.
+@import "time-travel";
+
+body {
+  margin: 0;
+  padding: 8px 8px 0;
+}
+
+.tt {
+  margin: 16px -8px 0;
+}

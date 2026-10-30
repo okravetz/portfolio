@@ -1,5 +1,4 @@
 # About copy. Oren's words, verbatim (2026-10-29/30); don't edit them here without Oren.
-# The first two paragraphs always show; the rest sit behind "Read more" on phones.
 # `lead` is the bold opening phrase. An entry with `today_only: true` is skipped by the era layouts.
 # Output goes through `| escape`, so write a plain & here.
 heading: Experienced Designer and Manager
@@ -9,7 +8,7 @@ paragraphs:
   - text: "I am also a UX designer and manager with over 15 years designing solutions for B2B, B2C, and enterprise products. I lead teams of up to 5 designers and partner with visual designers, PMs, engineers, client leadership, and more. My software engineering background lets me work especially closely with BAs and developers. I’ve led projects at agencies like Merkle, Dentsu Creative, and Isobar covering a variety of industries including healthcare and financial services."
   - text: "Outside of work, I play video games with my kids, catch Broadway shows, play D&D, take photos, and try my hand at woodworking. I’m also president of a Fair Lawn community nonprofit after previously serving as vice president of a 200-family congregation."
   - text: "I’m looking forward to meeting you and tackling your interesting problems together!"
-  # Not rendered yet: the P.S. line is added to Today in PR 3. "Click here" opens the time-travel bar.
+  # The P.S. line, Today only. "Click here" opens the time-travel bar.
   - today_only: true
     text: "P.S. This site can time travel! "
     link_text: "Click here"

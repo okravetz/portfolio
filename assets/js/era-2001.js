@@ -1,5 +1,5 @@
-// 2001: the DHTML. An intro that plays the GIF loader and skips itself (or is skipped, or replayed; never with
-// reduced motion), image-swap rollovers on the tabs (Dreamweaver's MM_swapImage, by hand), and sections switched
+// 2001: the DHTML. An intro that plays the GIF loader and skips itself (or is skipped, or replayed; once per
+// browser tab, and never with reduced motion), image-swap rollovers on the tabs (Dreamweaver's MM_swapImage, by hand), and sections switched
 // in place. It runs right after the stage markup, before the first paint, so the stage never flashes up first.
 // Without it: no intro, and every section shows in the scrolling panel, with the tabs jumping to them.
 (function () {
@@ -100,5 +100,9 @@
   var known = false;
   for (var s = 0; s < sections.length; s++) if (sections[s].id === start) known = true;
   show(known ? start : sections[0].id);
-  if (!known) playIntro(false);
+  // The intro plays once per browser tab (Replay still plays it on demand).
+  var SEEN = "intro-2001";
+  var seen = false;
+  try { seen = sessionStorage.getItem(SEEN) === "1"; sessionStorage.setItem(SEEN, "1"); } catch (e) {}
+  if (!known && !seen) playIntro(false);
 })();

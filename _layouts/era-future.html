@@ -1,0 +1,125 @@
+{%- comment -%}
+  The Future: scripted questions and answers, no live AI and no free text. Every answer is text pulled from
+  _data/ at build time (the questions and which data each comes from are in _data/future.yml); the page's
+  UI wording is in _data/eras.yml. "What an agent sees" prints this page's real JSON-LD, the same text that
+  is in its <head> (_includes/jsonld.html).
+  All six answers are in the HTML, in order. The script (assets/js/era-future.js) shows two, then reveals the
+  rest as they are asked, in the order asked. Without JavaScript all six show and the question chips are hidden.
+  This is a modern page; the time-travel bar at the end is the same as everywhere.
+{%- endcomment -%}
+{%- assign era = site.data.eras | where: "slug", page.era | first -%}
+{%- assign ui = era.ui -%}
+{%- assign s = site.data.site -%}
+{%- assign about = site.data.about -%}
+{%- assign published = site.data.casestudies | where: "publish", true -%}
+{%- assign more_hidden = site.data.morework.size | minus: 3 -%}
+{%- assign home = "/" | relative_url -%}
+{%- capture jsonld %}{% include jsonld.html %}{% endcapture -%}
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+{% include era-head.html era=era css="/assets/css/era-future.css" fonts="family=DM+Serif+Display&family=DM+Mono:wght@400;500&" %}
+    <script type="application/ld+json">
+{{ jsonld }}
+    </script>
+  </head>
+  <body>
+<div class="fut">
+
+<header id="top" class="bar">
+<div class="who">
+<img class="avatar" src="{{ s.headshot.file | prepend: '/' | relative_url }}" width="44" height="44" alt="{{ s.headshot.alt }}">
+<div>
+<h1>{{ s.name | escape }}</h1>
+<p class="tagline">{{ s.tagline | escape }}</p>
+</div>
+</div>
+<button type="button" class="agent-toggle agent-toggle-top" aria-expanded="true" aria-controls="agent-view">
+<svg aria-hidden="true" focusable="false" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 6l-6 6 6 6"/><path d="M16 6l6 6-6 6"/></svg>{{ ui.agent }}</button>
+</header>
+
+<main id="main" tabindex="-1">
+<div class="cols">
+
+<section class="chat" aria-labelledby="chat-h">
+<h2 id="chat-h">{{ ui.title }}</h2>
+<p class="badge"><svg aria-hidden="true" focusable="false" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16v16H4z"/><path d="M8 9h8M8 13h8M8 17h5"/></svg>{{ ui.badge }}</p>
+
+<ol id="log" class="log" aria-live="polite">
+{%- for q in site.data.future %}
+<li class="msg" data-q="{{ q.id }}"{% if q.start %} data-start="true"{% endif %}>
+<p class="q"><span class="sr">{{ ui.you_asked }}</span>{{ q.question | escape }}</p>
+<div class="a">
+{%- case q.id %}
+{%- when "do" or "outside" %}
+{%- assign paras = about.paragraphs | where_exp: "p", "p.today_only != true" %}
+{%- assign idx = q.paragraph | minus: 1 %}
+<p>{{ paras[idx].lead | escape }}{{ paras[idx].text | escape }}</p>
+{%- when "work" %}
+<ul class="cases">
+{%- for item in published %}
+{%- assign href = "/casestudies/" | append: item.link | relative_url %}
+<li><a class="case" href="{{ href }}">
+<span class="shot"><img src="{{ '/assets/images/wf/' | append: item.card_image | relative_url }}" width="1200" height="900" loading="lazy" alt="{{ item.image_alt | escape }}"></span>
+<span class="eyebrow">{{ s.labels.case_study }} {{ forloop.index }} · {{ item.client | escape }}</span>
+<span class="name">{{ item.name | escape }}</span>
+<span class="desc">{{ item.description | escape }}</span>
+</a></li>
+{%- endfor %}
+</ul>
+<p class="all"><a href="{{ home }}#work">{{ s.labels.show_all_work | replace: "%n", more_hidden }}</a></p>
+{%- when "clients" %}
+<p>{% for c in site.data.clients %}{{ c.name | escape }}{% unless forloop.last %} · {% endunless %}{% endfor %}</p>
+{%- when "resume" %}
+<p class="buttons">
+<a class="pill solid" href="{{ s.resume.file | prepend: '/' | relative_url }}">{{ s.resume.button }}</a>
+<a class="pill outline" href="{{ s.portfolio.file | prepend: '/' | relative_url }}">{{ s.portfolio.button }}</a>
+</p>
+{%- when "contact" %}
+<ul class="contact">
+{%- for item in site.data.contact %}
+<li><span class="label">{{ item.label }}:</span> {% if item.href %}<a href="{{ item.href }}">{{ item.text }}</a>{% else %}{{ item.text }}{% endif %}</li>
+{%- endfor %}
+</ul>
+{%- endcase %}
+<p class="src">{{ ui.source | split: "%s" | first }}<a href="{{ home }}#{{ q.anchor }}">{{ q.source }}</a>{{ ui.source | split: "%s" | last }}</p>
+</div>
+</li>
+{%- endfor %}
+</ol>
+
+<div class="prompts" role="group" aria-labelledby="prompts-h">
+<p id="prompts-h" class="eyebrow">{{ ui.choose }}</p>
+<div class="chips">
+{%- for q in site.data.future %}
+<button type="button" class="chip" data-q="{{ q.id }}">{{ q.question | escape }}</button>
+{%- endfor %}
+<button type="button" class="reset">{{ ui.reset }}</button>
+</div>
+</div>
+
+</section>
+
+<aside id="agent-view" class="agent" aria-label="{{ ui.agent }}">
+<button type="button" class="agent-toggle agent-toggle-card" aria-expanded="false" aria-controls="agent-body">
+<span class="t"><svg aria-hidden="true" focusable="false" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 6l-6 6 6 6"/><path d="M16 6l6 6-6 6"/></svg>{{ ui.agent }}</span>
+<svg class="chev" aria-hidden="true" focusable="false" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>
+</button>
+<div id="agent-body" class="agent-body">
+<h2 id="agent-h">{{ ui.agent }}</h2>
+<p class="note">{{ ui.agent_note }}</p>
+<pre><code>&lt;script type="application/ld+json"&gt;
+{{ jsonld | escape }}
+&lt;/script&gt;</code></pre>
+</div>
+</aside>
+
+</div>
+<p class="copy">© {{ site.time | date: "%Y" }} {{ s.copyright.holder }}</p>
+</main>
+</div>
+{% include time-travel.html current=era.slug %}
+<script src="{{ '/assets/js/era-future.js' | relative_url }}?v={{ site.time | date: '%s' }}" defer></script>
+<script src="{{ '/assets/js/time-travel.js' | relative_url }}?v={{ site.time | date: '%s' }}" defer></script>
+  </body>
+</html>

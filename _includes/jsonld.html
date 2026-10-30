@@ -1,0 +1,36 @@
+{%- comment -%}
+  The site's Person data for search engines and AI agents (schema.org JSON-LD), built from _data/ so it
+  can't drift from the page: site.yml (name, job title, address of the site), contact.yml (email, LinkedIn,
+  location) and the published case studies. The Future page prints this very text under "What an agent sees".
+{%- endcomment -%}
+{%- assign s = site.data.site -%}
+{%- assign email = site.data.contact | where: "label", "Email" | first -%}
+{%- assign linkedin = site.data.contact | where: "label", "LinkedIn" | first -%}
+{%- assign location = site.data.contact | where: "label", "Location" | first -%}
+{%- assign place = location.text | split: ", " -%}
+{%- assign published = site.data.casestudies | where: "publish", true -%}
+{
+  "@context": "https://schema.org",
+  "@type": "Person",
+  "name": {{ s.name | jsonify }},
+  "jobTitle": {{ s.job_title | jsonify }},
+  "url": {{ s.url | jsonify }},
+  "email": {{ email.href | jsonify }},
+  "address": {
+    "@type": "PostalAddress",
+    "addressLocality": {{ place[0] | jsonify }},
+    "addressRegion": {{ place[1] | jsonify }}
+  },
+  "sameAs": [
+    {{ linkedin.href | jsonify }}
+  ],
+  "subjectOf": [
+{%- for c in published %}
+    {
+      "@type": "CreativeWork",
+      "name": {{ c.name | jsonify }},
+      "about": {{ c.client | jsonify }}
+    }{% unless forloop.last %},{% endunless %}
+{%- endfor %}
+  ]
+}

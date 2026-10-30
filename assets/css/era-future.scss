@@ -1,0 +1,562 @@
+---
+---
+// The Future: a modern chat-style page. Fixed colors from the design system's neutral and accent scales
+// (the same on every visitor's theme, like the other era pages), DM Sans / DM Serif Display / DM Mono.
+
+$paper: oklch(0.995 0.002 75.0);
+$band: oklch(0.982 0.006 75.0);
+$line: oklch(0.868 0.006 75.0);
+$ink: oklch(0.200 0.006 75.0);
+$muted: oklch(0.500 0.006 75.0);
+$soft: oklch(0.520 0.006 75.0);
+$chip-line: oklch(0.748 0.006 75.0);
+$done: oklch(0.957 0.006 75.0);
+$violet: oklch(0.500 0.207 295.7);
+$violet-bg: oklch(0.932 0.036 295.7);
+$violet-ink: oklch(0.290 0.110 295.7);
+$navy: oklch(0.312 0.081 246.5);
+$night: oklch(0.200 0.006 75.0);
+$night-code: oklch(0.170 0.006 75.0);
+$night-line: oklch(0.350 0.006 75.0);
+$night-ink: oklch(0.940 0.006 75.0);
+$night-note: oklch(0.850 0.006 75.0);
+$serif: "DM Serif Display", Georgia, serif;
+$mono: "DM Mono", ui-monospace, monospace;
+$wide: 900px;
+
+body {
+  margin: 0;
+  padding: 0;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background: $paper;
+  color: $ink;
+  font-family: "DM Sans", system-ui, sans-serif;
+}
+
+.tt {
+  margin: 0;
+}
+
+.fut {
+  flex: 1 0 auto;
+
+  a {
+    color: $ink;
+  }
+
+  a:hover {
+    color: $violet;
+  }
+
+  a:focus-visible,
+  button:focus-visible {
+    outline: 2px solid $violet;
+    outline-offset: 2px;
+  }
+
+  h1,
+  h2,
+  p,
+  ul,
+  ol {
+    margin: 0;
+  }
+
+  ul,
+  ol {
+    padding: 0;
+    list-style: none;
+  }
+}
+
+.sr {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+}
+
+// Header
+.bar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 14px 16px;
+  border-bottom: 1px solid $line;
+}
+
+.who {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+
+  h1 {
+    font: 400 22px/1.1 $serif;
+  }
+}
+
+.avatar {
+  display: block;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+}
+
+.tagline {
+  margin-top: 2px !important;
+  font-size: 11px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+
+.agent-toggle {
+  font-family: inherit;
+  cursor: pointer;
+}
+
+.agent-toggle-top {
+  display: none;
+  align-items: center;
+  gap: 8px;
+  min-height: 44px;
+  padding: 0 18px;
+  border: 1px solid $ink;
+  border-radius: 999px;
+  background: transparent;
+  color: $ink;
+  font-size: 14px;
+  font-weight: 500;
+
+  &[aria-expanded="true"] {
+    background: $ink;
+    color: $paper;
+  }
+}
+
+.js .agent-toggle-top {
+  display: inline-flex;
+}
+
+main {
+  padding: 28px 16px 32px;
+}
+
+.cols {
+  max-width: 1240px;
+  margin: 0 auto;
+}
+
+// Chat
+.chat {
+  min-width: 0;
+
+  h2 {
+    font: 400 34px/1.1 $serif;
+  }
+}
+
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin: 10px 0 24px !important;
+  padding: 6px 12px;
+  border-radius: 999px;
+  background: $violet-bg;
+  color: $violet-ink;
+  font-size: 13px;
+}
+
+.log {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.msg {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .msg.is-new {
+    animation: fut-in 0.35s ease-out;
+  }
+}
+
+@keyframes fut-in {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+.q {
+  align-self: flex-end;
+  max-width: 85%;
+  padding: 10px 16px;
+  border-radius: 18px 18px 4px 18px;
+  background: $ink;
+  color: $paper;
+  font-size: 15px;
+}
+
+.a {
+  align-self: flex-start;
+  max-width: 100%;
+  padding: 16px;
+  border: 1px solid $line;
+  border-radius: 18px 18px 18px 4px;
+  background: $band;
+  font-size: 15px;
+  line-height: 1.6;
+
+  > p:not(.src) + p,
+  .contact + .src {
+    margin-top: 12px;
+  }
+}
+
+.cases {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 16px;
+}
+
+.case {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  text-decoration: none;
+
+  .shot {
+    display: block;
+    overflow: hidden;
+    border-radius: 12px;
+    background: $line;
+
+    img {
+      display: block;
+      width: 100%;
+      height: auto;
+    }
+  }
+
+  .name {
+    font: 400 22px/1.15 $serif;
+  }
+
+  .desc {
+    font-size: 14px;
+    line-height: 1.5;
+  }
+}
+
+.eyebrow {
+  font-size: 11px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+
+.all {
+  margin-top: 16px !important;
+}
+
+.buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.fut a.pill {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 48px;
+  padding: 0 22px;
+  border-radius: 999px;
+  font-weight: 500;
+  text-decoration: none;
+  box-sizing: border-box;
+}
+
+.fut a.pill.solid {
+  background: $navy;
+  color: oklch(1 0 0);
+}
+
+.fut a.pill.solid:hover {
+  background: $violet;
+  color: oklch(1 0 0);
+}
+
+.fut a.pill.outline {
+  border: 1.5px solid $navy;
+}
+
+.contact {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  font: 400 20px $serif;
+
+  a {
+    text-decoration: none;
+  }
+
+  .label {
+    color: $soft;
+  }
+}
+
+.src {
+  margin-top: 12px !important;
+  font-size: 13px;
+  color: $muted;
+
+  a {
+    color: $muted;
+  }
+}
+
+// Question chips
+.prompts {
+  margin-top: 22px;
+  padding: 16px;
+  border: 1px solid $line;
+  border-radius: 20px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.06);
+
+  .eyebrow {
+    margin-bottom: 12px !important;
+  }
+}
+
+.chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.chip,
+.reset {
+  min-height: 44px;
+  font-family: inherit;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.chip {
+  padding: 0 16px;
+  border: 1px solid $chip-line;
+  border-radius: 999px;
+  background: $paper;
+  color: $ink;
+}
+
+.chip:hover {
+  border-color: $violet;
+  color: $violet;
+}
+
+.chip[aria-disabled="true"] {
+  border-color: $line;
+  background: $done;
+  color: $muted;
+  cursor: default;
+
+  &::after {
+    content: " ✓";
+  }
+}
+
+.reset {
+  padding: 0 12px;
+  border: 0;
+  background: transparent;
+  color: $muted;
+  text-decoration: underline;
+}
+
+// Without JavaScript every answer is shown and there is nothing to choose.
+.prompts,
+.agent-toggle-card {
+  display: none;
+}
+
+.js .prompts {
+  display: block;
+}
+
+.js .msg[hidden] {
+  display: none;
+}
+
+// "What an agent sees"
+.agent {
+  margin-top: 20px;
+  border-radius: 16px;
+  background: $night;
+  color: $night-ink;
+  overflow: hidden;
+}
+
+.agent-toggle-card {
+  width: 100%;
+  min-height: 56px;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 18px;
+  border: 0;
+  background: transparent;
+  color: inherit;
+  font-size: 15px;
+  font-weight: 500;
+
+  .t {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  &[aria-expanded="true"] .chev {
+    transform: rotate(180deg);
+  }
+}
+
+.js .agent-toggle-card {
+  display: flex;
+}
+
+.agent-body {
+  padding: 0 16px 18px;
+
+  h2 {
+    display: none;
+    margin: 0 0 6px;
+    font: 400 12px/1.4 "DM Sans", system-ui, sans-serif;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+  }
+}
+
+.note {
+  margin-bottom: 12px !important;
+  font-size: 13px;
+  line-height: 1.5;
+  color: $night-note;
+}
+
+.agent pre {
+  margin: 0;
+  padding: 14px;
+  overflow-x: auto;
+  border: 1px solid $night-line;
+  border-radius: 10px;
+  background: $night-code;
+  color: $night-ink;
+  font: 400 12px/1.6 $mono;
+  white-space: pre;
+}
+
+.js .agents-closed .agent-body {
+  display: none;
+}
+
+.copy {
+  max-width: 1240px;
+  margin: 24px auto 0 !important;
+  font-size: 14px;
+  color: $muted;
+}
+
+// Wide screens: chat on the left, the agent's view as a column on the right.
+@media screen and (min-width: $wide) {
+  .bar {
+    padding: 20px 6%;
+  }
+
+  main {
+    padding: 40px 6% 48px;
+  }
+
+  .cols {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-start;
+    gap: 40px;
+  }
+
+  .chat {
+    flex: 999 1 560px;
+    gap: 24px;
+
+    .a {
+      max-width: 92%;
+      padding: 20px 22px;
+    }
+
+    .q {
+      max-width: 80%;
+      font-size: 16px;
+    }
+
+    h2 {
+      font-size: 40px;
+    }
+  }
+
+  .log {
+    gap: 20px;
+  }
+
+  .agent {
+    flex: 1 1 380px;
+    min-width: 0;
+    position: sticky;
+    top: 24px;
+    margin-top: 0;
+    padding: 24px;
+    box-sizing: border-box;
+  }
+
+  .js .agent-toggle-card {
+    display: none;
+  }
+
+  .agent-body {
+    padding: 0;
+
+    h2 {
+      display: block;
+    }
+  }
+
+  .agent pre {
+    font-size: 13px;
+  }
+
+  // The header button hides and shows the whole column (and the body inside it always shows with it).
+  .js .agents-closed .agent {
+    display: none;
+  }
+
+  .js .agents-closed .agent-body {
+    display: block;
+  }
+
+  .copy {
+    padding: 0;
+  }
+}

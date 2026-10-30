@@ -15,7 +15,7 @@ title: Oren Kravetz's Portfolio
       <p>{% if p.lead %}<strong>{{ p.lead | escape }}</strong>{% endif %}{{ p.text | escape }}</p>
       {%- endfor -%}
       {%- if about_ps -%}
-      <p>{{ about_ps.text | escape }}<a href="{{ about_ps.link_href }}">{{ about_ps.link_text }}</a>{{ about_ps.text_after | escape }}</p>
+      <p class="about__ps">{{ about_ps.text | escape }}<a href="{{ about_ps.link_href }}">{{ about_ps.link_text }}</a>{{ about_ps.text_after | escape }}</p>
       {%- endif -%}
     </div>
     <div class="clients-panel">

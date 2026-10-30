@@ -1,0 +1,92 @@
+{%- comment -%}
+  The time-travel bar: a desktop bar, a compact phone bar, and the phone picker sheet. Built from
+  _data/eras.yml; every stop is a plain link, so it works without JavaScript. Eras without
+  `ready: true` show as labels, not links. This is modern code in every era.
+  include.current: the slug of this page's era. include.closable: Today's version (starts hidden,
+  opened by the footer button or the About P.S. link, and has Close instead of "Back to today").
+{%- endcomment -%}
+{%- assign tt = site.data.site.labels.time_travel -%}
+{%- assign tt_eras = site.data.eras -%}
+{%- assign tt_current = tt_eras | where: "slug", include.current | first -%}
+{%- assign tt_today = tt_eras | where: "default", true | first -%}
+{%- assign tt_prev = nil -%}
+{%- assign tt_next = nil -%}
+{%- assign tt_seen = false -%}
+{%- for e in tt_eras -%}
+  {%- if e.slug == tt_current.slug -%}
+    {%- assign tt_seen = true -%}
+  {%- elsif e.ready -%}
+    {%- if tt_seen -%}
+      {%- unless tt_next -%}{%- assign tt_next = e -%}{%- endunless -%}
+    {%- else -%}
+      {%- assign tt_prev = e -%}
+    {%- endif -%}
+  {%- endif -%}
+{%- endfor -%}
+{%- capture tt_prev_link -%}
+  {%- if tt_prev -%}<a class="tt__step" href="{{ tt_prev.url | relative_url }}" data-tt-to="{{ tt_prev.slug }}" aria-label="{{ tt.previous }}: {{ tt_prev.label }}"><span aria-hidden="true">←</span></a>
+  {%- else -%}<span class="tt__step tt__step--none" aria-hidden="true"></span>{%- endif -%}
+{%- endcapture -%}
+{%- capture tt_next_link -%}
+  {%- if tt_next -%}<a class="tt__step" href="{{ tt_next.url | relative_url }}" data-tt-to="{{ tt_next.slug }}" aria-label="{{ tt.next }}: {{ tt_next.label }}"><span aria-hidden="true">→</span></a>
+  {%- else -%}<span class="tt__step tt__step--none" aria-hidden="true"></span>{%- endif -%}
+{%- endcapture -%}
+<nav id="time-travel" class="tt{% if include.closable %} tt--closable{% endif %}" aria-label="{{ tt.title }}" data-tt-from="{{ tt_current.slug }}" tabindex="-1">
+  <div class="tt__full">
+    <span class="tt__title" aria-hidden="true">{{ tt.title }}</span>
+    {{ tt_prev_link }}
+    <ol class="tt__stops" style="--tt-count: {{ tt_eras.size }}">
+      {%- for e in tt_eras -%}
+      <li>
+        {%- if e.slug == tt_current.slug -%}
+        <a class="tt__stop is-current" href="{{ e.url | relative_url }}" aria-current="page" data-tt-to="{{ e.slug }}"><span class="tt__dot" aria-hidden="true"></span>{{ e.label }}<span class="tt__hidden">, {{ e.name }}</span></a>
+        {%- elsif e.ready -%}
+        <a class="tt__stop" href="{{ e.url | relative_url }}" data-tt-to="{{ e.slug }}"><span class="tt__dot" aria-hidden="true"></span>{{ e.label }}<span class="tt__hidden">, {{ e.name }}</span></a>
+        {%- else -%}
+        <span class="tt__stop is-soon"><span class="tt__dot" aria-hidden="true"></span>{{ e.label }}</span>
+        {%- endif -%}
+      </li>
+      {%- endfor -%}
+    </ol>
+    {{ tt_next_link }}
+    {%- if include.closable -%}
+    <button type="button" class="tt__close">{{ tt.close }}</button>
+    {%- else -%}
+    <a class="tt__today" href="{{ tt_today.url | relative_url }}" data-tt-to="{{ tt_today.slug }}">{{ tt.back_to_today }}</a>
+    {%- endif -%}
+  </div>
+  <div class="tt__compact">
+    {{ tt_prev_link }}
+    <details class="tt-picker">
+      <summary>{{ tt.title }} · <b>{{ tt_current.label }}</b><svg aria-hidden="true" focusable="false" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg></summary>
+      <div class="tt-sheet">
+        <div class="tt-sheet__head">
+          <p class="tt-sheet__title">{{ tt.title }}</p>
+          <button type="button" class="tt-sheet__close" aria-label="{{ tt.close }}"><svg aria-hidden="true" focusable="false" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
+        </div>
+        <ol class="tt-sheet__list">
+          {%- for e in tt_eras -%}
+          <li>
+            {%- if e.slug == tt_current.slug -%}
+            <a class="tt-sheet__item is-current" href="{{ e.url | relative_url }}" aria-current="page" data-tt-to="{{ e.slug }}"><span class="tt__dot" aria-hidden="true"></span><span class="tt-sheet__label">{{ e.label }}</span><span class="tt-sheet__name">{{ e.name }}</span><svg aria-hidden="true" focusable="false" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5L20 7"/></svg></a>
+            {%- elsif e.ready -%}
+            <a class="tt-sheet__item" href="{{ e.url | relative_url }}" data-tt-to="{{ e.slug }}"><span class="tt__dot" aria-hidden="true"></span><span class="tt-sheet__label">{{ e.label }}</span><span class="tt-sheet__name">{{ e.name }}</span></a>
+            {%- else -%}
+            <span class="tt-sheet__item is-soon"><span class="tt__dot" aria-hidden="true"></span><span class="tt-sheet__label">{{ e.label }}</span><span class="tt-sheet__name">{{ e.name }}</span></span>
+            {%- endif -%}
+          </li>
+          {%- endfor -%}
+        </ol>
+        {%- unless tt_current.default -%}
+        <a class="tt-sheet__today" href="{{ tt_today.url | relative_url }}" data-tt-to="{{ tt_today.slug }}">{{ tt.back_to_today }}</a>
+        {%- endunless -%}
+      </div>
+    </details>
+    {{ tt_next_link }}
+    {%- if include.closable -%}
+    <button type="button" class="tt__close">{{ tt.close }}</button>
+    {%- else -%}
+    <a class="tt__today" href="{{ tt_today.url | relative_url }}" data-tt-to="{{ tt_today.slug }}">{{ tt_today.label }}</a>
+    {%- endif -%}
+  </div>
+</nav>

@@ -15,6 +15,11 @@ sass:
   sass_dir: _sass
 
 permalink: /:path/:title
+
+# /1992/ redirects to /1991/ (redirect_from in eras/1991.html).
+plugins:
+  - jekyll-redirect-from
+
 exclude:
   - CLAUDE.md
   - Gemfile

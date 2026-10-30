@@ -1,0 +1,362 @@
+// Time-travel bar (_includes/time-travel.html). It looks the same in every era and in dark mode, so its
+// colors are fixed values from the design system's neutral scale, not the theme tokens (which flip).
+// Everything is scoped to .tt so the era pages' period markup is untouched.
+
+$tt-bg: oklch(0.200 0.006 75.0);     // neutral-12, light
+$tt-ink: oklch(0.995 0.002 75.0);    // neutral-1, light
+$tt-raised: oklch(0.305 0.006 75.0); // neutral-5, dark
+$tt-line: oklch(0.490 0.006 75.0);   // neutral-8, dark
+$tt-dot: oklch(0.818 0.006 75.0);    // neutral-7, light
+$tt-muted: oklch(0.850 0.006 75.0);  // neutral-11, dark
+$tt-font: "DM Sans", system-ui, sans-serif;
+$tt-breakpoint: 600px; // matches --breakpoint-sm
+
+.tt {
+  position: sticky;
+  bottom: 0;
+  z-index: 20;
+  background: $tt-bg;
+  color: $tt-ink;
+  font-family: $tt-font;
+  font-size: 15px;
+  font-weight: 400;
+  line-height: 1.4;
+  text-align: left;
+  -webkit-text-size-adjust: 100%;
+
+  &:focus {
+    outline: none;
+  }
+
+  &:focus-visible {
+    outline: 2px solid $tt-ink;
+    outline-offset: -4px;
+  }
+
+  a {
+    color: $tt-ink;
+    text-decoration: none;
+  }
+
+  a:focus-visible,
+  button:focus-visible,
+  summary:focus-visible {
+    outline: 2px solid $tt-ink;
+    outline-offset: 2px;
+  }
+
+  ol {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  p {
+    margin: 0;
+  }
+}
+
+// Today: hidden until the footer button or the P.S. link opens it (only once the script runs).
+.js .tt--closable:not(.is-open) {
+  display: none;
+}
+
+// Close buttons only work with the script.
+.tt__close,
+.tt-sheet__close {
+  display: none;
+}
+
+.js .tt__close,
+.js .tt-sheet__close {
+  display: inline-flex;
+}
+
+.tt__hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+}
+
+.tt__full {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px 20px;
+  padding: 10px 6% 12px;
+}
+
+.tt__title {
+  font-size: 12px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+
+.tt__step {
+  flex: 0 0 44px;
+  box-sizing: border-box;
+  width: 44px;
+  height: 44px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid $tt-line;
+  border-radius: 999px;
+  font-size: 18px;
+}
+
+.tt__step--none {
+  visibility: hidden;
+}
+
+.tt__stops {
+  --tt-count: 9;
+  flex: 1 1 520px;
+  min-width: 0;
+  display: grid;
+  grid-template-columns: repeat(var(--tt-count), minmax(0, 1fr));
+  // The line runs from the first dot to the last.
+  background: linear-gradient($tt-line, $tt-line) no-repeat center 8px / calc(100% - 100% / var(--tt-count)) 2px;
+
+  li {
+    display: flex;
+    justify-content: center;
+  }
+}
+
+.tt__stop {
+  min-height: 44px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  font-size: 13px;
+
+  &.is-current {
+    font-weight: 700;
+  }
+
+  &.is-soon {
+    color: $tt-muted;
+  }
+}
+
+a.tt__stop:hover {
+  text-decoration: underline;
+}
+
+.tt__dot {
+  box-sizing: border-box;
+  width: 10px;
+  height: 10px;
+  margin-top: 4px;
+  border-radius: 50%;
+  background: $tt-dot;
+
+  .is-current > & {
+    width: 18px;
+    height: 18px;
+    margin-top: 0;
+    background: $tt-ink;
+    box-shadow: 0 0 0 4px $tt-bg, 0 0 0 6px $tt-ink;
+  }
+
+  .is-soon > & {
+    background: $tt-bg;
+    border: 2px solid $tt-line;
+  }
+}
+
+.tt .tt__today {
+  min-height: 44px;
+  display: inline-flex;
+  align-items: center;
+  padding: 0 20px;
+  border-radius: 999px;
+  background: $tt-ink;
+  color: $tt-bg;
+  font-weight: 500;
+  white-space: nowrap;
+}
+
+.tt__close {
+  min-height: 44px;
+  align-items: center;
+  padding: 0 20px;
+  border: 1px solid $tt-line;
+  border-radius: 999px;
+  background: transparent;
+  color: $tt-ink;
+  font: inherit;
+  font-weight: 500;
+  cursor: pointer;
+}
+
+// Phones: a compact bar, with the full list in a sheet.
+.tt__compact {
+  display: none;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 10px 14px;
+
+  .tt__today {
+    padding: 0 16px;
+    font-size: 14px;
+  }
+
+  .tt__close {
+    padding: 0 14px;
+    font-size: 14px;
+  }
+}
+
+@media screen and (max-width: $tt-breakpoint) {
+  .tt__full {
+    display: none;
+  }
+
+  .tt__compact {
+    display: flex;
+  }
+}
+
+.tt-picker {
+  flex: 1 1 auto;
+  min-width: 0;
+
+  > summary {
+    min-height: 44px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    border-radius: 999px;
+    background: $tt-raised;
+    font-size: 14px;
+    list-style: none;
+    cursor: pointer;
+
+    &::-webkit-details-marker {
+      display: none;
+    }
+  }
+
+  // The backdrop belongs to the summary, so tapping outside the sheet closes it, even without the script.
+  &[open] > summary::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    z-index: 1;
+    background: rgba(0, 0, 0, 0.55);
+    cursor: default;
+  }
+}
+
+.tt-sheet {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 2;
+  max-height: 85vh;
+  overflow-y: auto;
+  padding: 10px 16px 24px;
+  border-radius: 20px 20px 0 0;
+  background: $tt-bg;
+  box-shadow: 0 -12px 40px rgba(0, 0, 0, 0.4);
+
+  &::before {
+    content: "";
+    display: block;
+    width: 40px;
+    height: 4px;
+    margin: 0 auto 14px;
+    border-radius: 999px;
+    background: $tt-line;
+  }
+}
+
+.tt-sheet__head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  min-height: 44px;
+  margin-bottom: 8px;
+}
+
+.tt-sheet__title {
+  font-size: 12px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+
+.tt-sheet__close {
+  width: 44px;
+  height: 44px;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  border: 1px solid $tt-line;
+  border-radius: 999px;
+  background: transparent;
+  color: $tt-ink;
+  cursor: pointer;
+}
+
+.tt-sheet__item {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  min-height: 56px;
+  padding: 0 12px;
+  border-radius: 12px;
+
+  .tt__dot {
+    flex: 0 0 10px;
+    margin: 0 4px;
+  }
+
+  &.is-current {
+    background: $tt-raised;
+
+    .tt__dot {
+      flex-basis: 18px;
+      margin: 0;
+      box-shadow: 0 0 0 3px $tt-raised, 0 0 0 5px $tt-ink;
+    }
+  }
+
+  &.is-soon .tt-sheet__label {
+    color: $tt-muted;
+  }
+}
+
+.tt-sheet__label {
+  flex: 0 0 64px;
+  font-size: 17px;
+
+  .is-current > & {
+    font-weight: 700;
+  }
+}
+
+.tt-sheet__name {
+  flex: 1;
+  font-size: 14px;
+  color: $tt-muted;
+}
+
+.tt .tt-sheet__today {
+  margin-top: 14px;
+  min-height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 999px;
+  background: $tt-ink;
+  color: $tt-bg;
+  font-weight: 500;
+}

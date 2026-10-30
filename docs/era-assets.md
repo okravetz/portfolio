@@ -45,7 +45,7 @@ Each era's `photos` entry in `_data/eras.yml` sets the headshot and case-study i
 | Era | Sizes | Colors | Format |
 |---|---|---|---|
 | 1996 | headshot 128 × 128, case studies 120 × 90 | `websafe`: the 216-color palette browsers used on 256-color displays, with dithering | GIF |
-| 2001 | set in its PR | `thousands`: 16-bit color | JPEG, quality 40 |
+| 2001 | headshot 96 × 96, case studies 200 × 150 | `thousands`: 16-bit color | JPEG, quality 40 |
 | 2006 | set in its PR | `full` | JPEG, quality 75 |
 
 The images are 1x, so `assets/css/era-1996.scss` sets `image-rendering: pixelated`, which shows them as sharp square pixels on high-density screens instead of smoothing them.

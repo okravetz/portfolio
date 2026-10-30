@@ -1,0 +1,345 @@
+---
+---
+// 2001: CSS1/2 only for the stage itself (positioning, overflow, Verdana). The stacked layout below 980px is
+// the modern layer from the mobile design board (media queries on top of the period markup), and the 2px
+// orange rules and borders are period-plain CSS borders.
+
+$orange: #ff6600;
+$link: #ff9933;
+$link-hover: #ffcc66;
+$text: #dcdcdc;
+
+// These pages have no 8px page margin, so the bar (see era.scss) doesn't need to pull out of one.
+body {
+  margin: 0;
+  padding: 0;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background: #000000;
+}
+
+.tt {
+  margin: 0;
+}
+
+.s01 {
+  flex: 1 0 auto;
+  padding: 48px 8px;
+  overflow-x: auto;
+  font-family: Verdana, Tahoma, Arial, sans-serif;
+  font-size: 13px;
+  line-height: 1.6;
+  color: $text;
+
+  a:link,
+  a:visited {
+    color: $link;
+  }
+
+  a:hover,
+  a:focus {
+    color: $link-hover;
+  }
+
+  img {
+    border: 0;
+  }
+
+  h1,
+  h2,
+  h3 {
+    margin: 0;
+    line-height: 1;
+  }
+}
+
+// The intro only runs with JavaScript (assets/js/era-2001.js shows it); without it, the stage is all there is.
+.intro {
+  display: none;
+  border: 1px solid #3a3e44;
+}
+
+.intro.is-on {
+  display: table;
+}
+
+.intro-skip {
+  padding: 0 24px 20px 0;
+}
+
+#stage {
+  border: 1px solid #4a4e55;
+  text-align: left;
+}
+
+.side {
+  padding: 28px 20px;
+  border-right: 2px solid $orange;
+  background-color: #1f2226;
+}
+
+// Desktop: photo above the name. (Phones: side by side.)
+.who td {
+  display: block;
+}
+
+.who-text {
+  padding-top: 14px;
+}
+
+.photo {
+  display: block;
+  border: 2px solid $orange;
+}
+
+.tagline {
+  margin-top: 6px;
+  font-size: 11px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: $link;
+}
+
+.tabs-wide {
+  margin-top: 22px;
+}
+
+.tabs-narrow,
+.replay-narrow {
+  display: none;
+}
+
+// "Replay intro" needs the script.
+.replay {
+  display: none;
+  margin: 28px 0 0;
+}
+
+.js .replay-wide {
+  display: block;
+}
+
+.content {
+  background-color: #1a1c1f;
+  background-repeat: repeat-x;
+}
+
+.panel {
+  height: 640px;
+  overflow: auto;
+  padding: 32px 36px;
+  box-sizing: border-box;
+
+  h2 {
+    margin: 0 0 18px;
+  }
+
+  h3 {
+    margin: 24px 0 10px;
+  }
+
+  p {
+    margin: 0 0 14px;
+  }
+
+  b {
+    color: #ffffff;
+  }
+
+  img {
+    max-width: 100%;
+  }
+}
+
+.section {
+  margin-bottom: 40px;
+}
+
+.clients td {
+  border: 1px solid #3a3e44;
+  font-size: 11px;
+  color: #e6e6e6;
+}
+
+.cases td {
+  padding-right: 14px;
+}
+
+.shot {
+  display: block;
+  border: 1px solid $orange;
+}
+
+.eyebrow {
+  margin-top: 8px;
+  font-size: 10px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: $link;
+}
+
+.case-title {
+  font-size: 15px;
+  font-weight: bold;
+}
+
+.small {
+  font-size: 12px;
+}
+
+.row {
+  padding: 10px 0;
+  border-top: 1px dotted #5a5f66;
+}
+
+.years {
+  color: $link;
+}
+
+.panel p.more {
+  margin: 8px 0 0;
+}
+
+.contact {
+  font-size: 15px;
+}
+
+.copyright {
+  font-size: 11px;
+  color: #a6a6a6;
+}
+
+// Phones and narrow tablets: the 960 x 640 stage becomes a column. The side panel turns into a header, the
+// tab images stack at full width, and the content scrolls with the page instead of inside a box.
+@media screen and (max-width: 980px) {
+  .s01 {
+    padding: 0;
+    overflow-x: visible;
+  }
+
+  #stage,
+  .stage > tbody,
+  .stage > tbody > tr,
+  .stage > tbody > tr > td,
+  .intro.is-on {
+    display: block;
+    width: auto;
+    height: auto;
+    box-sizing: border-box;
+  }
+
+  .intro.is-on {
+    min-height: 70vh;
+  }
+
+  .intro > tbody > tr > td {
+    padding: 20vh 16px 0;
+    text-align: center;
+  }
+
+  .intro > tbody > tr > td.intro-skip {
+    padding: 32px 16px 24px;
+    text-align: right;
+  }
+
+  #stage {
+    border: 0;
+  }
+
+  .side {
+    padding: 20px 16px;
+    border-right: 0;
+    border-bottom: 2px solid $orange;
+    background-image: url("../eras/2001/01m-header.jpg");
+    background-repeat: no-repeat;
+  }
+
+  .who td {
+    display: table-cell;
+  }
+
+  .who-text {
+    padding: 0 0 0 14px;
+  }
+
+  .photo {
+    width: 68px;
+    height: 68px;
+  }
+
+  .tagline {
+    font-size: 10px;
+  }
+
+  .tabs-wide,
+  .replay-wide,
+  .js .replay-wide {
+    display: none;
+  }
+
+  .tabs-narrow {
+    display: block;
+    margin-top: 16px;
+
+    a,
+    img {
+      display: block;
+    }
+
+    img {
+      width: 100%;
+      max-width: 358px;
+      height: auto;
+      margin: 2px 0;
+    }
+  }
+
+  .js .replay-narrow {
+    display: block;
+    margin: 32px 0 0;
+  }
+
+  .panel {
+    height: auto;
+    overflow: visible;
+    padding: 24px 16px 28px;
+  }
+
+  // Clients: two to a row.
+  .clients,
+  .clients > tbody,
+  .clients tr {
+    display: block;
+  }
+
+  .clients td {
+    display: inline-block;
+    box-sizing: border-box;
+    width: calc(50% - 6px);
+    margin: 0 2px 4px 0;
+    vertical-align: top;
+  }
+
+  // Case studies: one after another.
+  .cases,
+  .cases > tbody,
+  .cases tr,
+  .cases td {
+    display: block;
+    width: auto;
+  }
+
+  .cases td {
+    padding: 0 0 20px;
+  }
+
+  .buttons a {
+    display: block;
+    margin-bottom: 12px;
+  }
+
+  .contact {
+    font-size: 14px;
+  }
+}

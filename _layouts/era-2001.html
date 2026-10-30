@@ -1,0 +1,144 @@
+{%- comment -%}
+  2001: DHTML, the Flash look without Flash. A 960 x 640 stage built from tables and sliced images, image-swap
+  rollovers on the tabs, sections switched in place by JavaScript, CSS1/2 (positioning, overflow), an animated
+  GIF loader, Verdana, and pixel headings drawn as images (scripts/era-assets.py). The intro skips itself, can
+  be skipped, and never plays when reduced motion is requested. No Flash, no web fonts, no CSS3.
+  Without JavaScript there is no intro and every section is shown in the scrolling panel; the tabs jump to them.
+  Phones (and narrow tablets) get the stacked layout from the design board: assets/css/era-2001.scss.
+  All copy comes from _data/; image alt text comes from the same field as the image's label.
+  The time-travel bar at the end is the modern exception.
+{%- endcomment -%}
+{%- assign era = site.data.eras | where: "slug", page.era | first -%}
+{%- assign ui = era.ui -%}
+{%- assign s = site.data.site -%}
+{%- assign nav = site.data.navigation -%}
+{%- assign about = site.data.about -%}
+{%- assign about_paragraphs = about.paragraphs | where_exp: "p", "p.today_only != true" -%}
+{%- assign more_hidden = site.data.morework.size | minus: 3 -%}
+{%- assign img = "/assets/eras/2001/" | relative_url -%}
+{%- assign keys = "about,work,resume,contact" | split: "," -%}
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+{% include era-head.html era=era css="/assets/css/era-2001.css" %}
+  </head>
+  <body bgcolor="#000000" text="#dcdcdc" link="#ff9933" vlink="#ff9933" alink="#ffcc66">
+<div class="s01">
+<center>
+
+<table id="intro" class="stage intro" width="960" height="640" border="0" cellpadding="0" cellspacing="0" bgcolor="#202328">
+<tr><td align="center" valign="middle">
+<img src="{{ img }}01-loading.gif" alt="{{ ui.loading }}"><br><br>
+<img id="loader" src="{{ img }}01-loader.gif" width="324" height="14" alt=""><br><br><br>
+<img src="{{ img }}01-name-intro.gif" alt="{{ s.name }}">
+</td></tr>
+<tr><td class="intro-skip" align="right" valign="bottom" height="60">
+<a id="skip" href="#stage"><img src="{{ img }}01-skip.gif" border="0" alt="{{ ui.skip | remove: ' >>' }}"></a>
+</td></tr>
+</table>
+
+<table id="stage" class="stage" width="960" height="640" border="0" cellpadding="0" cellspacing="0">
+<tr>
+<td class="side" width="240" valign="top" background="{{ img }}01-side.jpg">
+<table class="who" border="0" cellpadding="0" cellspacing="0"><tr>
+<td valign="middle"><img class="photo" src="{{ img }}01-headshot.jpg" width="96" height="96" alt="{{ s.headshot.alt }}"></td>
+<td class="who-text" valign="middle">
+<h1><img src="{{ img }}01-name.gif" alt="{{ s.name }}"></h1>
+<div class="tagline">{{ s.tagline | escape }}</div>
+</td>
+</tr></table>
+<div class="tabs tabs-wide">
+{%- for item in nav %}
+{%- assign key = keys[forloop.index0] %}
+<a href="#{{ key }}" data-section="{{ key }}"><img src="{{ img }}01-tab-{{ key }}-off.gif" data-off="{{ img }}01-tab-{{ key }}-off.gif" data-over="{{ img }}01-tab-{{ key }}-over.gif" data-on="{{ img }}01-tab-{{ key }}-on.gif" width="200" height="40" border="0" vspace="3" alt="{{ item.name }}"></a><br>
+{%- endfor %}
+</div>
+<div class="tabs tabs-narrow">
+{%- for item in nav %}
+{%- assign key = keys[forloop.index0] %}
+<a href="#{{ key }}" data-section="{{ key }}"><img src="{{ img }}01m-tab-{{ key }}-off.gif" data-off="{{ img }}01m-tab-{{ key }}-off.gif" data-over="{{ img }}01m-tab-{{ key }}-over.gif" data-on="{{ img }}01m-tab-{{ key }}-on.gif" width="358" height="44" border="0" alt="{{ item.name }}"></a>
+{%- endfor %}
+</div>
+<p class="replay replay-wide"><a href="#intro"><img src="{{ img }}01-replay.gif" border="0" alt="{{ ui.replay }}"></a></p>
+</td>
+<td class="content" valign="top" background="{{ img }}01-content-bg.jpg">
+<div id="panel" class="panel">
+
+<div id="about" class="section">
+<h2><img src="{{ img }}01-h-about.gif" alt="{{ about.heading | escape }}"></h2>
+{%- for p in about_paragraphs %}
+<p>{% if p.lead %}<b>{{ p.lead | escape }}</b>{% endif %}{{ p.text | escape }}</p>
+{%- endfor %}
+<h3><img src="{{ img }}01-h-clients.gif" alt="{{ s.labels.clients }}"></h3>
+<table class="clients" width="100%" border="0" cellpadding="6" cellspacing="4">
+<tr>
+{%- for c in site.data.clients %}
+<td width="25%" bgcolor="#202327">{{ c.name | escape }}</td>
+{%- assign col = forloop.index | modulo: 4 %}
+{%- if col == 0 and forloop.last == false %}
+</tr>
+<tr>
+{%- endif %}
+{%- endfor %}
+</tr>
+</table>
+</div>
+
+<div id="work" class="section">
+<h2><img src="{{ img }}01-h-work.gif" alt="{{ s.labels.case_studies }}"></h2>
+<table class="cases" width="100%" border="0" cellpadding="0" cellspacing="0">
+<tr>
+{%- assign n = 0 %}
+{%- for item in site.data.casestudies %}{% if item.publish %}
+{%- assign n = n | plus: 1 %}
+{%- assign slug = item.link | split: "." | first %}
+{%- assign href = "/casestudies/" | append: item.link | relative_url %}
+<td width="33%" valign="top">
+<a href="{{ href }}"><img class="shot" src="{{ img }}01-case-{{ slug }}.jpg" width="200" height="150" border="0" alt="{{ item.image_alt | escape }}"></a>
+<div class="eyebrow">{{ s.labels.case_study }} {{ n }} · {{ item.client | escape }}</div>
+<div class="case-title"><a href="{{ href }}">{{ item.name | escape }}</a></div>
+<div class="small">{{ item.description | escape }}</div>
+</td>
+{%- endif %}{% endfor %}
+</tr>
+</table>
+<h3><img src="{{ img }}01-h-more.gif" alt="{{ s.labels.more_work }}"></h3>
+{%- for item in site.data.morework limit: 3 %}
+<div class="row">
+<b>{{ item.client | escape }}</b> · {{ item.project | escape }} · <span class="years">{{ item.years }}</span><br>
+<span class="small">{{ item.description | escape }}</span>
+</div>
+{%- endfor %}
+{%- comment -%} Points at Today's list until the era all-work pages exist (PR 8). {%- endcomment %}
+<p class="more"><a href="{{ '/' | relative_url }}#work">{{ s.labels.show_all_work | replace: "%n", more_hidden }} »</a></p>
+</div>
+
+<div id="resume" class="section">
+<h2><img src="{{ img }}01-h-resume.gif" alt="{{ nav[2].name }}"></h2>
+<p class="buttons">
+<a href="{{ s.resume.file | prepend: '/' | relative_url }}"><img src="{{ img }}01-btn-resume.gif" border="0" alt="{{ s.resume.button }}"></a>
+<a href="{{ s.portfolio.file | prepend: '/' | relative_url }}"><img src="{{ img }}01-btn-portfolio.gif" border="0" alt="{{ s.portfolio.button }}"></a>
+</p>
+</div>
+
+<div id="contact" class="section">
+<h2><img src="{{ img }}01-h-contact.gif" alt="{{ s.labels.contact }}"></h2>
+{%- for item in site.data.contact %}
+<p class="contact">{{ item.label }}: {% if item.href %}<a href="{{ item.href }}">{{ item.text }}</a>{% else %}{{ item.text }}{% endif %}</p>
+{%- endfor %}
+</div>
+
+<p class="replay replay-narrow"><a href="#intro"><img src="{{ img }}01-replay.gif" border="0" alt="{{ ui.replay }}"></a></p>
+<p class="copyright">© {{ site.time | date: "%Y" }} {{ s.copyright.holder }}</p>
+</div>
+</td>
+</tr>
+</table>
+
+</center>
+</div>
+<script src="{{ '/assets/js/era-2001.js' | relative_url }}?v={{ site.time | date: '%s' }}"></script>
+{% include time-travel.html current=era.slug %}
+<script src="{{ '/assets/js/time-travel.js' | relative_url }}?v={{ site.time | date: '%s' }}" defer></script>
+  </body>
+</html>

@@ -33,6 +33,7 @@ labels:
   menu: Menu
   # %n is replaced with the number of rows behind the toggle.
   show_all_work: "Show all work (%n more)"
+  show_less: Show less
   time_travel:
     title: Time travel
     back_to_today: Back to today

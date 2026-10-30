@@ -279,6 +279,11 @@ small,
   justify-content: center;
 }
 
+// The P.S. about time travel, in italics so it stands out from the paragraphs above it.
+.about__ps {
+  font-style: italic;
+}
+
 .clients-panel {
   flex: 1 1 420px;
   min-width: 0;

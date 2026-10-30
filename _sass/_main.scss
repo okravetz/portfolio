@@ -623,8 +623,9 @@ small,
   }
 }
 
-// Today's "Time travel" button opens the bar (_includes/time-travel.html). It needs the script, so it
-// only shows once the script can run; without it the bar is always visible.
+// Today's "Time travel" button floats at the bottom right and opens the bar (_includes/time-travel.html).
+// It needs the script, so it only shows once the script can run (without it the bar is always visible),
+// and it steps aside while the bar is open (the bar has its own Close).
 .tt-open {
   display: none;
 }
@@ -633,14 +634,42 @@ small,
   display: inline-flex;
   align-items: center;
   gap: var(--space-1);
-  min-height: 44px;
-  padding: 0 var(--space-3);
-  border: 1px solid var(--line);
+  position: fixed;
+  right: var(--space-3);
+  bottom: var(--space-3);
+  bottom: calc(var(--space-3) + env(safe-area-inset-bottom, 0px));
+  z-index: 15;
+  min-height: 48px;
+  padding: 0 var(--space-4) 0 var(--space-3);
+  border: 0;
   border-radius: var(--radius-pill);
-  background: transparent;
-  color: var(--ink);
+  background: var(--ink);
+  color: var(--bg);
   font: inherit;
+  font-weight: 500;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
   cursor: pointer;
+
+  &:hover {
+    background: var(--hover);
+    color: var(--bg);
+  }
+
+  &:focus-visible {
+    outline: 2px solid var(--ink);
+    outline-offset: 3px;
+    box-shadow: 0 0 0 2px var(--bg), 0 6px 20px rgba(0, 0, 0, 0.3);
+  }
+}
+
+.js .tt-open[aria-expanded="true"],
+.js.tt-keep .tt-open {
+  display: none;
+}
+
+// Room at the end of Today so the floating button never sits on the copyright line.
+main.home + .site-footer {
+  padding-bottom: 104px;
 }
 
 // Pages other than the homepage (case studies, sitemap, accessibility statement)

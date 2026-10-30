@@ -66,10 +66,7 @@
 
   if (opener) {
     opener.addEventListener("click", function () {
-      var atBottom = window.innerHeight + window.pageYOffset >= document.documentElement.scrollHeight - 2;
       setOpen(!bar.classList.contains("is-open"), "footer");
-      // At the end of the page the newly shown bar would cover the footer; scroll it into view instead.
-      if (atBottom && bar.classList.contains("is-open")) window.scrollTo(0, document.documentElement.scrollHeight);
     });
   }
 

@@ -82,9 +82,12 @@
   label: "2006"
   name: Web 2.0
   url: /2006/
+  ready: true
   ui:
     beta: beta
   photos:
+    headshot: [88, 88]
+    thumbnail: [360, 270]
     colors: full
     format: jpg
     quality: 75
@@ -93,6 +96,14 @@
   label: "2013"
   name: Responsive and flat
   url: /2013/
+  ready: true
+  # Shown at half these sizes, so they're sharp on the high-density screens of 2013 (and today).
+  photos:
+    headshot: [320, 320]
+    thumbnail: [720, 540]
+    colors: full
+    format: jpg
+    quality: 80
 - order: 8
   slug: today
   label: Today

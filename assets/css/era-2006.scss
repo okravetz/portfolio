@@ -1,0 +1,461 @@
+---
+---
+// 2006: CSS 2.1 only. Floats and a liquid two-column layout (the main column takes 100% with a negative
+// right margin, the sidebar floats into the gap), sliding-door tabs, and every rounded corner, gradient,
+// gloss and reflection is an image from scripts/era-assets.py. No border-radius, gradients, shadows,
+// flexbox or grid. Under 900px: the stacked layout from the mobile design board (media queries on top).
+
+$img: "../eras/2006/";
+$blue: #1d5a96;
+$orange: #d9531e;
+$line: #d5e2ec;
+
+// These pages have no 8px page margin, so the bar (see era.scss) doesn't need to pull out of one.
+body {
+  margin: 0;
+  padding: 0;
+}
+
+.tt {
+  margin: 0;
+}
+
+.w06 {
+  padding: 32px 8px 40px;
+  background: #e9f0f5 url("#{$img}06-bg.png") repeat-x left top;
+  font: 14px/1.6 "Lucida Grande", "Lucida Sans Unicode", Verdana, sans-serif;
+  color: #333333;
+
+  a {
+    color: $blue;
+  }
+
+  a:hover,
+  a:focus {
+    color: $orange;
+  }
+
+  img {
+    border: 0;
+  }
+
+  h1,
+  h2,
+  h3,
+  p {
+    margin: 0;
+  }
+
+  h2 {
+    margin: 0 0 14px;
+    font: bold 28px/1.2 Arial, Helvetica, sans-serif;
+    letter-spacing: -1px;
+  }
+
+  h3 {
+    margin: 28px 0 8px;
+    font: bold 20px Arial, Helvetica, sans-serif;
+  }
+}
+
+.page06 {
+  margin: 0 3%;
+}
+
+// Masthead: logo on the left, sliding-door tabs on the right.
+.masthead06 {
+  overflow: hidden;
+}
+
+.brand06 {
+  float: left;
+
+  img {
+    display: block;
+  }
+}
+
+.tagline06 {
+  margin-top: -6px;
+  font-size: 15px;
+  color: #4d4d4d;
+}
+
+.tabs06 {
+  float: right;
+  margin: 76px 0 0;
+  padding: 0;
+  list-style: none;
+
+  li {
+    float: left;
+    margin-left: 4px;
+    background: url("#{$img}06-tab-off-l.png") no-repeat left top;
+  }
+
+  a {
+    display: block;
+    height: 44px;
+    padding: 0 18px;
+    line-height: 44px;
+    background: url("#{$img}06-tab-off-r.png") no-repeat right top;
+    color: #ffffff !important;
+    font-weight: bold;
+    text-decoration: none;
+  }
+
+  a:hover,
+  a:focus {
+    text-decoration: underline;
+  }
+
+  li.on {
+    background-image: url("#{$img}06-tab-on-l.png");
+  }
+
+  li.on a {
+    background-image: url("#{$img}06-tab-on-r.png");
+    color: $blue !important;
+  }
+}
+
+// The white panel with the liquid layout.
+.panel06 {
+  overflow: hidden;
+  padding: 28px 28px 2px;
+  background: #ffffff;
+}
+
+.main06 {
+  float: left;
+  width: 100%;
+  margin-right: -308px;
+}
+
+.main06-in {
+  margin-right: 308px;
+}
+
+.side06 {
+  float: right;
+  width: 280px;
+}
+
+#about {
+  overflow: hidden;
+  margin-bottom: 32px;
+
+  p {
+    margin: 0 0 12px;
+  }
+}
+
+.photo06 {
+  float: left;
+  margin: 4px 16px 8px 0;
+  border: 3px solid #ffffff;
+  outline: 1px solid #c4d4e0;
+}
+
+.text06 {
+  overflow: hidden;
+}
+
+#about h2 {
+  overflow: hidden;
+}
+
+.cases06 {
+  overflow: hidden;
+}
+
+.case06 {
+  float: left;
+  width: 31%;
+  margin-right: 3.5%;
+
+  &.last {
+    margin-right: 0;
+  }
+
+  img {
+    display: block;
+    width: 100%;
+    height: auto;
+  }
+}
+
+.eyebrow06 {
+  margin-top: 10px !important;
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: #595959;
+}
+
+.title06 {
+  font: bold 18px Arial, Helvetica, sans-serif;
+
+  a {
+    text-decoration: none;
+  }
+}
+
+.desc06,
+.line06 {
+  font-size: 13px;
+}
+
+.more06 {
+  border: 1px solid $line;
+}
+
+.row06 {
+  padding: 12px 14px;
+  background: #ffffff;
+
+  &.alt {
+    background: #f4f8fb;
+  }
+}
+
+.years06 {
+  margin-left: 6px;
+  padding: 1px 8px;
+  background: #e3eef7;
+  color: $blue;
+  font-size: 12px;
+}
+
+.all06 {
+  margin: 10px 0 24px !important;
+}
+
+// Sidebar boxes: a rounded header image, a bordered body and a rounded bottom image.
+.boxtop06 {
+  position: relative;
+  height: 40px;
+  margin: 0 !important;
+  padding: 0;
+  background: url("#{$img}06-box-top.png") no-repeat left top;
+  font: bold 16px/40px Arial, Helvetica, sans-serif !important;
+  letter-spacing: 0 !important;
+  color: #333333;
+
+  b {
+    display: block;
+    padding: 0 14px;
+  }
+
+  span {
+    display: none;
+  }
+}
+
+.boxbody06 {
+  padding: 14px;
+  border-left: 1px solid $line;
+  border-right: 1px solid $line;
+  background: #ffffff;
+}
+
+.boxbot06 {
+  height: 14px;
+  margin-bottom: 18px;
+  background: url("#{$img}06-box-bot.png") no-repeat left top;
+  font-size: 1px;
+
+  span {
+    display: none;
+  }
+}
+
+.w06 a.btn06 {
+  display: block;
+  width: 250px;
+  height: 44px;
+  margin: 0 0 10px;
+  line-height: 44px;
+  text-align: center;
+  color: #ffffff;
+  font-weight: bold;
+  text-decoration: none;
+
+  &:hover,
+  &:focus {
+    text-decoration: underline;
+  }
+
+  &.blue {
+    background: url("#{$img}06-btn-blue.png") no-repeat;
+  }
+
+  &.green {
+    margin-bottom: 0;
+    background: url("#{$img}06-btn-green.png") no-repeat;
+  }
+}
+
+.cloud06 {
+  line-height: 1.9;
+
+  a {
+    margin-right: 8px;
+    white-space: nowrap;
+    text-decoration: none;
+  }
+}
+
+// The panel's rounded bottom with its shadow: left corner, a 1px slice repeated, right corner.
+.panelbot06 {
+  height: 26px;
+  font-size: 1px;
+
+  .l {
+    float: left;
+    width: 40px;
+    height: 26px;
+    background: url("#{$img}06-panel-bot-l.png") no-repeat;
+  }
+
+  .r {
+    float: right;
+    width: 40px;
+    height: 26px;
+    background: url("#{$img}06-panel-bot-r.png") no-repeat;
+  }
+
+  .m {
+    height: 26px;
+    margin: 0 40px;
+    background: url("#{$img}06-panel-bot-m.png") repeat-x;
+  }
+}
+
+.copy06 {
+  margin-top: 8px !important;
+  font-size: 12px;
+  color: #4d4d4d;
+  text-align: center;
+}
+
+// Phones and narrow tablets: tabs wrap under the logo, the sidebar boxes move below the main column, the
+// case studies stack, and the box images stretch to the width in two halves (left and right corners).
+@media screen and (max-width: 900px) {
+  .w06 {
+    padding: 20px 10px 24px;
+
+    h2 {
+      font-size: 22px;
+      letter-spacing: -0.5px;
+    }
+
+    h3 {
+      margin-top: 4px;
+      font-size: 18px;
+    }
+  }
+
+  .page06 {
+    margin: 0;
+  }
+
+  .brand06 {
+    float: none;
+
+    img {
+      width: 300px;
+      max-width: 100%;
+      height: auto;
+    }
+  }
+
+  .tagline06 {
+    margin: -2px 0 12px;
+    font-size: 14px;
+  }
+
+  .tabs06 {
+    float: none;
+    overflow: hidden;
+    margin: 0;
+
+    li {
+      margin: 0 3px 0 0;
+    }
+
+    a {
+      padding: 0 11px;
+      font-size: 13px;
+    }
+  }
+
+  .panel06 {
+    padding: 20px 16px 4px;
+  }
+
+  .main06,
+  .side06 {
+    float: none;
+    width: auto;
+    margin: 0;
+  }
+
+  // The box images are 280px; stretched in two halves they cover up to twice that.
+  .side06 {
+    max-width: 560px;
+  }
+
+  .main06-in {
+    margin: 0;
+  }
+
+  .photo06 {
+    width: 64px;
+    height: 64px;
+    margin: 2px 12px 0 0;
+  }
+
+  #about h2 {
+    min-height: 70px;
+  }
+
+  .case06,
+  .case06.last {
+    float: none;
+    width: auto;
+    margin: 0 0 22px;
+  }
+
+  .row06 {
+    padding: 12px;
+  }
+
+  .boxtop06 {
+    b {
+      position: absolute;
+    }
+
+    span {
+      display: block;
+      height: 40px;
+      margin-left: 50%;
+      background: url("#{$img}06-box-top.png") no-repeat right top;
+    }
+  }
+
+  .boxbot06 span {
+    display: block;
+    height: 14px;
+    margin-left: 50%;
+    background: url("#{$img}06-box-bot.png") no-repeat right top;
+  }
+
+  .w06 a.btn06 {
+    margin: 0 auto 10px;
+
+    &.green {
+      margin-bottom: 0;
+    }
+  }
+}

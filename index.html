@@ -11,21 +11,12 @@ title: Oren Kravetz's Portfolio
       {%- assign about_paragraphs = about.paragraphs | where_exp: "p", "p.today_only != true" -%}
       {%- assign about_ps = about.paragraphs | where: "today_only", true | first -%}
       <h2 id="about-h" class="section-title">{{ about.heading | escape }}</h2>
-      {%- for p in about_paragraphs limit: 2 -%}
+      {%- for p in about_paragraphs -%}
       <p>{% if p.lead %}<strong>{{ p.lead | escape }}</strong>{% endif %}{{ p.text | escape }}</p>
       {%- endfor -%}
-      <button type="button" class="about-toggle" aria-expanded="false" aria-controls="about-more">
-        <span><span class="lbl-open">Read more</span><span class="lbl-close">Show less</span></span>
-        {%- include icon-chevron.html -%}
-      </button>
-      <div id="about-more" class="about__more">
-        {%- for p in about_paragraphs offset: 2 -%}
-        <p>{% if p.lead %}<strong>{{ p.lead | escape }}</strong>{% endif %}{{ p.text | escape }}</p>
-        {%- endfor -%}
-        {%- if about_ps -%}
-        <p>{{ about_ps.text | escape }}<a href="{{ about_ps.link_href }}">{{ about_ps.link_text }}</a>{{ about_ps.text_after | escape }}</p>
-        {%- endif -%}
-      </div>
+      {%- if about_ps -%}
+      <p>{{ about_ps.text | escape }}<a href="{{ about_ps.link_href }}">{{ about_ps.link_text }}</a>{{ about_ps.text_after | escape }}</p>
+      {%- endif -%}
     </div>
     <div class="clients-panel">
       <h3 id="clients-h" class="eyebrow">Clients</h3>
@@ -96,4 +87,3 @@ title: Oren Kravetz's Portfolio
   </div>
 </section>
 {%- include contact.html -%}
-<script src="{{ site.baseurl }}/assets/js/about-toggle.js?v={{ site.time | date: '%s' }}" defer></script>

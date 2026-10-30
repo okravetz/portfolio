@@ -4,7 +4,7 @@
   Verdana, and a tag cloud sized by how many projects each client has on the site (counted from
   _data/morework.yml and the published case studies, never typed in). No border-radius, gradients,
   shadows, flexbox or grid. Phones and narrow tablets get the stacked layout from the mobile board
-  (assets/css/era-2006.scss). All copy comes from _data/. The time-travel bar at the end is the modern exception.
+  (assets/css/era-2006.scss). All copy comes from _data/. With page.work (/2006/work/) the main column lists every project. The time-travel bar at the end is the modern exception.
 {%- endcomment -%}
 {%- assign era = site.data.eras | where: "slug", page.era | first -%}
 {%- assign s = site.data.site -%}
@@ -12,6 +12,8 @@
 {%- assign about = site.data.about -%}
 {%- assign about_paragraphs = about.paragraphs | where_exp: "p", "p.today_only != true" -%}
 {%- assign more_hidden = site.data.morework.size | minus: 3 -%}
+{%- assign home = era.url | relative_url -%}
+{%- assign work_href = era.url | append: "work/" | relative_url -%}
 {%- assign published = site.data.casestudies | where: "publish", true -%}
 {%- assign img = "/assets/eras/2006/" | relative_url -%}
 {%- assign keys = "about,work,resume,contact" | split: "," -%}
@@ -31,7 +33,7 @@
 </div>
 <ul class="tabs06">
 {%- for item in nav %}
-<li{% if forloop.first %} class="on"{% endif %}><a href="#{{ keys[forloop.index0] }}">{{ item.name }}</a></li>
+<li{% if forloop.first and page.work != true %} class="on"{% endif %}><a href="{% if page.work %}{{ home }}{% endif %}#{{ keys[forloop.index0] }}">{{ item.name }}</a></li>
 {%- endfor %}
 </ul>
 </div>
@@ -39,6 +41,19 @@
 <div class="panel06">
 
 <div class="main06"><div class="main06-in">
+{%- if page.work %}
+<div id="more">
+<h2>{{ s.labels.more_work }}</h2>
+<div class="more06">
+{%- for item in site.data.morework %}
+<div class="row06{% cycle '', ' alt' %}">
+<strong>{{ item.client | escape }}</strong> · {{ item.project | escape }} <span class="years06">{{ item.years }}</span><br>
+<span class="line06">{{ item.description | escape }}</span>
+</div>
+{%- endfor %}
+</div>
+</div>
+{%- else %}
 <div id="about">
 <img class="photo06" src="{{ img }}06-headshot.jpg" width="88" height="88" alt="{{ s.headshot.alt }}">
 <h2>{{ about.heading | escape }}</h2>
@@ -73,9 +88,9 @@
 </div>
 {%- endfor %}
 </div>
-{%- comment -%} Points at Today's list until the era all-work pages exist (PR 8). {%- endcomment %}
-<p class="all06"><a href="{{ '/' | relative_url }}#work">{{ s.labels.show_all_work | replace: "%n", more_hidden }} »</a></p>
+<p class="all06"><a href="{{ work_href }}">{{ s.labels.show_all_work | replace: "%n", more_hidden }} »</a></p>
 </div>
+{%- endif %}
 </div></div>
 
 <div class="side06">
@@ -96,7 +111,7 @@
 {%- assign k = k | plus: k_cases %}
 {%- if k < 1 %}{% assign k = 1 %}{% endif %}
 {%- assign px = k | minus: 1 | times: 3 | plus: 12 %}
-<a href="#work" style="font-size: {{ px }}px{% if k > 1 %}; font-weight: bold{% endif %}">{{ c.name | escape }}</a>
+<a href="{% if page.work %}{{ home }}{% endif %}#work" style="font-size: {{ px }}px{% if k > 1 %}; font-weight: bold{% endif %}">{{ c.name | escape }}</a>
 {%- endfor %}
 </div>
 <div class="boxbot06"><span></span></div>

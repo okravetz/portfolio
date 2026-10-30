@@ -6,7 +6,7 @@
 {%- endcomment -%}
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>{{ include.era.label }} · {{ include.era.name }} · {{ site.data.site.name }}</title>
+    <title>{% if page.work %}{{ site.data.site.labels.more_work }} · {% endif %}{{ include.era.label }} · {{ include.era.name }} · {{ site.data.site.name }}</title>
     <meta name="description" content="{{ site.data.site.meta_description }}">
     <link rel="shortcut icon" href="{{ "/assets/images/favicon.ico" | relative_url }}" type="image/x-icon">
     <link rel="preconnect" href="https://fonts.googleapis.com">

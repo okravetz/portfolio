@@ -3,6 +3,7 @@
   border-radius and transitions; Lato from Google Fonts; padding-hack image boxes (no aspect-ratio); inline
   SVG icons. No flexbox, grid, gap, aspect-ratio or sticky in the page itself. Photos are 2x for sharp
   screens. The phone layout is Bootstrap's own (hamburger menu, stacked columns): assets/css/era-2013.scss.
+  "Show all work" expands the list in place (assets/js/era-2013.js); without JavaScript every project is listed.
   All copy comes from _data/. The time-travel bar at the end is the modern exception.
 {%- endcomment -%}
 {%- assign era = site.data.eras | where: "slug", page.era | first -%}
@@ -84,17 +85,16 @@
 </div>
 
 <h3 class="more-title">{{ s.labels.more_work }}</h3>
-<ul class="more">
-{%- for item in site.data.morework limit: 3 %}
-<li class="clearfix">
+<ul id="more-list" class="more">
+{%- for item in site.data.morework %}
+<li class="clearfix{% if forloop.index > 3 %} rest{% endif %}">
 <span class="who"><strong>{{ item.client | escape }}</strong><br><span class="project">{{ item.project | escape }}</span></span>
 <span class="years">{{ item.years }}</span>
 <span class="line">{{ item.description | escape }}</span>
 </li>
 {%- endfor %}
 </ul>
-{%- comment -%} Points at Today's list until the era all-work pages exist (PR 8). {%- endcomment %}
-<p class="center"><a class="btn btn-green" href="{{ '/' | relative_url }}#work">{{ s.labels.show_all_work | replace: "%n", more_hidden }}</a></p>
+<p class="center"><button type="button" class="btn btn-green more-toggle" aria-expanded="false" aria-controls="more-list" data-more="{{ s.labels.show_all_work | replace: '%n', more_hidden | escape }}" data-less="{{ s.labels.show_less | escape }}">{{ s.labels.show_all_work | replace: "%n", more_hidden }}</button></p>
 </div>
 </div>
 

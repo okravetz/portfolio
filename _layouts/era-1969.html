@@ -1,6 +1,7 @@
 {%- comment -%}
   1969: a teletype printout. Plain 7-bit ASCII text in <pre> blocks, all capitals, no links and no markup
-  inside the printout. The paper, its feed holes and shadow are device presentation (assets/css/era-1969.scss).
+  inside the printout. With page.work (/1969/work/) the same printout lists every project, and a key below the
+  paper (outside the printout, so it can be a link) returns to the 1969 page. The paper, its feed holes and shadow are device presentation (assets/css/era-1969.scss).
   Lines are not hard-wrapped: the <pre> wraps at 72 columns (and at the screen's width on phones).
   All copy comes from _data/; _includes/era-text/ does the ASCII swaps and the capitals.
   The time-travel bar at the end is the modern exception.
@@ -10,6 +11,7 @@
 {%- assign nav = site.data.navigation -%}
 {%- assign keys = "about,work,resume,contact" | split: "," -%}
 {%- assign rule = "------------------------------------------------------------------------" -%}
+{%- assign work_url = site.data.site.url | append: era.url | append: "work/" -%}
 <!DOCTYPE html>
 <html lang="en-US">
   <head>
@@ -20,6 +22,14 @@
 <pre>{{ ui.login }}
 {{ ui.connected }}</pre>
 <pre>{% include era-text/part.html part="title" upper=true %}</pre>
+{%- if page.work %}
+{%- capture command %}{{ ui.type }} {{ nav[1].name }}{% endcapture %}
+<pre>{% include era-text/part.html part="text" text=command upper=true %}</pre>
+<pre class="rule" aria-hidden="true">{{ rule }}</pre>
+<pre>{% include era-text/part.html part="text" text=site.data.site.labels.more_work upper=true %}
+
+{% include era-text/part.html part="more" all=true upper=true %}</pre>
+{%- else %}
 <pre>{% include era-text/part.html part="text" text=ui.contents upper=true %}
 {% include era-text/part.html part="contents" upper=true %}</pre>
 {%- for item in nav %}
@@ -35,7 +45,7 @@
 {% include era-text/part.html part="cases" sep=" - " upper=true %}</pre>
 <pre>{% include era-text/part.html part="text" text=site.data.site.labels.more_work upper=true %}
 
-{% include era-text/part.html part="more" upper=true %}</pre>
+{% include era-text/part.html part="more" work_url=work_url upper=true %}</pre>
 {%- when "resume" %}
 <pre>{% include era-text/part.html part="resume" upper=true %}</pre>
 {%- when "contact" %}
@@ -44,9 +54,15 @@
 {% include era-text/part.html part="contact" upper=true %}</pre>
 {%- endcase %}
 {%- endfor %}
+{%- endif %}
 <pre>{% include era-text/part.html part="copyright" upper=true %}</pre>
 <pre>{{ ui.logout }}</pre>
 </main>
+{%- if page.work %}
+<div class="keys">
+<a class="key" href="{{ era.url | relative_url }}"><span>{% include era-text/part.html part="text" text=ui.back upper=true %}</span></a>
+</div>
+{%- endif %}
 {% include time-travel.html current=era.slug %}
 <script src="{{ '/assets/js/time-travel.js' | relative_url }}?v={{ site.time | date: '%s' }}" defer></script>
   </body>

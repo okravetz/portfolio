@@ -415,6 +415,27 @@ body {
   margin-top: 16px;
 }
 
+// "Show all work" expands the list in place. It needs the script; without it every project is listed.
+.more-toggle {
+  display: none;
+  border: 0;
+  font-family: inherit;
+  font-size: inherit;
+  cursor: pointer;
+}
+
+.js .more-toggle {
+  display: inline-block;
+}
+
+.js .more:not(.open) .rest {
+  display: none;
+}
+
+.js .more:not(.open) li:nth-child(3) {
+  border-bottom: 0;
+}
+
 // Résumé band
 .band-dark {
   padding: 96px 15px;

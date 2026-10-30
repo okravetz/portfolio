@@ -2,6 +2,7 @@
   <head> contents for the era pages. Everything here is modern and invisible (charset, viewport, title,
   the time-travel bar's stylesheet and font, analytics); the page itself uses only its era's markup.
   include.era: the era's entry from _data/eras.yml. include.css: an extra stylesheet (the 1996 phone layout).
+  include.fonts: extra Google Fonts families, e.g. "family=VT323&" (a terminal's typeface, device presentation).
 {%- endcomment -%}
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -10,7 +11,7 @@
     <link rel="shortcut icon" href="{{ "/assets/images/favicon.ico" | relative_url }}" type="image/x-icon">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?{{ include.fonts }}family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="{{ "/assets/css/era.css" | relative_url }}?v={{ site.time | date: "%s" }}">
     {%- if include.css %}
     <link rel="stylesheet" href="{{ include.css | relative_url }}?v={{ site.time | date: "%s" }}">

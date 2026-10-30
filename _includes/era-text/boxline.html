@@ -1,0 +1,8 @@
+{%- comment -%}
+  One line of 1983's boxed header: "| text      |", exactly include.width characters wide.
+  include.upper: true to upper-case the text.
+{%- endcomment -%}
+{%- assign pad80 = "                                                                                " -%}
+{%- include era-text/ascii.html text=include.text upper=include.upper -%}
+{%- assign gap = include.width | minus: 3 | minus: ascii_out.size -%}
+| {{ ascii_out | escape }}{{ pad80 | slice: 0, gap }}|{%- comment -%}{%- endcomment -%}

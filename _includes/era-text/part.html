@@ -1,0 +1,45 @@
+{%- comment -%}
+  One piece of the page's copy as plain ASCII text, read from _data/, for 1969 and 1983. The text is
+  escaped for HTML and meant to go inside a <pre>; lines are not hard-wrapped (the <pre> wraps them).
+  include.part: text | underline | title | contents | about | cases | more | resume | contact | copyright
+  ("resume" also prints the two files' web addresses under their labels: in their real letter case, flush left,
+  with line-break hints (<wbr>) after slashes and %20 so a long address breaks at sensible places.)
+  include.text: the text for `text` and `underline` ("underline" prints dashes as long as the text).
+  include.sep: between a case study's name and its client. include.indent: before descriptions.
+  include.align: true to line contact values up in a column (1983). include.upper: true for 1969's capitals.
+{%- endcomment -%}
+{%- capture nl %}
+{% endcapture -%}
+{%- assign s = site.data.site -%}
+{%- assign ind = include.indent | default: "    " -%}
+{%- assign spaces = "          " -%}
+{%- assign dashes = "--------------------------------------------------------------------------------" -%}
+{%- capture raw -%}
+{%- case include.part -%}
+{%- when "text" -%}{{ include.text }}
+{%- when "underline" -%}{{ include.text }}
+{%- when "title" -%}{{ s.name }}{{ nl }}{{ s.tagline }}
+{%- when "contents" -%}{%- for item in site.data.navigation -%}{{ ind }}{{ forloop.index }}  {{ item.name }}{%- unless forloop.last -%}{{ nl }}{%- endunless -%}{%- endfor -%}
+{%- when "about" -%}{{ site.data.about.heading }}{{ nl }}{{ nl }}{%- for p in site.data.about.paragraphs -%}{%- unless p.today_only -%}{{ p.lead }}{{ p.text }}{{ nl }}{{ nl }}{%- endunless -%}{%- endfor -%}{{ s.labels.clients }}: {% for c in site.data.clients %}{{ c.name }}{% unless forloop.last %}, {% endunless %}{% endfor %}.
+{%- when "cases" -%}{%- assign n = 0 -%}{%- for c in site.data.casestudies -%}{%- if c.publish -%}{%- assign n = n | plus: 1 -%}{{ n }}. {{ c.name }}{{ include.sep }}{{ c.client }}{{ nl }}{{ ind }}{{ c.description }}{{ nl }}{{ nl }}{%- endif -%}{%- endfor -%}
+{%- when "more" -%}{%- for m in site.data.morework limit: 3 -%}{{ m.client }} / {{ m.project }} / {{ m.years }}{{ nl }}{{ ind }}{{ m.description }}{{ nl }}{{ nl }}{%- endfor -%}{%- assign hidden = site.data.morework.size | minus: 3 -%}{{ s.labels.show_all_work | replace: "%n", hidden }}
+{%- when "resume" -%}{{ s.resume.button }}{{ nl }}{{ s.portfolio.button }}
+{%- when "contact" -%}{%- for item in site.data.contact -%}{%- assign lab = item.label | append: ":" -%}{{ lab }}{%- if include.align -%}{%- assign gap = 10 | minus: lab.size -%}{{ spaces | slice: 0, gap }}{% else %} {% endif -%}{{ item.text }}{%- unless forloop.last -%}{{ nl }}{%- endunless -%}{%- endfor -%}
+{%- when "copyright" -%}© {{ site.time | date: "%Y" }} {{ s.copyright.holder }}
+{%- endcase -%}
+{%- endcapture -%}
+{%- assign raw = raw | rstrip -%}
+{%- if include.part == "resume" -%}
+{%- comment -%} The addresses keep their real letter case, even in 1969's capitals: file names are case-sensitive. {%- endcomment -%}
+{%- include era-text/ascii.html text=s.resume.button upper=include.upper -%}
+{%- assign resume_line = ascii_out -%}
+{%- include era-text/ascii.html text=s.portfolio.button upper=include.upper -%}
+{%- assign resume_path = s.resume.file | uri_escape -%}
+{%- assign portfolio_path = s.portfolio.file | uri_escape -%}
+{%- assign resume_url = s.url | append: "/" | append: resume_path | escape | replace: "/", "/<wbr>" | replace: "%20", "%20<wbr>" -%}
+{%- assign portfolio_url = s.url | append: "/" | append: portfolio_path | escape | replace: "/", "/<wbr>" | replace: "%20", "%20<wbr>" -%}
+{{- resume_line | escape }}{{ nl }}{{ resume_url }}{{ nl }}{{ ascii_out | escape }}{{ nl }}{{ portfolio_url -}}
+{%- else -%}
+{%- include era-text/ascii.html text=raw upper=include.upper -%}
+{%- if include.part == "underline" -%}{{ dashes | slice: 0, ascii_out.size }}{%- else -%}{{ ascii_out | escape }}{%- endif -%}
+{%- endif -%}

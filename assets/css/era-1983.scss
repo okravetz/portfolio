@@ -1,0 +1,195 @@
+---
+---
+// 1983: the terminal. The screen's text is plain <pre> (_layouts/era-1983.html); the beige case, the
+// green phosphor glow, the scanlines and the blinking cursor are device presentation. The text runs
+// 80 columns wide; below 960px (where 80 columns no longer fit) it is the 36-column phone layout.
+
+$phosphor: #3dff7a;
+$glass: #020a04;
+
+body {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  margin: 0;
+  padding: 0;
+  background: oklch(0.240 0.006 75.0);
+}
+
+// These eras have no 8px page margin, so the bar (see era.scss) doesn't need to pull out of one.
+.tt {
+  margin: 0;
+}
+
+main {
+  flex: 1 0 auto;
+  display: flex;
+  justify-content: center;
+  padding: 48px 24px 64px;
+}
+
+.case {
+  align-self: flex-start;
+  max-width: 100%;
+  box-sizing: border-box;
+  padding: 28px;
+  border-radius: 28px;
+  background: linear-gradient(#cfc8b6, #b3ab97);
+  box-shadow: 0 30px 70px rgba(0, 0, 0, 0.55), inset 0 2px 0 rgba(255, 255, 255, 0.5);
+}
+
+.crt {
+  position: relative;
+  border-radius: 18px;
+  overflow: hidden;
+  background: $glass;
+  color: $phosphor;
+  text-shadow: 0 0 2px rgba(61, 255, 122, 0.75), 0 0 10px rgba(61, 255, 122, 0.25);
+  box-shadow: inset 0 0 60px rgba(0, 0, 0, 0.9);
+}
+
+.screen {
+  padding: 36px 44px 44px;
+  font-family: "VT323", "Courier New", monospace;
+  font-size: 24px;
+  line-height: 1.2;
+  // A terminal draws one character per cell: no joined letters like "fi".
+  font-variant-ligatures: none;
+}
+
+.scan {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: repeating-linear-gradient(to bottom, rgba(0, 0, 0, 0) 0 2px, rgba(0, 0, 0, 0.28) 2px 3px);
+}
+
+.screen pre {
+  margin: 0;
+  font: inherit;
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+  width: 80ch;
+  max-width: 100%;
+}
+
+.screen pre.wide,
+.screen pre.prompt,
+.screen .bbs-menu pre {
+  white-space: pre;
+}
+
+.screen pre.narrow {
+  display: none;
+}
+
+.sections section,
+.screen pre.copy {
+  margin-top: 18px;
+}
+
+// Without JavaScript: every section is shown in turn and the menu is hidden. With it (assets/js/bbs.js),
+// the menu's buttons show one section at a time.
+.bbs-menu {
+  display: none;
+}
+
+.bbs .bbs-menu {
+  display: block;
+}
+
+.bbs .sections section {
+  display: none;
+}
+
+.bbs .sections section.is-on {
+  display: block;
+}
+
+// Each menu row is one line of text plus a small even gap, so the highlighted choice hugs its text and
+// never touches the row below or the prompt (a row is still 25px or taller, enough to tap).
+.bbs-menu nav div {
+  margin: 0 0 4px 2ch;
+}
+
+.screen button {
+  display: inline-block;
+  font: inherit;
+  line-height: 1.2;
+  color: inherit;
+  text-shadow: inherit;
+  background: transparent;
+  border: 0;
+  padding: 2px 4px;
+  cursor: pointer;
+}
+
+.screen button:hover,
+.screen button:focus-visible,
+.screen button[aria-pressed="true"] {
+  background: $phosphor;
+  color: $glass;
+  text-shadow: none;
+  outline: none;
+}
+
+.cur {
+  display: inline-block;
+  width: 0.55em;
+  height: 0.95em;
+  background: $phosphor;
+  vertical-align: -0.1em;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .cur {
+    animation: crt-blink 1s steps(1) infinite;
+  }
+}
+
+@keyframes crt-blink {
+  50% {
+    opacity: 0;
+  }
+}
+
+// 80 columns need about 960px; narrower than that, the phone layout: 36 columns, smaller type, tap-sized buttons.
+@media screen and (max-width: 960px) {
+  main {
+    padding: 12px 8px 20px;
+  }
+
+  .case {
+    flex: 1 1 auto;
+    padding: 10px;
+    border-radius: 18px;
+    box-shadow: 0 16px 40px rgba(0, 0, 0, 0.55), inset 0 2px 0 rgba(255, 255, 255, 0.5);
+  }
+
+  .crt {
+    border-radius: 12px;
+    box-shadow: inset 0 0 40px rgba(0, 0, 0, 0.9);
+  }
+
+  .screen {
+    padding: 18px 14px 22px;
+    font-size: 18px;
+  }
+
+  .screen pre {
+    width: 36ch;
+  }
+
+  .screen pre.wide {
+    display: none;
+  }
+
+  .screen pre.narrow {
+    display: block;
+  }
+
+  .sections section,
+  .screen pre.copy {
+    margin-top: 14px;
+  }
+}

@@ -56,8 +56,9 @@ $tt-breakpoint: 600px; // matches --breakpoint-sm
   }
 }
 
-// Today: hidden until the footer button or the P.S. link opens it (only once the script runs).
-.js .tt--closable:not(.is-open) {
+// Today: hidden until the footer button or the P.S. link opens it (only once the script runs). The head
+// script adds .tt-keep when the visitor already had it open (see assets/js/time-travel.js).
+.js:not(.tt-keep) .tt--closable:not(.is-open) {
   display: none;
 }
 
@@ -86,7 +87,7 @@ $tt-breakpoint: 600px; // matches --breakpoint-sm
   flex-wrap: wrap;
   align-items: center;
   gap: 8px 20px;
-  padding: 10px 6% 12px;
+  padding: 20px 6% 14px;
 }
 
 .tt__title {
@@ -200,7 +201,7 @@ a.tt__stop:hover {
   display: none;
   align-items: center;
   gap: 6px;
-  padding: 8px 10px 14px;
+  padding: 14px 10px 14px;
 
   .tt__today {
     padding: 0 16px;

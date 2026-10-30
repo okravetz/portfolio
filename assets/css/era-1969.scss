@@ -1,0 +1,94 @@
+---
+---
+// 1969: the teletype's paper. The printout itself is plain <pre> text (_layouts/era-1969.html); the paper,
+// its feed holes and its shadow are device presentation. Lines wrap at 72 columns, or at the screen's
+// width on a phone, so nothing scrolls sideways.
+
+$paper: #f2eedf;
+$ink: #1d1b18;
+$hole: #3a3936;
+$perforation: #c9c3ae;
+
+body {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  margin: 0;
+  padding: 0;
+  background: oklch(0.300 0.006 75.0);
+}
+
+// These eras have no 8px page margin, so the bar (see era.scss) doesn't need to pull out of one.
+.tt {
+  margin: 0;
+}
+
+main.feed {
+  // 72 columns of text plus the two strips of feed holes.
+  box-sizing: border-box;
+  flex: 1 0 auto;
+  width: calc(72ch + 144px);
+  max-width: calc(100% - 32px);
+  margin: 0 auto;
+  padding: 72px 72px 96px;
+  color: $ink;
+  font-family: "Courier Prime", "Courier New", monospace;
+  font-size: 18px;
+  line-height: 1.55;
+  font-variant-ligatures: none; // one character per column, no joined letters
+  background:
+    radial-gradient(circle, $hole 6px, transparent 6.6px) left top / 40px 36px repeat-y,
+    radial-gradient(circle, $hole 6px, transparent 6.6px) right top / 40px 36px repeat-y,
+    repeating-linear-gradient(to bottom, $perforation 0 4px, transparent 4px 9px) 40px 0 / 1px 100% no-repeat,
+    repeating-linear-gradient(to bottom, $perforation 0 4px, transparent 4px 9px) calc(100% - 40px) 0 / 1px 100% no-repeat,
+    $paper;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.35), 0 6px 14px rgba(0, 0, 0, 0.3), 0 30px 70px rgba(0, 0, 0, 0.55);
+}
+
+.feed pre {
+  margin: 0 0 1.55em;
+  font: inherit;
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+}
+
+// The long dashed lines are cut off at the paper's edge instead of wrapping.
+.feed pre.rule {
+  margin-bottom: 0;
+  white-space: pre;
+  overflow: hidden;
+  // Whole characters only, so the last dash is never cut in half (browsers without round() just clip).
+  width: unquote("round(down, 100%, 1ch)");
+}
+
+// Between the "@TYPE" line and the text under it there is no gap.
+.feed pre:has(+ .rule) {
+  margin-bottom: 0;
+}
+
+@media screen and (max-width: 600px) {
+  main.feed {
+    width: auto;
+    max-width: none;
+    margin: 12px 10px 0;
+    padding: 28px 32px 40px;
+    font-size: 14.5px;
+    line-height: 1.5;
+    background:
+      radial-gradient(circle, $hole 4px, transparent 4.6px) left top / 26px 26px repeat-y,
+      radial-gradient(circle, $hole 4px, transparent 4.6px) right top / 26px 26px repeat-y,
+      repeating-linear-gradient(to bottom, $perforation 0 3px, transparent 3px 7px) 26px 0 / 1px 100% no-repeat,
+      repeating-linear-gradient(to bottom, $perforation 0 3px, transparent 3px 7px) calc(100% - 26px) 0 / 1px 100% no-repeat,
+      $paper;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.35), 0 4px 10px rgba(0, 0, 0, 0.3), 0 18px 40px rgba(0, 0, 0, 0.55);
+  }
+
+  .feed pre {
+    margin-bottom: 1.5em;
+  }
+
+  // The bar sits right under the paper.
+  .tt {
+    margin-top: 12px;
+  }
+}

@@ -7,17 +7,20 @@ title: Oren Kravetz's Portfolio
   <div class="container about">
     <div class="about__text">
       <p class="eyebrow">About</p>
-      <h2 id="about-h" class="section-title">Experienced Designer and Manager</h2>
-      <p><strong>Hey! I’m Oren (he/him/his)</strong>—a product design leader, husband, and father of two exceedingly cute gingers.</p>
-      <p>I am a UX designer and manager with 15+ years in B2B, B2C, and enterprise products. I lead teams of 1–5 designers and partner with PMs, engineers, and client leadership on healthcare, financial services, and more. My software engineering background lets me work closely with BAs and developers. I help turn your messy workflows into experiences that work for your users.</p>
+      {%- assign about = site.data.about -%}
+      {%- assign about_paragraphs = about.paragraphs | where_exp: "p", "p.today_only != true" -%}
+      <h2 id="about-h" class="section-title">{{ about.heading | escape }}</h2>
+      {%- for p in about_paragraphs limit: 2 -%}
+      <p>{% if p.lead %}<strong>{{ p.lead | escape }}</strong>{% endif %}{{ p.text | escape }}</p>
+      {%- endfor -%}
       <button type="button" class="about-toggle" aria-expanded="false" aria-controls="about-more">
         <span><span class="lbl-open">Read more</span><span class="lbl-close">Show less</span></span>
         {%- include icon-chevron.html -%}
       </button>
       <div id="about-more" class="about__more">
-        <p>I’ve led cross-functional teams at agencies like Merkle, Dentsu Creative, and Isobar, working with clients ranging from American Express and Bloomberg to Anthem and the U.S. Air Force. I’ve launched a new product for travel advisors, established design systems for enterprise clients, mentored designers, led user research, and co-facilitated workshops that helped win a $6M+ contract. My approach combines deep user research, strategic thinking, and hands-on design—from wireframes and prototypes to high-fidelity UI.</p>
-        <p>Outside of work, I play video games with my kids, catch Broadway shows when I can, play D&amp;D, take photos, mix cocktails, and occasionally brew beer. I’m also president of a Fair Lawn community nonprofit, which I incorporated. I manage a board of 5–8 directors and run its monthly services. Before that, I was vice president of a 200-family congregation, where I helped grow membership 188%.</p>
-        <p>I’m always excited to meet new people and tackle interesting problems. Let’s work together to make the digital world a little bit better—one app at a time!</p>
+        {%- for p in about_paragraphs offset: 2 -%}
+        <p>{% if p.lead %}<strong>{{ p.lead | escape }}</strong>{% endif %}{{ p.text | escape }}</p>
+        {%- endfor -%}
       </div>
     </div>
     <div class="clients-panel">

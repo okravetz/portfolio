@@ -1,0 +1,50 @@
+# The nine eras, oldest to newest. The time-travel bar, the mobile picker and the asset script read this file.
+# `name` is the short name shown in the picker. 1969 and 1983 are from the build plan; the others are
+# from the picker on the design board and are waiting for Oren's OK.
+# `url` is the era's homepage. Today ("/") is the default era.
+- order: 1
+  slug: "1969"
+  label: "1969"
+  name: Teletype printout
+  url: /1969/
+- order: 2
+  slug: "1983"
+  label: "1983"
+  name: Bulletin board
+  url: /1983/
+- order: 3
+  slug: "1991"
+  label: "1991"
+  name: The first web page
+  url: /1991/
+- order: 4
+  slug: "1996"
+  label: "1996"
+  name: GeoCities on Netscape
+  url: /1996/
+- order: 5
+  slug: "2001"
+  label: "2001"
+  name: The Flash era
+  url: /2001/
+- order: 6
+  slug: "2006"
+  label: "2006"
+  name: Web 2.0
+  url: /2006/
+- order: 7
+  slug: "2013"
+  label: "2013"
+  name: Responsive and flat
+  url: /2013/
+- order: 8
+  slug: today
+  label: Today
+  name: Current site
+  url: /
+  default: true
+- order: 9
+  slug: future
+  label: Future
+  name: Scripted agent
+  url: /future/

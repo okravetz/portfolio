@@ -1,7 +1,23 @@
 ---
 ---
-// 1996 on phones: modern media queries on top of the period table markup (the m96-* hooks in
-// _layouts/era-1996.html). The desktop page is untouched: a 780px table, as in 1996.
+// 1996: a modern layer on top of the period table markup (the m96-* hooks in _layouts/era-1996.html).
+
+// Period images are 1x pixels; on today's high-density screens show them as sharp square pixels
+// instead of smoothing them. The badges are stored at 2x, so they scale normally.
+img {
+  image-rendering: pixelated;
+}
+
+.m96-badge {
+  image-rendering: auto;
+}
+
+// No gap under the photo inside its frame (the space browsers leave below an image's text baseline).
+.m96-photo img {
+  vertical-align: bottom;
+}
+
+// Phones: the page stacks. The desktop page is untouched: a 780px table, as in 1996.
 
 @media screen and (max-width: 600px) {
   body {

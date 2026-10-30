@@ -11,7 +11,7 @@ python3 scripts/era-assets.py
 
 Options:
 
-- `--only shared | 1996 | 2001 | 2006 | badges | thumbs` draws one group (repeatable). `shared` is the square headshot every older era uses. `1996` includes the badges and the case-study thumbnails; `2001` includes the mobile tabs and header.
+- `--only 1996 | 2001 | 2006 | badges | photos` draws one group (repeatable). `1996` includes the badges; `photos` is the headshot and case-study images of every era that has photo sizes in `eras.yml`. `1996` includes the badges and the case-study thumbnails; `2001` includes the mobile tabs and header.
 - `--out DIR` writes somewhere else (each era gets its own subfolder). Default: `assets/eras`.
 - `--fonts DIR` uses another folder with `LiberationSans-Bold.ttf` and `LiberationMono-Bold.ttf`. Default: `scripts/fonts/`, which holds copies of both (SIL Open Font License; the license text is beside them).
 
@@ -31,12 +31,24 @@ Edit the YAML, re-run the script, commit the YAML and the images together. Alt t
 | 2001 "Loading", "Skip intro >>", "Replay intro"; 2006 "beta" | `_data/eras.yml`, that era's `ui` |
 | Hit counter "0001996" | `_data/eras.yml`, the 1996 `label`, padded to seven digits |
 | Badge file names and alt text | `_data/eras.yml`, the 1996 `badges` |
-| Square headshot for the older eras (`assets/eras/headshot-square.jpg`, 256 × 256) | `_data/site.yml`, `headshot.square_original`: Oren's original square photo in `assets/incoming/`, scaled down |
-| 1996 case-study thumbnails (120 × 90) | `_data/casestudies.yml`: each published study's `card_image`, scaled down; alt text is its `image_alt` |
+| Headshot per era (`96-headshot.gif`…) | `_data/site.yml`, `headshot.square_original`: Oren's original square photo in `assets/incoming/` |
+| Case-study images per era (`96-case-<page>.gif`…) | `_data/casestudies.yml`: each published study's `card_image` (already 4:3); alt text is its `image_alt` |
 
 The 2001 pixel font has no accents, so those images use plain letters and capitals ("Résumé" becomes "RESUME"). The script stops with an error if a label contains a character that can't be reduced to plain ASCII.
 
 `index.html` and `contact.html` still hard-code the "labels" headings, so if you change one, change it in both places until the templates read from `site.yml`.
+
+## Photos per era
+
+Each era's `photos` entry in `_data/eras.yml` sets the headshot and case-study image sizes, the color depth and the file format:
+
+| Era | Sizes | Colors | Format |
+|---|---|---|---|
+| 1996 | headshot 128 × 128, case studies 120 × 90 | `websafe`: the 216-color palette browsers used on 256-color displays, with dithering | GIF |
+| 2001 | set in its PR | `thousands`: 16-bit color | JPEG, quality 40 |
+| 2006 | set in its PR | `full` | JPEG, quality 75 |
+
+The images are 1x, so `assets/css/era-1996.scss` sets `image-rendering: pixelated`, which shows them as sharp square pixels on high-density screens instead of smoothing them.
 
 ## The 1996 badges
 

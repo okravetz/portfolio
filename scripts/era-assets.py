@@ -23,7 +23,7 @@ from PIL import Image, ImageChops, ImageDraw, ImageFilter, ImageFont
 
 ROOT = Path(__file__).resolve().parent.parent
 DATA = ROOT / '_data'
-GROUPS = ('shared', '1996', '2001', '2006', 'badges', 'thumbs')
+GROUPS = ('1996', '2001', '2006', 'badges', 'photos')
 
 SANS_B = MONO_B = None  # set in main() from --fonts
 
@@ -169,22 +169,51 @@ def make_1996(out, L):
     save_gif(cnt, out, '96-counter.gif')
 
 
-# ======================= 1996 case-study thumbnails =======================
-def make_thumbs(out, L):
-    """120 x 90 JPEGs of the approved Phase 1 card images (already 4:3, cropped from the top), one per
-    published case study, named after its page: 96-case-amex-value-builder.jpg."""
-    for case in L['cases']:
-        src = Image.open(ROOT / 'assets' / 'images' / 'wf' / case['card_image']).convert('RGB')
-        thumb = src.resize((120, 90), Image.LANCZOS)
-        thumb.save(out / f"96-case-{Path(case['link']).stem}.jpg", quality=85)
+# ======================= photos (headshot and case-study images) =======================
+def websafe_palette():
+    """The 216-color palette 8-bit browsers forced every image into (6 levels per channel)."""
+    pal = Image.new('P', (1, 1))
+    pal.putpalette([v * 51 for r in range(6) for g in range(6) for b in range(6) for v in (r, g, b)] + [0] * 120)
+    return pal
 
 
-# ======================= square headshot =======================
-def make_headshot(out, L):
-    """Older eras show the headshot as a square photo, from Oren's original square image
-    (site.yml headshot.square_original), scaled to 256 x 256 (2x the 128px it's shown at)."""
-    src = Image.open(ROOT / L['headshot_square']).convert('RGB')
-    src.resize((256, 256), Image.LANCZOS).save(out / 'headshot-square.jpg', quality=88)
+def era_colors(im, spec):
+    """Reduce a photo to the era's color depth (eras.yml photos.colors)."""
+    colors = spec.get('colors', 'full')
+    if colors == 'websafe':  # 256-color displays: the browser's web-safe palette, dithered
+        return im.quantize(palette=websafe_palette(), dither=Image.Dither.FLOYDSTEINBERG)
+    if colors == 'thousands':  # 16-bit "thousands of colors": 5 bits red and blue, 6 bits green
+        r, g, b = im.split()
+        return Image.merge('RGB', (r.point(lambda v: v & 0xF8), g.point(lambda v: v & 0xFC), b.point(lambda v: v & 0xF8)))
+    return im
+
+
+def save_photo(im, spec, path):
+    if spec.get('format') == 'gif':
+        im.save(path.with_suffix('.gif'))
+    else:
+        im.convert('RGB').save(path.with_suffix('.jpg'), quality=spec.get('quality', 85))
+
+
+def make_photos(out_root, L):
+    """For every era with photo sizes in eras.yml (`photos`), the headshot (from Oren's original square
+    photo) and one image per published case study (its approved 4:3 card image), scaled to the era's
+    sizes and reduced to its color depth: <prefix>-headshot.gif, <prefix>-case-amex-value-builder.gif."""
+    for slug, era in L['eras'].items():
+        spec = era.get('photos') or {}
+        if 'headshot' not in spec and 'thumbnail' not in spec:
+            continue
+        out = out_root / slug
+        out.mkdir(parents=True, exist_ok=True)
+        prefix = slug[-2:]
+        if 'headshot' in spec:
+            src = Image.open(ROOT / L['headshot_square']).convert('RGB')
+            save_photo(era_colors(src.resize(tuple(spec['headshot']), Image.LANCZOS), spec), spec, out / f'{prefix}-headshot')
+        if 'thumbnail' in spec:
+            for case in L['cases']:
+                src = Image.open(ROOT / 'assets' / 'images' / 'wf' / case['card_image']).convert('RGB')
+                thumb = era_colors(src.resize(tuple(spec['thumbnail']), Image.LANCZOS), spec)
+                save_photo(thumb, spec, out / f"{prefix}-case-{Path(case['link']).stem}")
 
 
 # ======================= badges =======================
@@ -481,9 +510,9 @@ def main():
     global SANS_B, MONO_B
     ap = argparse.ArgumentParser(description=__doc__.split('\n\n')[0])
     ap.add_argument('--only', choices=GROUPS, action='append',
-                    help="draw only this group (repeatable): shared (the square headshot, used by every older "
-                         "era), 1996 (includes the badges and thumbnails), 2001 (includes the mobile tabs), "
-                         "2006, badges, or thumbs. Default: all.")
+                    help="draw only this group (repeatable): 1996 (includes the badges), 2001 (includes the "
+                         "mobile tabs), 2006, badges, or photos (the headshot and case-study images of every era "
+                         "that has photo sizes in eras.yml). Default: all.")
     ap.add_argument('--out', type=Path, default=ROOT / 'assets' / 'eras',
                     help='output folder; each era gets its own subfolder (default: assets/eras)')
     ap.add_argument('--fonts', type=Path, default=ROOT / 'scripts' / 'fonts',
@@ -498,10 +527,10 @@ def main():
 
     want = set(args.only or GROUPS)
     if '1996' in want:
-        want |= {'badges', 'thumbs'}  # the 1996 group includes the badges and case-study thumbnails
+        want.add('badges')  # the 1996 group includes the badges
     L = read_labels()
-    steps = [('shared', '.', make_headshot), ('1996', '1996', make_1996), ('badges', '1996', make_badges), ('thumbs', '1996', make_thumbs),
-             ('2001', '2001', make_2001), ('2006', '2006', make_2006)]
+    steps = [('1996', '1996', make_1996), ('badges', '1996', make_badges), ('2001', '2001', make_2001),
+             ('2006', '2006', make_2006), ('photos', '.', make_photos)]
     for group, folder, fn in steps:
         if group in want:
             out = args.out / folder

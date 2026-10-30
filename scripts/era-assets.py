@@ -53,7 +53,7 @@ def read_labels():
         'portfolio_button': site['portfolio']['button'],
         'eras': eras,
         'cases': [c for c in load('casestudies.yml') if c.get('publish')],
-        'headshot': site['headshot']['file'],
+        'headshot_square': site['headshot']['square_original'],
     }
 
 
@@ -181,66 +181,10 @@ def make_thumbs(out, L):
 
 # ======================= square headshot =======================
 def make_headshot(out, L):
-    """The headshot is a circle on black. Older eras show it as a square photo. The black outside the
-    circle becomes the circle's own background gray: the gray along the circle's edge, averaged over
-    +-20 degrees so it is smooth (no streaks), carried straight out to the corners. Where the sweater
-    meets the bottom edge, the corners get the sweater's color instead. The photo blends into the fill
-    over its last 4px so no ring shows."""
-    src = Image.open(ROOT / L['headshot']).convert('RGB')
-    w, h = src.size
-    px = src.load()
-    cx, cy = (w - 1) / 2, (h - 1) / 2
-    R = w / 2 - 4  # just inside the antialiased edge, which is mixed with the black
-
-    def lum(c):
-        return 0.299 * c[0] + 0.587 * c[1] + 0.114 * c[2]
-
-    # Edge samples per degree: light, low-saturation pixels are background; dark ones may be sweater.
-    per = [[] for _ in range(360)]
-    dark = []
-    for d10 in range(0, 3600, 5):
-        a = math.radians(d10 / 10)
-        for r in (R - 5, R - 3, R - 1):
-            c = px[int(round(cx + r * math.cos(a))), int(round(cy + r * math.sin(a)))]
-            if lum(c) > 150 and max(c) - min(c) < 25:
-                per[d10 // 10].append(c)
-            elif lum(c) < 80 and r == R - 1:
-                dark.append((d10 / 10, c))
-
-    # Background gray per degree, smoothed around the circle; gaps borrow the nearest angle.
-    edge = []
-    for d in range(360):
-        acc, wt = [0, 0, 0], 0
-        for dd in range(-20, 21):
-            k = 21 - abs(dd)
-            for c in per[(d + dd) % 360]:
-                acc = [acc[i] + c[i] * k for i in range(3)]
-                wt += k
-        edge.append([v / wt for v in acc] if wt else None)
-    for d in range(360):
-        for s in range(1, 180):
-            if edge[d] is not None:
-                break
-            edge[d] = edge[(d + s) % 360] or edge[(d - s) % 360]
-
-    # The sweater: the dark run across the bottom edge (y grows downward, so 90 degrees is straight down).
-    bottom = [(d, c) for d, c in dark if 20 < d < 160]
-    lo, hi = min(d for d, _ in bottom), max(d for d, _ in bottom)
-    sweater = sorted((c for _, c in bottom), key=lum)[len(bottom) // 2]
-
-    img = Image.new('RGB', (w, h))
-    op = img.load()
-    for y in range(h):
-        for x in range(w):
-            d = math.degrees(math.atan2(y - cy, x - cx)) % 360
-            i, f = int(d) % 360, d - int(d)
-            gray = [edge[i][k] * (1 - f) + edge[(i + 1) % 360][k] * f for k in range(3)]
-            t = min(1, max(0, (d - lo) / 2)) * min(1, max(0, (hi - d) / 2))  # 2-degree shoulder edge
-            fill = [gray[k] * (1 - t) + sweater[k] * t for k in range(3)]
-            m = min(1, max(0, (R - math.hypot(x - cx, y - cy)) / 4))
-            c = px[x, y]
-            op[x, y] = tuple(max(0, min(255, int(round(c[k] * m + fill[k] * (1 - m))))) for k in range(3))
-    img.save(out / 'headshot-square.jpg', quality=90)
+    """Older eras show the headshot as a square photo, from Oren's original square image
+    (site.yml headshot.square_original), scaled to 256 x 256 (2x the 128px it's shown at)."""
+    src = Image.open(ROOT / L['headshot_square']).convert('RGB')
+    src.resize((256, 256), Image.LANCZOS).save(out / 'headshot-square.jpg', quality=88)
 
 
 # ======================= badges =======================

@@ -38,6 +38,16 @@ main {
   box-shadow: 0 30px 70px rgba(0, 0, 0, 0.55), inset 0 2px 0 rgba(255, 255, 255, 0.5);
 }
 
+// The terminal itself can take focus (that is where the command letters work); a phosphor ring shows it.
+.crt:focus {
+  outline: none;
+}
+
+.crt:focus-visible {
+  outline: 2px solid $phosphor;
+  outline-offset: 6px;
+}
+
 .crt {
   position: relative;
   border-radius: 18px;

@@ -1,7 +1,9 @@
 {%- comment -%}
   1983: a bulletin board on a glass terminal. Plain ASCII text in <pre> blocks, 80 columns (36 on phones),
-  no box-drawing characters. The menu letters are buttons that switch sections (assets/js/bbs.js); without
-  JavaScript every section is shown in turn and the menu is hidden. The beige case, the green phosphor
+  no box-drawing characters. The menu letters are buttons that switch sections, and the links (downloads,
+  all work, email, LinkedIn, Back) are commands drawn the same way (_includes/era-text/cmd.html). With the
+  terminal focused, typing a letter runs it (assets/js/bbs.js). Without JavaScript every section is shown in
+  turn and the menu is hidden. The beige case, the green phosphor
   glow, the scanlines and the blinking cursor are device presentation (assets/css/era-1983.scss).
   All copy comes from _data/; _includes/era-text/ does the ASCII swaps.
   With page.work (/1983/work/) the screen lists every project, then a menu with one command, [B] Back (a link
@@ -19,7 +21,10 @@
 {%- assign dashes80 = "--------------------------------------------------------------------------------" -%}
 {%- assign wide = dashes80 | slice: 0, 78 -%}
 {%- assign narrow = dashes80 | slice: 0, 34 -%}
-{%- assign work_url = s.url | append: era.url | append: "work/" -%}
+{%- assign work_href = era.url | append: "work/" | relative_url -%}
+{%- assign more_hidden = site.data.morework.size | minus: 3 -%}
+{%- assign show_all = s.labels.show_all_work | replace: "%n", more_hidden -%}
+{%- assign cmd = ui.commands -%}
 <!DOCTYPE html>
 <html lang="en-US">
   <head>
@@ -28,7 +33,7 @@
   <body>
 <main>
 <div class="case">
-<div class="crt" role="region" aria-label="{{ ui.aria_label }}">
+<div class="crt" role="region" aria-label="{{ ui.aria_label }}" tabindex="0">
 <div class="screen">
 <pre class="wide">{{ ui.connect }}
 
@@ -49,13 +54,14 @@
 {% include era-text/part.html part="underline" text=s.labels.more_work %}
 {% include era-text/part.html part="more" all=true indent="   " %}</pre></section>
 </div>
-{%- include era-text/ascii.html text=ui.back %}
+{%- assign back_key = ui.back | slice: 0, 1 | upcase %}
+{%- assign home = era.url | relative_url %}
 <div class="cmds">
 <nav aria-label="{{ s.labels.main_navigation }}">
 <pre>{{ ui.menu }}</pre>
-<div><a class="cmd" href="{{ era.url | relative_url }}">[{{ ascii_out | slice: 0, 1 | upcase }}] {{ ascii_out | escape }}</a></div>
+<div>{% include era-text/cmd.html key=back_key href=home text=ui.back %}</div>
 </nav>
-<pre class="prompt">{{ ui.prompt }} <span class="cur" aria-hidden="true"></span></pre>
+<pre class="prompt">{{ ui.prompt }} <span class="prompt-key"></span><span class="cur" aria-hidden="true"></span></pre>
 </div>
 {%- else %}
 <div class="bbs-menu">
@@ -84,16 +90,29 @@
 
 {% include era-text/part.html part="text" text=s.labels.more_work upper=true %}
 {% include era-text/part.html part="underline" text=s.labels.more_work %}
-{% include era-text/part.html part="more" indent="   " work_url=work_url %}</pre></section>
+{% include era-text/part.html part="more" indent="   " noshow=true %}
+
+{% include era-text/cmd.html key=cmd.work href=work_href text=show_all %}</pre></section>
 {%- when "resume" %}
 {%- capture title %}{{ item.name }}{% endcapture %}
 <section id="sec-resume"><pre>{% include era-text/part.html part="text" text=title upper=true %}
 {% include era-text/part.html part="underline" text=title %}
-{% include era-text/part.html part="resume" indent="   " %}</pre></section>
+{%- assign resume_href = s.resume.file | prepend: '/' | relative_url %}
+{%- assign portfolio_href = s.portfolio.file | prepend: '/' | relative_url %}
+{% include era-text/cmd.html key=cmd.resume href=resume_href text=s.resume.button %}
+{% include era-text/cmd.html key=cmd.portfolio href=portfolio_href text=s.portfolio.button %}</pre></section>
 {%- when "contact" %}
 <section id="sec-contact"><pre>{% include era-text/part.html part="text" text=s.labels.contact upper=true %}
 {% include era-text/part.html part="underline" text=s.labels.contact %}
-{% include era-text/part.html part="contact" align=true %}</pre></section>
+{%- for item in site.data.contact %}
+{%- capture line %}{{ item.label }}: {{ item.text }}{% endcapture %}
+{%- if item.href %}
+{%- assign letter = item.label | slice: 0, 1 | upcase %}
+{% include era-text/cmd.html key=letter href=item.href text=line %}
+{%- else %}
+{% include era-text/part.html part="text" text=line %}
+{%- endif %}
+{%- endfor %}</pre></section>
 {%- endcase %}
 {%- endfor %}
 </div>
@@ -106,8 +125,6 @@
 </main>
 {% include time-travel.html current=era.slug %}
 <script src="{{ '/assets/js/time-travel.js' | relative_url }}?v={{ site.time | date: '%s' }}" defer></script>
-{%- unless page.work %}
 <script src="{{ '/assets/js/bbs.js' | relative_url }}?v={{ site.time | date: '%s' }}"></script>
-{%- endunless %}
   </body>
 </html>
